@@ -29,8 +29,8 @@ test('exports the same API to a classic browser script', () => {
   assert.equal(typeof context.window.BlackoutRouter.offset, 'function');
 });
 
-test('all actual city facilities route along streets with unchanged endpoints', () => {
-  const nodes = [p(245, 415), p(545, 285), p(800, 465), p(850, 180), p(1020, 345)];
+test('all actual device terminals route along streets with unchanged endpoints', () => {
+  const nodes = [p(199, 415), p(291, 415), p(499, 285), p(591, 285), p(754, 465), p(846, 465), p(804, 180), p(896, 180), p(974, 345), p(1066, 345)];
   const router = R.create(city.roads);
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
@@ -41,6 +41,10 @@ test('all actual city facilities route along streets with unchanged endpoints', 
       const geometry = R.geometry(route);
       assert.ok(geometry.length > 0);
       for (let sample = 0; sample <= 100; sample++) assert.ok(onRoad(geometry.at(sample / 100), city.roads), 'Path left the road network');
+      for (const body of [p(245, 415), p(545, 285), p(800, 465), p(850, 180), p(1020, 345)]) {
+        const closest = R.split(route, body).point;
+        assert.ok(Math.hypot(closest.x - body.x, closest.y - body.y) > 26, 'A road wire crosses through a device body instead of its terminal');
+      }
       assert.deepEqual(router.route(nodes[j], nodes[i]), route.slice().reverse(), 'Reverse routing chose a different road');
     }
   }
@@ -124,15 +128,15 @@ test('lane offsets use miter corners, exact endpoints, and ten-unit endpoint stu
 });
 
 test('the two-unit motor spur remains exact and orthogonal for every lane candidate', () => {
-  const route = R.create(city.roads).route(p(245, 415), p(1020, 345));
-  assert.deepEqual(route.at(-2), p(1020, 347));
+  const route = R.create(city.roads).route(p(291, 415), p(974, 345));
+  assert.deepEqual(route.at(-2), p(974, 347));
   for (const amount of [0, 4, -4, 8, -8]) {
     const shifted = R.offset(route, amount);
-    assert.deepEqual(shifted[0], p(245, 415));
-    assert.deepEqual(shifted.at(-1), p(1020, 345));
+    assert.deepEqual(shifted[0], p(291, 415));
+    assert.deepEqual(shifted.at(-1), p(974, 345));
     orthogonal(shifted);
     assert.ok(shifted.every(point => Number.isFinite(point.x) && Number.isFinite(point.y)));
-    near(R.geometry(R.split(shifted, p(1020, 347)).after).length, 2);
+    near(R.geometry(R.split(shifted, p(974, 347)).after).length, 2);
   }
 });
 

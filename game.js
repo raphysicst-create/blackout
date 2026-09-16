@@ -78,7 +78,7 @@
     cancelDrag();
     state = {
       mode: 'intro', time: 0, stableFor: 0, victoryFor: 0, tool: 'connect', paused: false,
-      nodes: [{ id: 'source', type: 'source', x: 245, y: 415, label: '전원' }, { ...loadPlan[0] }],
+      nodes: [{ id: 'source', type: 'source', x: 245, y: 415, label: '건전지' }, { ...loadPlan[0] }],
       edges: [], analysis: null, firstConnection: false, ampUnlocked: false, branchUnlocked: false,
       noticedDim: false, noticedOverload: false, lateHint: false, breaks: 0, didBranch: false,
     };
@@ -99,7 +99,7 @@
     $('toast').classList.remove('visible');
     setTool('connect');
     recalculate(); rebuild();
-    hint('전원에서 전구까지, 빛을 이어 주세요.', '노드를 누른 채 전구까지 끌어 놓으세요.', Infinity);
+    hint('한 바퀴 이어져야, 빛이 켜집니다.', '건전지 + → 전구 한쪽 단자 · 전구 반대쪽 → 건전지 −', Infinity);
     lockPlayfield(true);
   }
   function start() {
@@ -116,15 +116,19 @@
     state.analysis = E.analyze(state.nodes, state.edges);
     topologyDirty = true;
   }
-  function makeWire(a, b, heat = 0, route = null) {
-    const from = state.nodes.find(n => n.id === a);
-    const to = state.nodes.find(n => n.id === b);
-    return { id: `wire-${++wireCounter}`, a, b, route: route || wireRoute(from, to), heat, capacity: E.WIRE_CAPACITY, born: state.time };
+  function terminalPoint(id, port) {
+    const node = state.nodes.find(n => n.id === id);
+    if (!node || !E.ports(node).includes(port)) return null;
+    return { id, port, x: node.x + (port === 'minus' || port === 'left' ? -46 : port === 'plus' || port === 'right' ? 46 : 0), y: node.y };
   }
-  function addConnection(from, to) {
-    const check = E.canConnect(state.nodes, state.edges, from, to);
+  function makeWire(a, b, aPort, bPort, heat = 0, route = null) {
+    const from = terminalPoint(a, aPort), to = terminalPoint(b, bPort);
+    return { id: `wire-${++wireCounter}`, a, b, aPort, bPort, route: route || wireRoute(from, to), heat, capacity: E.WIRE_CAPACITY, born: state.time };
+  }
+  function addConnection(from, to, fromPort, toPort) {
+    const check = E.canConnect(state.nodes, state.edges, from, to, fromPort, toPort);
     if (!check.ok) { toast(check.reason); return false; }
-    state.edges.push(makeWire(from, to));
+    state.edges.push(makeWire(from, to, fromPort, toPort));
     connected();
     return true;
   }
@@ -134,39 +138,45 @@
     state.stableFor = 0;
     if (!state.firstConnection && state.analysis.nodes['lamp-1'].powered) {
       state.firstConnection = true;
-      hint('하나의 연결, 하나의 빛.', '새로운 시설이 나타나면 빛을 이어 주세요.', 7);
+      hint('한 바퀴의 연결, 하나의 빛.', '전류는 +극에서 전구를 지나 −극으로 돌아옵니다.', 9);
+    }
+    if (state.analysis.shortCircuit) {
+      hint('기기를 거치지 않고 +극과 −극이 이어졌어요.', '합선된 전선을 끊고, 전구를 지나는 길을 만들어 주세요.', Infinity);
+    } else if (!state.firstConnection && state.edges.length) {
+      hint('돌아오는 길까지 이어 주세요.', '전구의 두 단자가 건전지 +극과 −극에 이어져야 켜집니다.', Infinity);
     }
     if (!state.noticedDim && state.nodes.some(n => n.type === 'lamp' && state.analysis.nodes[n.id].powered && state.analysis.nodes[n.id].brightness < .8)) {
       state.noticedDim = true;
       hint('빛이 조금 약해졌네요.', '다른 곳에서 전선을 가져오면 어떤 변화가 생길까요?', 10);
     }
   }
-  function addBranch(edgeId, origin, targetId) {
+  function addBranch(edgeId, origin, targetId, targetPort) {
     const edge = state.edges.find(e => e.id === edgeId);
     if (!edge) return;
     if (!state.branchUnlocked) { toast('조금 뒤에 전선 중간에서도 새 갈래를 만들 수 있어요.'); return; }
-    const a = state.nodes.find(n => n.id === edge.a);
-    const b = state.nodes.find(n => n.id === edge.b);
+    const a = terminalPoint(edge.a, edge.aPort);
+    const b = terminalPoint(edge.b, edge.bPort);
     const pieces = R.split(edge.route, origin);
     origin = pieces.point;
-    if (distance(origin, a) < 46) { addConnection(a.id, targetId); return; }
-    if (distance(origin, b) < 46) { addConnection(b.id, targetId); return; }
+    if (distance(origin, a) < 26) { addConnection(a.id, targetId, a.port, targetPort); return; }
+    if (distance(origin, b) < 26) { addConnection(b.id, targetId, b.port, targetPort); return; }
     const j = { id: `junction-${junctionCounter + 1}`, type: 'junction', x: origin.x, y: origin.y, label: '' };
     const remaining = state.edges.filter(e => e.id !== edgeId);
     // Validate before mutation. Failed drops never leave orphan junctions.
-    const candidate = [...remaining, { id: '_a', a: edge.a, b: j.id }, { id: '_b', a: j.id, b: edge.b }];
-    const check = E.canConnect([...state.nodes, j], candidate, j.id, targetId);
+    const candidate = [...remaining, { id: '_a', a: edge.a, b: j.id, aPort: edge.aPort, bPort: 'joint' }, { id: '_b', a: j.id, b: edge.b, aPort: 'joint', bPort: edge.bPort }];
+    const check = E.canConnect([...state.nodes, j], candidate, j.id, targetId, 'joint', targetPort);
     if (!check.ok) { toast(check.reason); return; }
     junctionCounter++;
     state.nodes.push(j);
-    state.edges = [...remaining, makeWire(edge.a, j.id, edge.heat, pieces.before), makeWire(j.id, edge.b, edge.heat, pieces.after)];
-    state.edges.push(makeWire(j.id, targetId));
+    state.edges = [...remaining, makeWire(edge.a, j.id, edge.aPort, 'joint', edge.heat, pieces.before), makeWire(j.id, edge.b, 'joint', edge.bPort, edge.heat, pieces.after)];
+    state.edges.push(makeWire(j.id, targetId, 'joint', targetPort));
     state.didBranch = true;
     selected = null; $('wire-actions').hidden = true;
     connected();
   }
   function removeWire(id, broken = false) {
     if (!state.edges.some(e => e.id === id)) return;
+    const wasShorted = state.analysis.shortCircuit;
     state.edges = state.edges.filter(e => e.id !== id);
     const used = new Set(state.edges.flatMap(e => [e.a, e.b]));
     state.nodes = state.nodes.filter(n => n.type !== 'junction' || used.has(n.id));
@@ -174,6 +184,11 @@
     if (measured?.id === id) { measured = null; $('measure-layer').innerHTML = ''; }
     state.stableFor = 0;
     recalculate(); rebuild();
+    if (!broken && wasShorted && !state.analysis.shortCircuit) {
+      hint('합선이 해소됐어요.', '각 기기의 양쪽 단자를 연결해, +극에서 −극으로 돌아오는 길을 만드세요.', 9);
+    } else if (!broken && state.nodes.some(n => (n.type === 'lamp' || n.type === 'motor') && !state.analysis.nodes[n.id].powered)) {
+      hint('끊어진 회로에는 전류가 흐르지 않아요.', '가는 전선과 돌아오는 전선을 모두 이어 주세요.', 9);
+    }
     if (!broken) tone('snap');
   }
   function setTool(tool) {
@@ -210,13 +225,16 @@
   }
   function toScreen(p) { return new DOMPoint(p.x, p.y).matrixTransform(board.getScreenCTM()); }
   function worldScale() { return Math.max(.1, Math.abs(board.getScreenCTM().a)); }
-  function closestNode(p, exclude) {
-    const radius = Math.max(34, 31 / worldScale());
+  function closestTerminal(p, exclude) {
+    const radius = Math.min(37, Math.max(22, 20 / worldScale()));
     let found = null, nearest = radius;
     for (const n of state.nodes) {
-      if (n.id === exclude) continue;
-      const d = distance(p, n);
-      if (d < nearest) { found = n; nearest = d; }
+      for (const port of E.ports(n)) {
+        if (n.id === exclude?.id && port === exclude.port) continue;
+        const terminal = terminalPoint(n.id, port);
+        const d = distance(p, terminal);
+        if (d < nearest) { found = terminal; nearest = d; }
+      }
     }
     return found;
   }
@@ -268,10 +286,10 @@
     return R.geometry(wireRoute(a, b));
   }
   function nodeMarkup(n) {
-    const label = n.type === 'source' ? '전원' : n.type === 'junction' ? '분기점' : n.label;
+    const label = n.type === 'source' ? '건전지' : n.type === 'junction' ? '분기점' : n.label;
     let art;
     if (n.type === 'source') {
-      art = '<polygon class="node-shell" points="0,-29 25,-14.5 25,14.5 0,29 -25,14.5 -25,-14.5"/><path class="node-symbol" d="M4-16-9 3H0L-4 16 10-4H1Z"/>';
+      art = '<rect class="node-shell" x="-26" y="-17" width="50" height="34" rx="5"/><path class="battery-tip" d="M24-7h6V7h-6"/><path class="node-symbol battery-mark" d="M-16 0h9M6 0h10M11-5v10"/>';
     } else if (n.type === 'lamp') {
       art = '<circle class="node-shell" r="22"/><path class="node-symbol" d="M-8-5a8 8 0 1 1 16 0c0 4-4 5-4 9h-8c0-4-4-5-4-9Z M-4 8h8 M-2 11h4 M-3-5l3 4 3-4M0-1v5"/>';
     } else if (n.type === 'motor') {
@@ -279,9 +297,16 @@
     } else {
       art = '<circle class="node-shell" r="9"/><circle class="junction-core" r="3"/>';
     }
-    return `<g id="node-${n.id}" class="node ${n.type}" data-node="${n.id}" role="button" aria-label="${label}, 연결하려면 끌어 놓으세요" tabindex="0" transform="translate(${n.x} ${n.y})"><circle class="hit-area" r="34"/><g class="node-art">${art}</g>${n.label ? `<text class="node-label" text-anchor="middle" y="49">${n.label}</text>` : ''}</g>`;
+    const terminals = E.ports(n).map(port => {
+      const x = terminalPoint(n.id, port).x - n.x;
+      const name = port === 'plus' ? '+극' : port === 'minus' ? '−극' : port === 'left' ? '왼쪽 단자' : port === 'right' ? '오른쪽 단자' : '분기점';
+      return `<g id="terminal-${n.id}-${port}" class="terminal ${port}" data-node="${n.id}" data-port="${port}" role="button" tabindex="0" aria-label="${label} ${name}, 전선 연결" transform="translate(${x} 0)"><circle class="terminal-hit" r="22"/><circle class="terminal-ring" r="8"/>${n.type === 'source' ? `<path class="polarity" d="M-4 0h8${port === 'plus' ? 'M0-4v8' : ''}"/><text class="polarity-label" text-anchor="middle" y="-20">${port === 'plus' ? '+' : '−'}</text>` : '<circle class="terminal-core" r="2.5"/>'}</g>`;
+    }).join('');
+    return `<g id="node-${n.id}" class="node ${n.type}" data-node="${n.id}" role="group" aria-label="${label}" transform="translate(${n.x} ${n.y})">${n.type !== 'junction' ? '<path class="terminal-lead" d="M-46 0h24M22 0h24"/>' : ''}<g class="node-art">${art}</g>${terminals}${n.label ? `<text class="node-label" text-anchor="middle" y="49">${n.label}</text>` : ''}</g>`;
   }
   function rebuild() {
+    const focused = document.activeElement?.closest?.('.terminal');
+    const focusedId = focused?.id;
     const oldBrightness = new Map([...views].map(([id, v]) => [id, v.brightness]));
     const oldIds = new Set(views.keys());
     $('nodes').innerHTML = state.nodes.map(nodeMarkup).join('');
@@ -305,13 +330,14 @@
     if (measured && state.edges.some(e => e.id === measured.id)) measure(measured.id, { x: measured.x, y: measured.y + 45 });
     topologyDirty = false;
     resizeHits();
+    if (focusedId && $(focusedId)) $(focusedId).focus({ preventScroll: true });
   }
   function resizeHits() {
     const scale = worldScale();
-    const radius = Math.max(34, 31 / scale);
-    const artScale = Math.max(1, .72 / scale);
+    const radius = Math.min(37, Math.max(22, 20 / scale));
+    const artScale = Math.min(1.15, Math.max(1, .65 / scale));
     for (const v of views.values()) {
-      v.el.querySelector('.hit-area').setAttribute('r', radius);
+      for (const hit of v.el.querySelectorAll('.terminal-hit')) hit.setAttribute('r', radius);
       v.el.style.setProperty('--node-scale', artScale);
       const label = v.el.querySelector('.node-label');
       if (label) { label.style.fontSize = `${Math.max(9, 8 / scale)}px`; label.setAttribute('y', 49 * artScale); }
@@ -324,13 +350,13 @@
     drag = null; keyboardStart = null;
     $('preview').setAttribute('d', '');
     $('snap-ring').setAttribute('visibility', 'hidden');
-    for (const v of views.values()) v.el.classList.remove('snap');
+    for (const terminal of $('nodes').querySelectorAll('.terminal.snap')) terminal.classList.remove('snap');
   }
   board.addEventListener('pointerdown', event => {
     if (!canInteract() || event.button !== 0 || drag) return;
     event.preventDefault();
     const p = pointFromEvent(event);
-    const node = closestNode(p);
+    const node = closestTerminal(p);
     const wire = node ? null : closestWire(p);
     if (state.tool === 'amp') {
       if (wire) measure(wire.id, wire.point);
@@ -339,8 +365,11 @@
     }
     if (wire && selected === wire.id) { removeWire(wire.id); return; }
     selectWire(null);
-    if (!node && !wire) return;
-    drag = { pointerId: event.pointerId, kind: node ? 'node' : 'wire', from: node?.id, edgeId: wire?.id, origin: node || wire.point, down: p, point: p, target: null, moved: false, held: false, started: performance.now() };
+    if (!node && !wire) {
+      if (state.nodes.some(n => n.type !== 'junction' && distance(n, p) < 26)) toast('아이콘 양옆의 작은 단자를 잡고 끌어 주세요.');
+      return;
+    }
+    drag = { pointerId: event.pointerId, kind: node ? 'node' : 'wire', from: node, edgeId: wire?.id, origin: node || wire.point, down: p, point: p, target: null, moved: false, held: false, started: performance.now() };
     board.setPointerCapture(event.pointerId);
   });
   board.addEventListener('pointermove', event => {
@@ -349,9 +378,9 @@
     drag.point = p;
     if (distance(p, drag.down) * worldScale() > 8) drag.moved = true;
     if (!drag.moved) return;
-    for (const v of views.values()) v.el.classList.remove('snap');
-    const target = closestNode(p, drag.from);
-    drag.target = target?.id || null;
+    for (const terminal of $('nodes').querySelectorAll('.terminal.snap')) terminal.classList.remove('snap');
+    const target = closestTerminal(p, drag.from);
+    drag.target = target;
     const end = target || p;
     if (drag.kind === 'wire' && drag.held) {
       $('preview').setAttribute('d', '');
@@ -361,7 +390,7 @@
     $('preview').classList.toggle('snapped', !!target);
     $('snap-ring').setAttribute('visibility', target ? 'visible' : 'hidden');
     if (target) {
-      views.get(target.id).el.classList.add('snap');
+      $(`terminal-${target.id}-${target.port}`).classList.add('snap');
       $('snap-ring').setAttribute('cx', target.x); $('snap-ring').setAttribute('cy', target.y);
     }
   });
@@ -375,8 +404,8 @@
       return;
     }
     if (pending.moved && pending.target) {
-      if (pending.kind === 'node') addConnection(pending.from, pending.target);
-      else addBranch(pending.edgeId, pending.origin, pending.target);
+      if (pending.kind === 'node') addConnection(pending.from.id, pending.target.id, pending.from.port, pending.target.port);
+      else addBranch(pending.edgeId, pending.origin, pending.target.id, pending.target.port);
     } else if (pending.kind === 'wire' && !pending.moved) {
       selectWire(pending.edgeId, pending.origin);
     }
@@ -386,7 +415,9 @@
   board.addEventListener('contextmenu', e => e.preventDefault());
   board.addEventListener('keydown', event => {
     if (!canInteract() || !['Enter', ' '].includes(event.key)) return;
-    const nodeId = event.target.closest('[data-node]')?.dataset.node;
+    const terminal = event.target.closest('[data-port]');
+    const nodeId = terminal?.dataset.node;
+    const port = terminal?.dataset.port;
     const edgeId = event.target.closest('[data-wire]')?.dataset.wire;
     if (!nodeId && !edgeId) return;
     event.preventDefault(); event.stopPropagation();
@@ -395,11 +426,11 @@
       if (state.tool === 'amp') measure(edgeId, p); else selectWire(edgeId, p);
     } else if (state.tool === 'connect') {
       if (keyboardStart) {
-        const from = keyboardStart; cancelDrag(); addConnection(from, nodeId);
+        const from = keyboardStart; cancelDrag(); addConnection(from.id, nodeId, from.port, port);
       } else {
-        keyboardStart = nodeId;
-        views.get(nodeId).el.classList.add('snap');
-        toast('Tab으로 다른 노드를 선택하고 Enter로 연결하세요.');
+        keyboardStart = { id: nodeId, port };
+        terminal.classList.add('snap');
+        toast('Tab으로 다른 단자를 선택하고 Enter로 연결하세요.');
       }
     }
   });
@@ -441,7 +472,7 @@
     for (const plan of loadPlan) {
       if (state.time >= plan.at && !state.nodes.some(n => n.id === plan.id)) {
         state.nodes.push({ ...plan }); recalculate(); rebuild(); tone('pop');
-        hint(plan.type === 'motor' ? '마지막 불빛이 당신을 기다립니다.' : '도시 한편에, 불빛이 더 필요해요.', plan.type === 'motor' ? '급수 펌프까지 연결하고 전선의 흐름을 살펴보세요.' : '전선을 어디에서 가져올지 살펴보세요.', 11);
+        hint(plan.type === 'motor' ? '마지막 불빛이 당신을 기다립니다.' : '도시 한편에, 불빛이 더 필요해요.', '새 시설도 양쪽 단자를 연결해 건전지로 돌아오는 길을 만들어 주세요.', 11);
       }
     }
     if (state.time >= 65 && !state.ampUnlocked) {
@@ -451,16 +482,16 @@
     }
     if (state.time >= 90 && !state.branchUnlocked) {
       state.branchUnlocked = true;
-      toast('전선 중간에서 새 시설로 끌면, 작은 분기점이 생깁니다.', 7000);
+      toast('전선 중간에서 새 시설의 단자로 끌면 분기점이 생깁니다. 반대쪽 단자의 귀환선도 이어 주세요.', 7000);
     }
     if (state.time >= 150 && !state.didBranch && !state.branchReminder) {
       state.branchReminder = true;
-      hint('빛은 여러 갈래로 이어질 수 있어요.', '전선 중간을 잡고 새 시설까지 끌어 보세요.', 9);
+      hint('빛은 여러 갈래로 이어질 수 있어요.', '공급선에서 갈래를 만들고, 새 시설의 반대쪽은 −극으로 이어 주세요.', 9);
     }
     const overheated = state.edges.some(e => state.analysis.edges[e.id]?.overloaded);
     if (overheated && !state.noticedOverload) {
       state.noticedOverload = true;
-      hint('전선이 너무 많은 전류를 견디고 있어요.', '한 전선에 모인 흐름을 다른 길로 나눠 보세요.', 9);
+      hint(state.analysis.shortCircuit ? '합선으로 전류가 너무 많이 흐르고 있어요.' : '전선이 너무 많은 전류를 견디고 있어요.', state.analysis.shortCircuit ? '+극과 −극 사이에 전구나 펌프를 연결해 주세요.' : '가는 길과 돌아오는 길 모두, 한 전선의 부담을 나눠 주세요.', 9);
     }
     const broken = E.tickHeat(state.edges, state.analysis, dt);
     if (broken.length) {
@@ -470,7 +501,7 @@
       $('blackout').classList.remove('flash');
       void $('blackout').offsetWidth;
       $('blackout').classList.add('flash');
-      hint('괜찮아요. 다시 이어 주세요.', '전원에서 새로운 길을 내면 한 전선의 부담이 줄어들어요.', 12);
+      hint('괜찮아요. 다시 이어 주세요.', '전구를 지나는 닫힌 길을 만들고, 공급선과 귀환선의 전류를 나눠 주세요.', 12);
     }
     // Cooling participates in stability, so recompute after heat changes too.
     state.analysis = E.analyze(state.nodes, state.edges);
@@ -523,13 +554,14 @@
       v.light.style.opacity = lit ? String(.35 + Math.min(.65, current)) : '0';
       v.aura.style.opacity = lit ? String(.06 + Math.min(.34, current * .4)) : '0';
       v.light.style.strokeDasharray = `${reveal} 1`;
-      v.light.style.strokeDashoffset = electrical.from === e.a ? '0' : String(reveal - 1);
+      const forward = electrical.from === e.a && electrical.fromPort === e.aPort;
+      v.light.style.strokeDashoffset = forward ? '0' : String(reveal - 1);
       const count = lit ? Math.min(32, Math.max(2, Math.round(v.geometry.length * current * .09))) : 0;
       for (let i = 0; i < v.particles.length; i++) {
         const dot = v.particles[i];
         if (i >= count) { dot.setAttribute('opacity', '0'); continue; }
         let progress = reducedMotion ? i / count : (i / count + (state.time + state.victoryFor) * 82 / Math.max(1, v.geometry.length)) % 1;
-        if (electrical.from !== e.a) progress = 1 - progress;
+        if (!forward) progress = 1 - progress;
         const p = v.geometry.at(progress);
         dot.setAttribute('cx', p.x.toFixed(2)); dot.setAttribute('cy', p.y.toFixed(2));
         dot.setAttribute('opacity', reveal >= 1 ? '.92' : '0');
@@ -576,7 +608,7 @@
     $('schematic-svg').innerHTML = window.BlackoutSchematic.render(state.nodes, state.edges, state.analysis);
     $('discovery').textContent = state.analysis.hasParallel
       ? '당신이 만든 병렬 연결에서는 전류가 여러 갈래로 나뉩니다. 갈라진 전류를 모두 더하면, 갈라지기 전의 전류와 같습니다.'
-      : '전류는 전원에서 시설을 지나 다시 전원으로 돌아옵니다. 당신이 만든 연결을 따라가 보세요.';
+      : '전류는 건전지의 +극에서 시설의 두 단자를 지나 −극으로 돌아옵니다. 한 곳이라도 끊어지면 전류가 멈춥니다.';
     $('schematic-panel').hidden = false; $('result').hidden = true; $('close-schematic').focus();
   });
   $('close-schematic').addEventListener('click', () => { $('schematic-panel').hidden = true; $('result').hidden = false; $('schematic-button').focus(); });
@@ -616,6 +648,7 @@
       advance(seconds) { for (let t = 0; t < seconds; t += .05) { update(Math.min(.05, seconds - t)); draw(.05); } },
       start, reset, connect: addConnection, branch: addBranch, remove: removeWire,
       geometry: id => wireViews.get(id)?.geometry,
+      terminalPoint,
     });
   }
 })();

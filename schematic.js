@@ -1,258 +1,207 @@
-/* BLACKOUT — a circuit-symbol view of the player's actual network. */
+/* BLACKOUT — the exact terminal circuit the player has actually connected. */
 (function (global) {
   'use strict';
 
-  const COLOR = {
-    background: '#090B0C',
-    off: '#4b5356',
-    text: '#899497',
-    active: '#e9b44c',
-    danger: '#bd8175'
-  };
+  const COLOR = { background: '#090B0C', off: '#4b5356', text: '#899497', active: '#e9b44c', danger: '#bd8175' };
+  const PORTS = { source: ['minus', 'plus'], lamp: ['left', 'right'], motor: ['left', 'right'], junction: ['joint'] };
+  const TERMINAL_OFFSET = 46;
 
   function escape(value) {
-    return String(value == null ? '' : value).replace(/[&<>"']/g, function (character) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character];
-    });
+    return String(value == null ? '' : value).replace(/[&<>"']/g, character =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
   }
-
   function valueFor(collection, id) {
     if (!collection) return {};
     return typeof collection.get === 'function' ? collection.get(id) || {} : collection[id] || {};
   }
-
-  function number(value) {
-    return Number.isFinite(Number(value)) ? Number(value) : 0;
+  function number(value) { return Number.isFinite(Number(value)) ? Number(value) : 0; }
+  function same(a, b) { return Math.abs(a.x - b.x) < 0.001 && Math.abs(a.y - b.y) < 0.001; }
+  function side(port) { return port === 'minus' || port === 'left' ? -1 : port === 'joint' ? 0 : 1; }
+  function finitePoint(point) { return point && Number.isFinite(point.x) && Number.isFinite(point.y); }
+  function pathData(points) { return points.map((point, i) => (i ? 'L ' : 'M ') + point.x + ' ' + point.y).join(' '); }
+  function midpoint(points) {
+    const lengths = points.slice(1).map((point, i) => Math.hypot(point.x - points[i].x, point.y - points[i].y));
+    let remaining = lengths.reduce((sum, length) => sum + length, 0) / 2;
+    for (let i = 0; i < lengths.length; i++) {
+      if (remaining <= lengths[i] && lengths[i] > 0) {
+        const ratio = remaining / lengths[i];
+        return { x: points[i].x + (points[i + 1].x - points[i].x) * ratio, y: points[i].y + (points[i + 1].y - points[i].y) * ratio };
+      }
+      remaining -= lengths[i];
+    }
+    return points[0];
   }
 
-  function currentLabel(value) {
-    return Math.abs(number(value)).toFixed(2) + ' A';
+  function overlaps(a, b, gap = 0) {
+    return a.left < b.right + gap && a.right > b.left - gap && a.top < b.bottom + gap && a.bottom > b.top - gap;
+  }
+
+  // Shared street lanes can sit only a few pixels apart. Pick a free section of
+  // each wire for its reading, rather than stacking every reading at mid-route.
+  function placeReadings(paths, positions, nodes) {
+    const width = 78, height = 28;
+    const deviceBoxes = nodes.map(node => {
+      const point = positions.get(node.id);
+      const joint = node.type === 'junction';
+      return { left: point.x - (joint ? 12 : 57), right: point.x + (joint ? 12 : 57), top: point.y - (joint ? 12 : 37), bottom: point.y + (joint ? 12 : 55) };
+    });
+    const wireBoxes = paths.flatMap(path => path.points.slice(1).map((point, index) => {
+      const a = path.points[index];
+      return { left: Math.min(a.x, point.x) - 2, right: Math.max(a.x, point.x) + 2, top: Math.min(a.y, point.y) - 2, bottom: Math.max(a.y, point.y) + 2 };
+    }));
+    const readings = [];
+    paths.forEach(path => {
+      const middle = midpoint(path.points);
+      let best;
+      // Additional rows are considered only if the nearby space is occupied.
+      for (let level = 0; level < 12 && !best; level++) {
+        path.points.slice(1).forEach((b, index) => {
+          const a = path.points[index];
+          const horizontal = a.y === b.y;
+          const length = Math.hypot(b.x - a.x, b.y - a.y);
+          for (const fraction of [.5, .25, .75, .12, .88]) {
+            for (const sign of [-1, 1]) {
+              const offset = (horizontal ? 22 : 50) + level * 28;
+              const x = a.x + (b.x - a.x) * fraction + (horizontal ? 0 : offset * sign);
+              const y = a.y + (b.y - a.y) * fraction + (horizontal ? offset * sign : 0);
+              const box = { left: x - width / 2, right: x + width / 2, top: y - height / 2, bottom: y + height / 2 };
+              if (deviceBoxes.some(device => overlaps(box, device, 5)) || readings.some(reading => overlaps(box, reading.box, 7))) continue;
+              const wireCrossings = wireBoxes.filter(wire => overlaps(box, wire, 2)).length;
+              const score = wireCrossings * 100 + Math.hypot(x - middle.x, y - middle.y) * .03 - Math.min(length, 250) * .01;
+              if (!best || score < best.score) best = { edgeId: path.edge.id, x, y, width, height, box, score };
+            }
+          }
+        });
+      }
+      if (!best) {
+        const x = Math.max(...deviceBoxes.map(box => box.right), ...readings.map(reading => reading.box.right)) + width;
+        const y = middle.y;
+        best = { edgeId: path.edge.id, x, y, width, height, box: { left: x - width / 2, right: x + width / 2, top: y - height / 2, bottom: y + height / 2 } };
+      }
+      readings.push(best);
+    });
+    return new Map(readings.map(reading => [reading.edgeId, reading]));
   }
 
   function render(inputNodes, inputEdges, analysis) {
     const nodes = Array.isArray(inputNodes) ? inputNodes : [];
     const edges = Array.isArray(inputEdges) ? inputEdges : [];
     const state = analysis || {};
-    const byId = new Map(nodes.map(function (node) { return [node.id, node]; }));
-    const adjacency = new Map(nodes.map(function (node) { return [node.id, []]; }));
-    const validEdges = edges.filter(function (edge) {
-      return byId.has(edge.a) && byId.has(edge.b) && edge.a !== edge.b;
-    });
-    validEdges.forEach(function (edge) {
-      adjacency.get(edge.a).push({ id: edge.b, edge: edge });
-      adjacency.get(edge.b).push({ id: edge.a, edge: edge });
-    });
+    if (!nodes.length) return '<title>BLACKOUT 회로도</title><text x="600" y="360" text-anchor="middle" fill="' + COLOR.text + '" font-family="sans-serif" font-size="18">아직 연결한 시설이 없습니다.</text>';
 
-    const labels = new Map();
-    let lampCount = 0;
-    let motorCount = 0;
-    nodes.forEach(function (node) {
-      if (node.type === 'lamp') labels.set(node.id, 'L' + (++lampCount));
-      if (node.type === 'motor') labels.set(node.id, 'M' + (++motorCount > 1 ? motorCount : ''));
-    });
-
-    const source = nodes.find(function (node) { return node.type === 'source'; });
-    const seen = new Set();
+    const byId = new Map(nodes.map(node => [node.id, node]));
     const positions = new Map();
-    const components = [];
-    let maxDepth = 1;
-
-    function makeTree(id, depth, component) {
-      seen.add(id);
-      component.ids.add(id);
-      maxDepth = Math.max(maxDepth, depth);
-      const branch = { id: id, depth: depth, children: [] };
-      const neighbors = adjacency.get(id).slice().sort(function (left, right) {
-        const a = byId.get(left.id);
-        const b = byId.get(right.id);
-        return number(a.y) - number(b.y) || number(a.x) - number(b.x) || String(a.id).localeCompare(String(b.id));
-      });
-      neighbors.forEach(function (neighbor) {
-        if (seen.has(neighbor.id)) return;
-        const child = makeTree(neighbor.id, depth + 1, component);
-        child.edge = neighbor.edge;
-        branch.children.push(child);
-      });
-      const node = byId.get(id);
-      branch.hasLoadBelow = branch.children.some(function (child) { return child.hasLoad; });
-      branch.hasLoad = node.type === 'lamp' || node.type === 'motor' || branch.hasLoadBelow;
-      return branch;
-    }
-
-    const roots = source ? [source].concat(nodes.filter(function (node) { return node !== source; })) : nodes;
-    roots.forEach(function (root) {
-      if (seen.has(root.id)) return;
-      const component = { root: root, connected: root === source, ids: new Set(), terminals: [] };
-      component.tree = makeTree(root.id, 0, component);
-      components.push(component);
+    const occupied = new Set();
+    const hasDistinctPositions = nodes.every(node => {
+      if (!finitePoint(node)) return false;
+      const key = node.x + ',' + node.y;
+      if (occupied.has(key)) return false;
+      occupied.add(key);
+      return true;
     });
+    nodes.forEach((node, index) => positions.set(node.id, hasDistinctPositions
+      ? { x: node.x, y: node.y }
+      : { x: 160 + index % 3 * 300, y: 150 + Math.floor(index / 3) * 200 }));
 
-    if (!nodes.length) {
-      return '<title>BLACKOUT 회로도</title><text x="600" y="360" text-anchor="middle" fill="' + COLOR.text + '" font-family="sans-serif" font-size="18">아직 연결한 시설이 없습니다.</text>';
+    function terminal(id, port) {
+      const point = positions.get(id);
+      return { x: point.x + side(port) * TERMINAL_OFFSET, y: point.y };
+    }
+    function nodeColor(node) {
+      const info = valueFor(state.nodes, node.id);
+      if (node.type === 'source') return state.shortCircuit ? COLOR.danger : COLOR.active;
+      return info.powered || Math.abs(number(info.current)) > 0.0001 ? COLOR.active : COLOR.off;
     }
 
-    const step = Math.max(180, Math.min(320, 760 / maxDepth));
-    const leafGap = 110;
-    let cursor = 60;
-
-    function place(branch, component) {
-      let y;
-      if (!branch.children.length) {
-        y = cursor;
-        cursor += leafGap;
-        branch.bottom = y;
-      } else {
-        branch.children.forEach(function (child) { place(child, component); });
-        y = (positions.get(branch.children[0].id).y + positions.get(branch.children[branch.children.length - 1].id).y) / 2;
-        branch.bottom = branch.children[branch.children.length - 1].bottom;
+    const minNodeY = Math.min(...Array.from(positions.values()).map(point => point.y));
+    const paths = [];
+    edges.forEach((edge, index) => {
+      const a = byId.get(edge.a), b = byId.get(edge.b);
+      // Missing or invalid terminals are not silently replaced with invented ones.
+      if (!a || !b || !(PORTS[a.type] || []).includes(edge.aPort) || !(PORTS[b.type] || []).includes(edge.bPort)) return;
+      const start = terminal(edge.a, edge.aPort), end = terminal(edge.b, edge.bPort);
+      let points;
+      if (hasDistinctPositions && Array.isArray(edge.route) && edge.route.length >= 2 && edge.route.every(finitePoint)) {
+        if (same(edge.route[0], start) && same(edge.route[edge.route.length - 1], end)) points = edge.route;
+        else if (same(edge.route[0], end) && same(edge.route[edge.route.length - 1], start)) points = edge.route.slice().reverse();
       }
-      const node = byId.get(branch.id);
-      const terminal = (node.type === 'lamp' || node.type === 'motor') && !branch.hasLoadBelow;
-      if (terminal) component.terminals.push(branch.id);
-      positions.set(branch.id, {
-        x: 130 + branch.depth * step,
-        y: y,
-        // Empty junction branches are open circuits. A load still returns to
-        // the source; route that return below those branches so none is hidden.
-        returnY: terminal && branch.children.length ? branch.bottom + 55 : y,
-        returnDetour: terminal && branch.children.length > 0
-      });
-    }
-
-    components.forEach(function (component, index) {
-      component.top = cursor;
-      place(component.tree, component);
-      component.bottom = cursor - leafGap;
-      component.returnY = component.bottom + 85;
-      // A disconnected component is deliberately kept outside the powered loop.
-      cursor = component.bottom + (component.connected ? 185 : 125);
-      if (index === components.length - 1) cursor -= 35;
+      if (!points) {
+        const stubA = { x: start.x + side(edge.aPort) * 22, y: start.y };
+        const stubB = { x: end.x + side(edge.bPort) * 22, y: end.y };
+        const facing = side(edge.aPort) === -side(edge.bPort) && Math.sign(end.x - start.x) === side(edge.aPort);
+        if (facing) {
+          const column = (stubA.x + stubB.x) / 2;
+          points = [start, stubA, { x: column, y: start.y }, { x: column, y: end.y }, stubB, end];
+        } else {
+          const row = minNodeY - 65 - index * 14;
+          points = [start, stubA, { x: stubA.x, y: row }, { x: stubB.x, y: row }, stubB, end];
+        }
+      }
+      paths.push({ edge, points: points.filter((point, i) => !i || !same(point, points[i - 1])) });
     });
 
-    const maxX = Math.max.apply(null, Array.from(positions.values()).map(function (point) { return point.x; }));
-    const returnX = maxX + 112;
-    const naturalWidth = returnX + 60;
-    const naturalHeight = Math.max(230, cursor + 25);
-    const scale = Math.min(1.24, 1090 / naturalWidth, 600 / naturalHeight);
-    const offsetX = (1200 - naturalWidth * scale) / 2;
-    const offsetY = 35 + (600 - naturalHeight * scale) / 2;
+    const readings = placeReadings(paths, positions, nodes);
+    const bounds = Array.from(positions.values()).flatMap(point => [
+      { x: point.x - 65, y: point.y - 50 }, { x: point.x + 65, y: point.y + 60 }
+    ]).concat(paths.flatMap(path => path.points), Array.from(readings.values()).flatMap(reading => [
+      { x: reading.box.left, y: reading.box.top }, { x: reading.box.right, y: reading.box.bottom }
+    ]));
+    const minX = Math.min(...bounds.map(point => point.x)) - 35;
+    const minY = Math.min(...bounds.map(point => point.y)) - 35;
+    const width = Math.max(...bounds.map(point => point.x)) - minX + 35;
+    const height = Math.max(...bounds.map(point => point.y)) - minY + 35;
+    const scale = Math.min(1.5, 1090 / width, 565 / height);
+    const offsetX = (1200 - width * scale) / 2 - minX * scale;
+    const offsetY = 45 + (565 - height * scale) / 2 - minY * scale;
     const parts = [
-      '<title>내가 만든 전력망의 회로도</title>',
-      '<desc>실제 연결한 전선과 시설을 회로 기호로 표시합니다. 지도에서 생략한 귀환 전선은 전원에 연결된 말단 시설에서 전원으로 돌아갑니다. 전원과 분리된 시설은 회색으로 표시합니다.</desc>',
+      '<title>내가 연결한 회로</title>',
+      '<desc>실제로 연결한 단자와 전선만 표시합니다. 건전지 오른쪽 플러스에서 시설을 지나 왼쪽 마이너스까지 이어져야 전류가 흐릅니다. 전선 교차점은 연결점 표시가 있을 때만 이어집니다.</desc>',
       '<g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" stroke-linecap="round" stroke-linejoin="round">',
       '<g transform="translate(' + offsetX.toFixed(2) + ' ' + offsetY.toFixed(2) + ') scale(' + scale.toFixed(4) + ')">'
     ];
-    const drawnEdges = new Set();
-    const connectedIds = components.length && components[0].connected ? components[0].ids : new Set();
-
-    function nodeColor(id) {
-      const node = byId.get(id);
-      const info = valueFor(state.nodes, id);
-      return connectedIds.has(id) && (node.type === 'source' || info.powered || number(info.current) > 0.0001) ? COLOR.active : COLOR.off;
-    }
-
-    function radius(node, side) {
-      if (node.type === 'source') return 40;
-      if (node.type === 'junction') return 0;
-      return 22;
-    }
-
-    function drawTree(branch, component) {
-      const parentNode = byId.get(branch.id);
-      const parent = positions.get(branch.id);
-      branch.children.forEach(function (child) {
-        const edge = child.edge;
-        drawnEdges.add(edge.id);
-        const point = positions.get(child.id);
-        const childNode = byId.get(child.id);
-        const info = valueFor(state.edges, edge.id);
-        const active = component.connected && Math.abs(number(info.current)) > 0.0001;
-        const color = active ? (info.overloaded ? COLOR.danger : COLOR.active) : COLOR.off;
-        const startX = parent.x + radius(parentNode, 'right');
-        const endX = point.x - radius(childNode, 'left');
-        const elbowX = startX + Math.min(38, (endX - startX) * 0.3);
-        const path = 'M ' + startX + ' ' + parent.y + ' H ' + elbowX + ' V ' + point.y + ' H ' + endX;
-        parts.push('<path data-edge-id="' + escape(edge.id) + '" d="' + path + '" fill="none" stroke="' + color + '" stroke-width="2.3"/>');
-        const labelX = parent.y === point.y ? (startX + endX) / 2 : (elbowX + endX) / 2;
-        parts.push('<text x="' + labelX + '" y="' + (point.y - 18) + '" text-anchor="middle" fill="' + (active ? COLOR.active : COLOR.text) + '" font-size="24">' + currentLabel(info.current) + '</text>');
-        drawTree(child, component);
-      });
-      if (branch.children.length > 1 && parentNode.type !== 'junction') {
-        const startX = parent.x + radius(parentNode, 'right');
-        const childPoint = positions.get(branch.children[0].id);
-        const endX = childPoint.x - radius(byId.get(branch.children[0].id), 'left');
-        const elbowX = startX + Math.min(38, (endX - startX) * 0.3);
-        parts.push('<circle cx="' + elbowX + '" cy="' + parent.y + '" r="4" fill="' + nodeColor(branch.id) + '"/>');
-      }
-    }
-
-    components.forEach(function (component) {
-      if (!component.connected) {
-        parts.push('<text x="84" y="' + (component.top - 37) + '" fill="' + COLOR.text + '" font-family="sans-serif" font-size="20">전원과 분리됨</text>');
-      }
-      drawTree(component.tree, component);
+    const currentLabels = [];
+    paths.forEach(({ edge, points }) => {
+      const info = valueFor(state.edges, edge.id);
+      const active = Math.abs(number(info.current)) > 0.0001;
+      const color = info.overloaded ? COLOR.danger : active ? COLOR.active : COLOR.off;
+      parts.push('<path data-edge-id="' + escape(edge.id) + '" data-a-node="' + escape(edge.a) + '" data-a-port="' + escape(edge.aPort) + '" data-b-node="' + escape(edge.b) + '" data-b-port="' + escape(edge.bPort) + '" d="' + pathData(points) + '" fill="none" stroke="' + color + '" stroke-width="2.3"/>');
+      const reading = readings.get(edge.id);
+      currentLabels.push('<g data-current-for="' + escape(edge.id) + '" transform="translate(' + reading.x + ' ' + reading.y + ')" pointer-events="none"><rect x="-39" y="-14" width="78" height="28" rx="10" fill="#101618" stroke="#293237" stroke-width=".7"/><text y="5.5" text-anchor="middle" fill="' + (active ? color : COLOR.text) + '" font-size="16">' + Math.abs(number(info.current)).toFixed(2) + ' A</text></g>');
     });
+    parts.push(...currentLabels);
 
-    // The game forbids loops. Keep an unexpected extra input edge visible anyway,
-    // rather than silently inventing a simpler network for the circuit view.
-    validEdges.forEach(function (edge) {
-      if (drawnEdges.has(edge.id)) return;
-      const a = positions.get(edge.a);
-      const b = positions.get(edge.b);
-      parts.push('<path data-edge-id="' + escape(edge.id) + '" d="M ' + a.x + ' ' + a.y + ' L ' + b.x + ' ' + b.y + '" stroke="' + COLOR.off + '" fill="none" stroke-width="2"/>');
-    });
-
-    const main = components.find(function (component) { return component.connected; });
-    if (main && main.terminals.length) {
-      const origin = positions.get(source.id);
-      const energized = main.terminals.some(function (id) { return nodeColor(id) === COLOR.active; });
-      const returnColor = energized ? COLOR.active : COLOR.off;
-      const firstY = Math.min.apply(null, main.terminals.map(function (id) { return positions.get(id).returnY; }));
-      main.terminals.forEach(function (id) {
-        const point = positions.get(id);
-        const color = nodeColor(id);
-        let route = 'M ' + (point.x + 22) + ' ' + point.y;
-        if (point.returnDetour) {
-          route += ' H ' + (point.x + 42) + ' V ' + point.returnY;
-          parts.push('<circle cx="' + (point.x + 42) + '" cy="' + point.y + '" r="4" fill="' + color + '"/>');
-        }
-        route += ' H ' + returnX;
-        parts.push('<path data-return-from="' + escape(id) + '" d="' + route + '" fill="none" stroke="' + color + '" stroke-width="2.3"/>');
-        if (main.terminals.length > 1) parts.push('<circle cx="' + returnX + '" cy="' + point.returnY + '" r="4" fill="' + color + '"/>');
-      });
-      parts.push('<path data-return-bus="true" d="M ' + returnX + ' ' + firstY + ' V ' + main.returnY + ' H 60 V ' + origin.y + ' H ' + (origin.x - 40) + '" fill="none" stroke="' + returnColor + '" stroke-width="2.3"/>');
-      parts.push('<text x="' + ((60 + returnX) / 2) + '" y="' + (main.returnY + 30) + '" text-anchor="middle" fill="' + COLOR.text + '" font-family="sans-serif" font-size="22">되돌아오는 전선</text>');
-    }
-
-    nodes.forEach(function (node) {
+    let lampCount = 0, motorCount = 0;
+    nodes.forEach(node => {
       const point = positions.get(node.id);
-      const color = nodeColor(node.id);
+      const color = nodeColor(node);
       const info = valueFor(state.nodes, node.id);
-      const opacity = color === COLOR.active && node.type === 'lamp' ? Math.max(0.4, Math.min(1, 0.4 + number(info.brightness) * 0.6)) : 1;
+      const opacity = node.type === 'lamp' && info.powered ? Math.max(0.4, Math.min(1, 0.4 + number(info.brightness) * 0.6)) : 1;
+      const label = node.type === 'source' ? '건전지' : node.type === 'lamp' ? 'L' + (++lampCount) : node.type === 'motor' ? 'M' + (++motorCount > 1 ? motorCount : '') : '';
       parts.push('<g data-node-id="' + escape(node.id) + '" data-node-type="' + escape(node.type) + '" transform="translate(' + point.x + ' ' + point.y + ')" stroke="' + color + '" stroke-width="2.3">');
+      parts.push('<title>' + escape(node.label || label || '연결점') + '</title>');
       if (node.type === 'source') {
-        parts.push('<path d="M -40 0 H -10 M 10 0 H 40 M -10 -14 V 14 M 10 -27 V 27" fill="none"/>');
-        parts.push('<text x="-26" y="-34" stroke="none" fill="' + COLOR.text + '" font-size="22">−</text><text x="19" y="-34" stroke="none" fill="' + COLOR.text + '" font-size="22">+</text>');
-        parts.push('<text y="51" text-anchor="middle" stroke="none" fill="' + COLOR.text + '" font-family="sans-serif" font-size="22">전원</text>');
+        parts.push('<path d="M -46 0 H -25 M 29 0 H 46" fill="none"/><path d="M -25 -14 H 25 V -7 H 29 V 7 H 25 V 14 H -25 Z" fill="' + COLOR.background + '"/><path d="M -16 0 H -8 M 8 0 H 18 M 13 -5 V 5" fill="none"/>');
+        parts.push('<text data-polarity="minus" x="-46" y="-16" text-anchor="middle" stroke="none" fill="' + color + '" font-size="20">−</text><text data-polarity="plus" x="46" y="-16" text-anchor="middle" stroke="none" fill="' + color + '" font-size="20">+</text>');
       } else if (node.type === 'junction') {
         parts.push('<circle r="5" fill="' + color + '" stroke="none"/>');
-      } else if (node.type === 'motor') {
-        parts.push('<circle r="22" fill="' + COLOR.background + '"/><text y="8" text-anchor="middle" stroke="none" fill="' + color + '" font-size="24">M</text>');
       } else {
-        parts.push('<circle r="22" fill="' + COLOR.background + '" opacity="' + opacity.toFixed(2) + '"/><path d="M -15 -15 L 15 15 M 15 -15 L -15 15" fill="none" opacity="' + opacity.toFixed(2) + '"/>');
+        parts.push('<path d="M -46 0 H -22 M 22 0 H 46" fill="none"/><circle r="22" fill="' + COLOR.background + '"/>');
+        if (node.type === 'motor') parts.push('<text y="8" text-anchor="middle" stroke="none" fill="' + color + '" font-size="24">M</text>');
+        else parts.push('<path d="M -15 -15 L 15 15 M 15 -15 L -15 15" fill="none" opacity="' + opacity.toFixed(2) + '"/>');
       }
-      if (labels.has(node.id)) parts.push('<text y="46" text-anchor="middle" stroke="none" fill="' + COLOR.text + '" font-size="22" letter-spacing="1">' + escape(labels.get(node.id)) + '</text>');
+      (PORTS[node.type] || []).forEach(port => parts.push('<circle data-terminal="' + escape(port) + '" cx="' + side(port) * TERMINAL_OFFSET + '" cy="0" r="' + (node.type === 'junction' ? 5 : 3.5) + '" fill="' + (node.type === 'junction' ? color : COLOR.background) + '"/>'));
+      if (label) parts.push('<text y="46" text-anchor="middle" stroke="none" fill="' + COLOR.text + '" font-size="17" letter-spacing="1">' + escape(label) + '</text>');
       parts.push('</g>');
     });
 
-    parts.push('</g>');
-    parts.push('<line x1="64" y1="678" x2="1136" y2="678" stroke="' + COLOR.off + '" stroke-width="1" opacity="0.5"/>');
-    parts.push('<text x="600" y="709" text-anchor="middle" fill="' + COLOR.text + '" font-family="sans-serif" font-size="20">지도에서 생략했던 귀환 전선을 함께 표시합니다.</text>');
-    parts.push('</g>');
+    parts.push('</g><line x1="64" y1="654" x2="1136" y2="654" stroke="' + COLOR.off + '" stroke-width="1" opacity="0.5"/>');
+    const note = state.shortCircuit ? '합선: 시설을 거치지 않고 건전지의 두 극이 이어졌습니다.' : '건전지 + → 시설 → 건전지 − · 돌아오는 전선까지 직접 연결한 회로';
+    parts.push('<text x="600" y="690" text-anchor="middle" fill="' + (state.shortCircuit ? COLOR.danger : COLOR.text) + '" font-family="sans-serif" font-size="18">' + escape(note) + '</text>');
+    parts.push('<text x="600" y="724" text-anchor="middle" fill="' + COLOR.text + '" font-family="sans-serif" font-size="15">교차하는 전선은 ● 연결점에서만 이어집니다.</text></g>');
     return parts.join('');
   }
 
-  const api = { render: render };
+  const api = { render };
   global.BlackoutSchematic = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 }(typeof window !== 'undefined' ? window : globalThis));

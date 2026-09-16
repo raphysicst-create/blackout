@@ -27,10 +27,36 @@
     assert(remaining >= -1e-6, '검증 시간은 뒤로 이동할 수 없습니다.');
     if (remaining > 0) api.advance(remaining);
   };
-  const connect = (a, b) => assert(api.connect(a, b), `연결 실패: ${a} → ${b}`);
-  const edgeBetween = (a, b) => snapshot().edges.find(edge =>
-    (edge.a === a && edge.b === b) || (edge.a === b && edge.b === a));
+  const connect = (a, b, aPort, bPort) => assert(api.connect(a, b, aPort, bPort), `연결 실패: ${a}.${aPort} → ${b}.${bPort}`);
+  const edgeBetween = (a, b, aPort, bPort) => snapshot().edges.find(edge =>
+    (edge.a === a && edge.b === b && (!aPort || edge.aPort === aPort) && (!bPort || edge.bPort === bPort)) ||
+    (edge.a === b && edge.b === a && (!aPort || edge.bPort === aPort) && (!bPort || edge.aPort === bPort)));
+  const feed = id => connect('source', id, 'plus', 'left');
+  const returnWire = id => connect(id, 'source', 'right', 'minus');
+  const fullLoop = id => { feed(id); returnWire(id); };
   const loadIds = state => state.nodes.filter(node => node.type === 'lamp' || node.type === 'motor').map(node => node.id);
+
+  function terminalPoint(id, port) {
+    const screen = new win.DOMPoint(0, 0).matrixTransform(element(`terminal-${id}-${port}`).getScreenCTM());
+    return screen.matrixTransform(element('board').getScreenCTM().inverse());
+  }
+
+  function terminalKey(id, port) {
+    const terminal = element(`terminal-${id}-${port}`);
+    terminal.focus();
+    terminal.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+  }
+
+  function assertLit(id) {
+    const status = snapshot().analysis.nodes[id];
+    assert(status.powered && status.brightness > .95, `${id}의 닫힌 회로가 정상 점등되지 않음`);
+  }
+
+  function assertOff(id) {
+    const status = snapshot().analysis.nodes[id];
+    assert(!status.powered && status.brightness < .0001 && Math.abs(status.current) < .0001,
+      `${id}의 열린 회로에 전류가 흐름`);
+  }
 
   function distanceToSegment(point, a, b) {
     const dx = b.x - a.x, dy = b.y - a.y;
@@ -58,16 +84,17 @@
     const roads = win.BlackoutCity.roads;
     assert(Array.isArray(roads) && roads.length > 0, '공유 도로 데이터가 없음');
     for (const point of path.samples) {
-      const inside = roads.some(road => distanceToPath(point, road.points) <= road.width / 2 + 1.5);
+      const terminalStub = [path.at(0), path.at(1)].some(end => Math.hypot(point.x - end.x, point.y - end.y) <= 48);
+      const inside = terminalStub || roads.some(road => distanceToPath(point, road.points) <= road.width / 2 + 1.5);
       assert(inside, `전선이 보이는 도로 바깥으로 나감: (${point.x.toFixed(2)},${point.y.toFixed(2)})`);
     }
   }
 
-  function forkFirstWire(target) {
+  function forkFirstWire(target, targetPort = 'left') {
     const before = snapshot();
-    const edge = before.edges[0];
+    const edge = edgeBetween('source', 'lamp-1', 'plus', 'left');
     assert(edge, '분기할 전선 없음');
-    api.branch(edge.id, api.geometry(edge.id).at(.5), target);
+    api.branch(edge.id, api.geometry(edge.id).at(.5), target, targetPort);
     const junction = snapshot().nodes.find(node => node.type === 'junction' && !before.nodes.some(old => old.id === node.id));
     assert(junction, '전선 분기점이 생성되지 않음');
     return junction.id;
@@ -75,22 +102,12 @@
 
   function finalNetwork() {
     advanceTo(225.1);
-    connect('source', 'lamp-1');
-    const left = forkFirstWire('lamp-2');
-    connect('source', 'lamp-3');
-    const rightWire = edgeBetween('source', 'lamp-3');
-    api.branch(rightWire.id, api.geometry(rightWire.id).at(.5), 'motor-1');
+    for (const id of ['lamp-1', 'lamp-2', 'lamp-3', 'motor-1']) fullLoop(id);
     const state = snapshot();
-    assert(state.nodes.filter(node => node.type === 'junction').length === 2, '최종 회로는 두 분기점이어야 함');
-    for (const junction of state.nodes.filter(node => node.type === 'junction')) {
-      for (const load of state.nodes.filter(node => node.type === 'lamp' || node.type === 'motor')) {
-        const clearance = Math.hypot(junction.x - load.x, junction.y - load.y);
-        assert(clearance >= 30, `분기점 ${junction.id}이 시설 ${load.id}과 겹침: ${clearance.toFixed(2)}`);
-      }
-    }
-    assert(state.analysis.allStable, '최종 회로가 안정되지 않음');
-    near(state.analysis.edges[edgeBetween('source', left).id].current, .6);
-    near(state.analysis.totalCurrent, 1.35);
+    assert(state.edges.length === 8, '네 시설에 실제 공급선과 귀환선 여덟 개가 필요함');
+    assert(state.analysis.allStable, '최종 네 폐회로가 안정되지 않음');
+    for (const id of loadIds(state)) assertLit(id);
+    near(state.analysis.totalCurrent, 1.35, .02);
     return state;
   }
 
@@ -109,8 +126,8 @@
     near(snapshot().time, 0);
     assert(snapshot().edges.length === 0, '초기 전선이 존재함');
     api.start();
-    for (const id of ['source', 'lamp-1']) {
-      element(`node-${id}`).dispatchEvent(new win.MouseEvent('click', { bubbles: true }));
+    for (const [id, port] of [['source', 'plus'], ['lamp-1', 'left']]) {
+      element(`terminal-${id}-${port}`).dispatchEvent(new win.MouseEvent('click', { bubbles: true }));
     }
     assert(snapshot().mode === 'playing', '게임 시작 실패');
     assert(snapshot().edges.length === 0, '단순 클릭으로 전선이 생성됨');
@@ -137,14 +154,50 @@
     assert(snapshot().mode === 'playing', '연결 없이 성공함');
   });
 
-  test('직렬 연결은 같은 전류가 흐르고 두 전구가 어두워집니다', () => {
+  test('공급선만으로는 켜지지 않고 실제 귀환선을 연결해야 빛납니다', () => {
+    feed('lamp-1');
+    assertOff('lamp-1');
+    near(snapshot().analysis.totalCurrent, 0, .0001);
+    returnWire('lamp-1');
+    assertLit('lamp-1');
+    near(snapshot().analysis.nodes['lamp-1'].current, .3, .01);
+    assert(snapshot().edges.length === 2, '닫힌 회로의 실제 전선 두 개가 없음');
+  });
+
+  test('귀환선만으로는 꺼져 있고 양쪽 중 어느 전선을 끊어도 꺼집니다', () => {
+    returnWire('lamp-1');
+    assertOff('lamp-1');
+    feed('lamp-1');
+    assertLit('lamp-1');
+    api.remove(edgeBetween('source', 'lamp-1', 'plus', 'left').id);
+    assertOff('lamp-1');
+    feed('lamp-1');
+    assertLit('lamp-1');
+    api.remove(edgeBetween('lamp-1', 'source', 'right', 'minus').id);
+    assertOff('lamp-1');
+  });
+
+  test('키보드로 네 단자를 차례로 이어 실제 폐회로를 만들 수 있습니다', () => {
+    terminalKey('source', 'plus');
+    terminalKey('lamp-1', 'left');
+    assert(edgeBetween('source', 'lamp-1', 'plus', 'left'), '키보드 입력이 공급 단자를 보존하지 않음');
+    assertOff('lamp-1');
+    terminalKey('lamp-1', 'right');
+    terminalKey('source', 'minus');
+    assert(edgeBetween('lamp-1', 'source', 'right', 'minus'), '키보드 입력이 귀환 단자를 보존하지 않음');
+    assertLit('lamp-1');
+  });
+
+  test('닫힌 직렬 회로는 같은 전류가 흐르고 두 전구가 어두워집니다', () => {
     advanceTo(30.1);
-    connect('source', 'lamp-1');
-    connect('lamp-1', 'lamp-2');
+    feed('lamp-1');
+    connect('lamp-1', 'lamp-2', 'right', 'left');
+    assertOff('lamp-1'); assertOff('lamp-2');
+    returnWire('lamp-2');
     const state = snapshot();
     for (const id of ['lamp-1', 'lamp-2']) {
-      near(state.analysis.nodes[id].current, .15);
-      near(state.analysis.nodes[id].brightness, .25);
+      near(state.analysis.nodes[id].current, .15, .01);
+      near(state.analysis.nodes[id].brightness, .25, .03);
     }
     assert(state.analysis.hasSeries && !state.analysis.hasParallel, '직렬 구조 판정 오류');
     assert(state.noticedDim, '밝기 감소 관찰 안내 누락');
@@ -152,10 +205,10 @@
 
   test('전선은 연결하지 않은 시설을 피해 가며 실제 연결 대상을 유지합니다', () => {
     advanceTo(95);
-    connect('source', 'lamp-3');
+    fullLoop('lamp-3');
     const state = snapshot();
-    assert(state.edges.length === 1, '시각적 회피가 추가 전선을 생성함');
-    const edge = state.edges[0];
+    assert(state.edges.length === 2, '시각적 회피가 공급·귀환선 이외의 전선을 생성함');
+    const edge = edgeBetween('source', 'lamp-3', 'plus', 'left');
     assert(edge.a === 'source' && edge.b === 'lamp-3', '회피 경로가 실제 연결 대상을 변경함');
     assert(state.analysis.edges[edge.id].from === 'source' && state.analysis.edges[edge.id].to === 'lamp-3', '회피 경로가 전류 방향을 변경함');
     const path = api.geometry(edge.id);
@@ -165,42 +218,45 @@
       assert(clearance >= 30, `전선이 무관한 시설 ${load.id}을 관통함: ${clearance.toFixed(2)}`);
       assert(!state.analysis.nodes[load.id].powered, `회피한 시설 ${load.id}에 전류가 연결됨`);
     }
-    near(state.analysis.nodes['lamp-3'].brightness, 1);
+    assertLit('lamp-3');
   });
 
-  test('전선 중간의 병렬 분기와 A 도구가 0.60 / 0.30 A를 보여 줍니다', () => {
+  test('공급선 분기에도 개별 귀환선이 필요하며 A 도구가 전류를 보여 줍니다', () => {
     advanceTo(90.1);
-    connect('source', 'lamp-1');
+    fullLoop('lamp-1');
     const junction = forkFirstWire('lamp-2');
+    assertLit('lamp-1'); assertOff('lamp-2');
+    returnWire('lamp-2');
     const state = snapshot();
-    assert(state.edges.length === 3, '분기 후 전선 수 오류');
-    near(state.analysis.nodes['lamp-1'].brightness, 1);
-    near(state.analysis.nodes['lamp-2'].brightness, 1);
-    near(state.analysis.edges[edgeBetween('source', junction).id].current, .6);
-    near(state.analysis.edges[edgeBetween(junction, 'lamp-2').id].current, .3);
+    assert(state.edges.length === 5, '분기 후 공급선 세 개와 귀환선 두 개가 필요함');
+    assertLit('lamp-1'); assertLit('lamp-2');
+    const trunk = edgeBetween('source', junction, 'plus', 'joint');
+    const branch = edgeBetween(junction, 'lamp-2', 'joint', 'left');
+    near(state.analysis.edges[trunk.id].current, .6, .01);
+    near(state.analysis.edges[branch.id].current, .3, .01);
     assert(state.analysis.hasParallel, '병렬 구조 판정 오류');
     click('amp-tool');
     assert(snapshot().tool === 'amp', '전류계 선택 실패');
-    element(edgeBetween('source', junction).id).dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-    assert(element('measure-layer').textContent.includes('0.60 A'), '주 전선 전류 표시 오류');
-    element(edgeBetween(junction, 'lamp-2').id).dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-    assert(element('measure-layer').textContent.includes('0.30 A'), '분기 전선 전류 표시 오류');
+    element(trunk.id).dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    assert(element('measure-layer').textContent.includes(`${state.analysis.edges[trunk.id].current.toFixed(2)} A`), '주 전선 전류 표시 오류');
+    element(branch.id).dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    assert(element('measure-layer').textContent.includes(`${state.analysis.edges[branch.id].current.toFixed(2)} A`), '분기 전선 전류 표시 오류');
   });
 
-  test('잠긴 분기, 대상 없는 드롭, 사이클은 유령 분기점을 남기지 않습니다', () => {
-    connect('source', 'lamp-1');
+  test('잠긴 분기·없는 단자·중복 배선은 유령 분기점을 남기지 않습니다', () => {
+    feed('lamp-1');
     const original = snapshot().edges[0];
     const origin = api.geometry(original.id).at(.5);
-    api.branch(original.id, origin, 'lamp-2');
+    api.branch(original.id, origin, 'lamp-2', 'left');
     assert(snapshot().nodes.length === 2 && snapshot().edges.length === 1, '잠긴 분기가 회로를 변경함');
     advanceTo(90.1);
     const before = snapshot();
-    const signature = state => JSON.stringify({ nodes: state.nodes.map(node => node.id), edges: state.edges.map(edge => [edge.id, edge.a, edge.b]) });
-    for (const target of [undefined, 'missing-node', 'lamp-1', 'source']) {
-      api.branch(original.id, origin, target);
+    const signature = state => JSON.stringify({ nodes: state.nodes.map(node => node.id), edges: state.edges.map(edge => [edge.id, edge.a, edge.aPort, edge.b, edge.bPort]) });
+    for (const [target, port] of [[undefined, 'left'], ['missing-node', 'left'], ['lamp-2', 'not-a-port']]) {
+      api.branch(original.id, origin, target, port);
       assert(signature(snapshot()) === signature(before), `거절된 분기가 회로를 변경함: ${target}`);
     }
-    assert(!api.connect('lamp-1', 'source'), '중복 연결을 허용함');
+    assert(!api.connect('lamp-1', 'source', 'left', 'plus'), '같은 두 단자의 중복 연결을 허용함');
     assert(signature(snapshot()) === signature(before), '중복 연결로 회로가 변경됨');
     element('board').dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     assert(signature(snapshot()) === signature(before), 'Escape 이후 유령 분기점 생성');
@@ -208,10 +264,12 @@
 
   test('과부하 6초 뒤 주 전선이 끊어지고 하위 시설이 모두 꺼집니다', () => {
     advanceTo(90.1);
-    connect('source', 'lamp-1');
+    fullLoop('lamp-1');
     const junction = forkFirstWire('lamp-2');
-    connect(junction, 'lamp-3');
-    const main = edgeBetween('source', junction);
+    returnWire('lamp-2');
+    connect(junction, 'lamp-3', 'joint', 'left');
+    returnWire('lamp-3');
+    const main = edgeBetween('source', junction, 'plus', 'joint');
     assert(snapshot().analysis.edges[main.id].overloaded, '주 전선의 과부하 판정 누락');
     api.advance(5.8);
     assert(snapshot().edges.some(edge => edge.id === main.id), '6초 전에 단선');
@@ -221,7 +279,7 @@
     assert(state.breaks === 1 && element('blackout').classList.contains('flash'), '정전 피드백 누락');
     for (const id of ['lamp-1', 'lamp-2', 'lamp-3']) assert(!state.analysis.nodes[id].powered, `단선 후에도 ${id}에 전류 공급`);
     assert(state.mode === 'playing', '정전이 게임을 종료함');
-    connect('source', 'lamp-1');
+    connect('source', junction, 'plus', 'joint');
     assert(snapshot().analysis.nodes['lamp-1'].powered, '정전 직후 재연결 실패');
   });
 
@@ -269,7 +327,7 @@
     near(snapshot().time, finalTime);
   });
 
-  test('회로도는 실제 전선·시설·귀환 경로와 병렬 발견을 보존합니다', () => {
+  test('회로도는 실제 귀환선까지 보존하고 가상의 귀환선을 만들지 않습니다', () => {
     reachResult();
     const state = snapshot();
     click('schematic-button');
@@ -279,7 +337,9 @@
     const edgeIds = [...svg.querySelectorAll('[data-edge-id]')].map(edge => edge.getAttribute('data-edge-id')).sort();
     assert(JSON.stringify(nodeIds) === JSON.stringify(state.nodes.map(node => node.id).sort()), '회로도 노드가 실제 네트워크와 다름');
     assert(JSON.stringify(edgeIds) === JSON.stringify(state.edges.map(edge => edge.id).sort()), '회로도 전선이 실제 네트워크와 다름');
-    assert(svg.querySelectorAll('[data-return-from]').length === 4 && svg.querySelector('[data-return-bus]'), '회로도 귀환선 누락');
+    assert(state.edges.filter(edge => edge.a === 'source' && edge.aPort === 'minus' || edge.b === 'source' && edge.bPort === 'minus').length === 4,
+      '검증 회로에 실제 귀환선 네 개가 없음');
+    assert(!svg.querySelector('[data-return-from], [data-return-bus]'), '사용자가 그리지 않은 가상의 귀환선이 만들어짐');
     assert(element('discovery').textContent.includes('병렬'), '실제 구조의 학습 정리 누락');
     click('close-schematic');
     assert(element('schematic-panel').hidden && !element('result').hidden, '도시 화면 복귀 실패');
@@ -298,37 +358,38 @@
     assert(!state.analysis.nodes['lamp-1'].powered, '새 실행의 전구가 켜져 있음');
   });
 
-  test('첫 전선은 도로 안에서 직교하며 정확한 두 시설에 닿습니다', () => {
-    connect('source', 'lamp-1');
+  test('첫 공급선은 도로 안에서 직교하며 정확한 두 단자에 닿습니다', () => {
+    feed('lamp-1');
     const state = snapshot();
-    const edge = edgeBetween('source', 'lamp-1');
+    const edge = edgeBetween('source', 'lamp-1', 'plus', 'left');
     const path = api.geometry(edge.id);
     assert(Array.isArray(edge.route) && edge.route.length >= 2, '전선의 실제 도로 경로가 저장되지 않음');
     assertOrthogonal(path);
     assertInsideRoads(path);
-    const start = state.nodes.find(node => node.id === edge.a);
-    const end = state.nodes.find(node => node.id === edge.b);
+    const start = terminalPoint(edge.a, edge.aPort);
+    const end = terminalPoint(edge.b, edge.bPort);
     near(path.at(0).x, start.x); near(path.at(0).y, start.y);
     near(path.at(1).x, end.x); near(path.at(1).y, end.y);
     assert(element(edge.id).querySelector('.wire-base').getAttribute('d') === path.d,
       '화면에 그린 전선이 hit-test/전류 입자 경로와 다름');
-    near(state.analysis.nodes['lamp-1'].brightness, 1);
+    assertOff('lamp-1');
   });
 
   test('도로 전선을 분기해도 원래 두 조각의 길이와 모양을 보존합니다', () => {
     advanceTo(90.1);
-    connect('source', 'lamp-1');
-    const original = edgeBetween('source', 'lamp-1');
+    fullLoop('lamp-1');
+    const original = edgeBetween('source', 'lamp-1', 'plus', 'left');
     const before = api.geometry(original.id);
     const originalPoints = before.samples.map(point => ({ x: point.x, y: point.y }));
     const origin = before.at(.5);
-    api.branch(original.id, origin, 'lamp-2');
+    api.branch(original.id, origin, 'lamp-2', 'left');
+    returnWire('lamp-2');
     const state = snapshot();
     const junction = state.nodes.find(node => node.type === 'junction');
     assert(junction, '도로 전선의 분기점이 생기지 않음');
     near(junction.x, origin.x); near(junction.y, origin.y);
-    const left = edgeBetween('source', junction.id);
-    const right = edgeBetween(junction.id, 'lamp-1');
+    const left = edgeBetween('source', junction.id, 'plus', 'joint');
+    const right = edgeBetween(junction.id, 'lamp-1', 'joint', 'left');
     assert(left && right && !state.edges.some(edge => edge.id === original.id), '원래 전선의 두 조각이 만들어지지 않음');
     const first = api.geometry(left.id), second = api.geometry(right.id);
     near(first.length + second.length, before.length, 1e-4);
@@ -341,24 +402,23 @@
       assertOrthogonal(api.geometry(edge.id));
       assertInsideRoads(api.geometry(edge.id));
     }
-    near(state.analysis.edges[left.id].current, .6);
-    near(state.analysis.nodes['lamp-1'].brightness, 1);
-    near(state.analysis.nodes['lamp-2'].brightness, 1);
+    near(state.analysis.edges[left.id].current, .6, .01);
+    assertLit('lamp-1'); assertLit('lamp-2');
   });
 
   test('같은 도로의 독립 전선은 기존 경로를 움직이거나 회로를 합치지 않습니다', () => {
     advanceTo(30.1);
-    connect('source', 'lamp-1');
-    const first = edgeBetween('source', 'lamp-1');
+    fullLoop('lamp-1');
+    const first = edgeBetween('source', 'lamp-1', 'plus', 'left');
     const before = api.geometry(first.id);
     const originalRoute = JSON.stringify(first.route);
     const originalShape = before.d;
-    connect('source', 'lamp-2');
+    fullLoop('lamp-2');
     const state = snapshot();
-    const second = edgeBetween('source', 'lamp-2');
-    assert(state.edges.length === 2 && !state.nodes.some(node => node.type === 'junction'),
+    const second = edgeBetween('source', 'lamp-2', 'plus', 'left');
+    assert(state.edges.length === 4 && !state.nodes.some(node => node.type === 'junction'),
       '시각적으로 공유한 도로가 실제 회로의 분기점으로 바뀜');
-    assert(JSON.stringify(edgeBetween('source', 'lamp-1').route) === originalRoute && api.geometry(first.id).d === originalShape,
+    assert(JSON.stringify(edgeBetween('source', 'lamp-1', 'plus', 'left').route) === originalRoute && api.geometry(first.id).d === originalShape,
       '새 전선을 그리자 기존 도로 경로가 움직임');
     const secondPath = api.geometry(second.id);
     assertOrthogonal(secondPath);
@@ -369,9 +429,10 @@
     const laneDistance = distanceToPath(sharedStreetPoint, secondPath.samples);
     assert(laneDistance > .5, '독립 전선이 공유 도로에서 완전히 포개져 구별되지 않음');
     assert(laneDistance < 20, '독립 전선이 공유 도로 밖으로 우회함');
-    near(state.analysis.edges[first.id].current, .3);
-    near(state.analysis.edges[second.id].current, .3);
-    near(state.analysis.totalCurrent, .6);
+    near(state.analysis.edges[first.id].current, .3, .01);
+    near(state.analysis.edges[second.id].current, .3, .01);
+    near(state.analysis.totalCurrent, .6, .01);
+    assertLit('lamp-1'); assertLit('lamp-2');
     assert(state.analysis.allStable && state.analysis.hasParallel && !state.analysis.hasSeries,
       '시각적 lane 분리가 실제 전기적 연결을 변경함');
   });
@@ -436,12 +497,12 @@
     api.start();
     if (kind === 'city') {
       reachResult();
-      document.getElementById('preview-note').textContent = '전력 복구가 끝난 실제 게임입니다. 화면의 ‘회로도로 보기’를 눌러 만든 구조를 확인할 수 있습니다.';
+      document.getElementById('preview-note').textContent = '공급선과 귀환선을 모두 연결한 네 폐회로입니다. 화면의 ‘회로도로 보기’에서 실제 여덟 전선을 확인할 수 있습니다.';
     } else {
       advanceTo(94.5);
-      connect('source', 'lamp-1');
+      fullLoop('lamp-1');
       api.advance(.5);
-      document.getElementById('preview-note').textContent = '95초의 분기 연습 장면입니다. 켜진 전선의 중간에서 다른 전구까지 끌어 분기점을 만들어 보세요. A 도구도 열려 있습니다.';
+      document.getElementById('preview-note').textContent = '첫 전구의 공급선과 귀환선을 이은 95초 장면입니다. 공급선에서 새 전구의 왼쪽 단자로 분기한 뒤, 오른쪽 단자를 전원 −에 연결해 회로를 닫아 보세요.';
     }
     document.body.classList.add('preview-mode');
     window.scrollTo({ top: 0, behavior: 'instant' });

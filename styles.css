@@ -12,3 +12,22 @@
 @keyframes start-flicker{0%,32%,54%{color:#fffdf5;text-shadow:0 0 30px #fff4d666}18%,44%{color:#485354;text-shadow:none}70%,100%{color:#fffdf5;text-shadow:0 0 60px #fff4d699}}
 
 .wire-base,.wire-light,.wire-aura,#preview{stroke-linejoin:round}
+.node.source .node-symbol.battery-mark{fill:none;stroke:var(--electric);stroke-width:1.7}
+.battery-tip{fill:#e9b44c33;stroke:var(--electric);stroke-width:1.5}
+.terminal-lead{fill:none;stroke:#536065;stroke-width:1.8;pointer-events:none}
+.terminal{cursor:crosshair;outline:none}
+.terminal-hit{fill:transparent;pointer-events:all}
+.terminal-ring{fill:#101619;stroke:#8b9698;stroke-width:1.6;transition:stroke .2s,fill .2s}
+.terminal-core{fill:#9ba6a4;pointer-events:none}
+.polarity{fill:none;stroke:var(--electric);stroke-width:1.7;stroke-linecap:round;pointer-events:none}
+.polarity-label{fill:var(--electric);font:700 19px Consolas,monospace;pointer-events:none}
+.source .terminal-ring,.node.lit .terminal-ring{stroke:var(--electric)}
+.node.lit .terminal-lead{stroke:#a08143}
+.terminal.snap .terminal-ring,.terminal:focus-visible .terminal-ring{stroke:#fff1c6;stroke-width:3;fill:#594323}
+.terminal.snap .terminal-core,.terminal:focus-visible .terminal-core{fill:#fff1c6}
+.node.junction .terminal-ring{r:9px}
+.node.junction .terminal-core{r:3px}
+.restored .terminal-ring{fill:#fff1cf;stroke:#b78c42}
+.restored .terminal-core,.restored .polarity-label{fill:#946826}
+.restored .polarity,.restored .node.source .node-symbol.battery-mark{stroke:#946826;fill:none}
+.restored .terminal-lead{stroke:#ab915e}

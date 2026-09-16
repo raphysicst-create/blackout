@@ -5,18 +5,24 @@
   // All colour belongs to the host stylesheet, including the dawn palette.
   // Shared road data keeps the rendered streets and wire routing graph aligned.
   const roads = [
-    { id: 'west', width: 25, points: [{ x: 153, y: 415 }, { x: 365, y: 415 }, { x: 365, y: 204 }, { x: 723, y: 204 }, { x: 723, y: 130 }] },
-    { id: 'main', width: 23, points: [{ x: 365, y: 347 }, { x: 1064, y: 347 }, { x: 1064, y: 575 }] },
+    { id: 'west', width: 25, points: [{ x: 291, y: 415 }, { x: 365, y: 415 }, { x: 365, y: 204 }, { x: 723, y: 204 }, { x: 723, y: 130 }] },
+    { id: 'battery-return', width: 22, points: [{ x: 153, y: 415 }, { x: 199, y: 415 }, { x: 199, y: 551 }] },
+    { id: 'main', width: 23, points: [{ x: 365, y: 347 }, { x: 974, y: 347 }] },
+    { id: 'pump-return', width: 23, points: [{ x: 1064, y: 347 }, { x: 1064, y: 591 }] },
     { id: 'central', width: 21, points: [{ x: 429, y: 130 }, { x: 429, y: 613 }, { x: 983, y: 613 }] },
-    { id: 'east-central', width: 22, points: [{ x: 723, y: 204 }, { x: 723, y: 591 }, { x: 1046, y: 591 }] },
+    { id: 'east-central', width: 22, points: [{ x: 723, y: 204 }, { x: 723, y: 591 }, { x: 1064, y: 591 }] },
     { id: 'east', width: 20, points: [{ x: 968, y: 132 }, { x: 968, y: 591 }] },
     { id: 'south', width: 20, points: [{ x: 179, y: 551 }, { x: 946, y: 551 }] },
     { id: 'courtyard', width: 20, points: [{ x: 365, y: 473 }, { x: 690, y: 473 }, { x: 690, y: 347 }] },
     { id: 'park', width: 20, points: [{ x: 723, y: 264 }, { x: 968, y: 264 }] },
-    { id: 'lamp1', width: 20, points: [{ x: 545, y: 347 }, { x: 545, y: 285 }] },
-    { id: 'lamp2', width: 20, points: [{ x: 723, y: 465 }, { x: 800, y: 465 }] },
-    { id: 'lamp3', width: 20, points: [{ x: 850, y: 264 }, { x: 850, y: 180 }] },
-    { id: 'motor', width: 20, points: [{ x: 1020, y: 347 }, { x: 1020, y: 345 }] },
+    { id: 'lamp1-left', width: 20, points: [{ x: 499, y: 347 }, { x: 499, y: 285 }] },
+    { id: 'lamp1-right', width: 20, points: [{ x: 591, y: 347 }, { x: 591, y: 285 }] },
+    { id: 'lamp2-left', width: 20, points: [{ x: 723, y: 465 }, { x: 754, y: 465 }] },
+    { id: 'lamp2-right', width: 20, points: [{ x: 846, y: 465 }, { x: 968, y: 465 }] },
+    { id: 'lamp3-left', width: 20, points: [{ x: 804, y: 264 }, { x: 804, y: 180 }] },
+    { id: 'lamp3-right', width: 20, points: [{ x: 896, y: 264 }, { x: 896, y: 180 }] },
+    { id: 'motor-left', width: 20, points: [{ x: 974, y: 347 }, { x: 974, y: 345 }] },
+    { id: 'motor-right', width: 20, points: [{ x: 1064, y: 347 }, { x: 1066, y: 347 }, { x: 1066, y: 345 }] },
   ];
 
   function building(x, y, w, h, options) {
@@ -56,9 +62,9 @@
         ${building(248, 335, 44, 36, { flat: true })}
         <path class="city-roof" d="M237 340h7m-7 7h7m-7 7h7m-7 7h7M205 322v-12m68 12v-12M200 310h10m58 0h10" fill="none" stroke-width="1"/>
         ${label(177, 300, 'WEST SUBSTATION')}
-        ${building(181, 478, 61, 44)}
+        ${building(220, 478, 41, 44)}
         ${building(266, 478, 57, 44)}
-        ${tree(185, 459, 5)}${tree(201, 459, 5)}${tree(306, 460, 5)}${tree(322, 460, 5)}
+        ${tree(180, 459, 5)}${tree(220, 459, 5)}${tree(306, 460, 5)}${tree(322, 460, 5)}
         ${label(180, 584, '01 / OLD TOWN')}
         <path class="city-roof" d="M338 329V366m-5-37v37M162 478v45m-4-45v45" fill="none" stroke-width=".65"/>
       </g>
@@ -68,9 +74,9 @@
         ${building(463, 226, 50, 38)}
         ${building(580, 226, 49, 38)}
         ${building(646, 226, 48, 38)}
-        ${building(590, 295, 62, 30)}
+        ${building(609, 295, 43, 30)}
         <path class="city-roof" d="M463 281v33h31M532 226v19m8-19v19m8-19v19M664 283h29v40h-29" fill="none" stroke-width=".7"/>
-        ${tree(478, 298, 7)}${tree(497, 298, 6)}${tree(676, 297, 6)}${tree(678, 315, 5)}
+        ${tree(478, 298, 7)}${tree(520, 308, 6)}${tree(676, 297, 6)}${tree(678, 315, 5)}
         <path class="city-roof" d="M470 181h31m-29 4h27M579 182h45m-43 4h41M644 180h47" fill="none" stroke-width=".65"/>
       </g>
 
@@ -93,7 +99,7 @@
         <path class="city-water" d="M766 140Q774 125 788 132Q802 139 796 151Q790 165 777 161Q762 160 766 140Z" stroke-width=".7"/>
         <path class="city-roof" d="M772 143q7-5 17-1m-13 7q6-3 12-1" fill="none" stroke-width=".55"/>
         ${tree(815, 128, 7)}${tree(832, 119, 5)}${tree(865, 121, 6)}${tree(895, 128, 8)}${tree(916, 140, 6)}
-        ${tree(768, 187, 7)}${tree(783, 181, 5)}${tree(780, 214, 8)}${tree(804, 223, 6)}${tree(872, 223, 6)}
+        ${tree(768, 187, 7)}${tree(783, 181, 5)}${tree(780, 214, 8)}${tree(823, 223, 6)}${tree(872, 223, 6)}
         ${tree(918, 191, 7)}${tree(905, 213, 8)}${tree(924, 223, 5)}
         <path class="city-roof" d="M814 191l-4 10m-3-1 4-10M882 145l10 4m-1 3-10-4" fill="none" stroke-width="1.8"/>
         ${label(852, 99, '04 / LIGHT PARK', 'middle')}
@@ -118,8 +124,8 @@
         ${building(755, 506, 58, 27)}
         ${building(840, 483, 41, 50)}
         ${building(903, 483, 35, 50)}
-        <path class="city-roof" d="M754 435h54M751 443h20m-20 4h20M841 458h94M846 461h84M752 489h21" fill="none" stroke-width=".65"/>
-        ${tree(918, 462, 5)}${tree(933, 462, 5)}${tree(829, 508, 5)}${tree(829, 525, 5)}
+        <path class="city-roof" d="M754 435h54M751 443h20m-20 4h20M752 489h21" fill="none" stroke-width=".65"/>
+        ${tree(918, 450, 5)}${tree(933, 450, 5)}${tree(829, 508, 5)}${tree(829, 525, 5)}
         ${label(783, 624, '06 / RESIDENTIAL SOUTH')}
         ${building(997, 485, 41, 48)}
         ${tree(1004, 458, 7)}${tree(1025, 458, 6)}
