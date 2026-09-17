@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "round": null,
+  "status": "planned",
+  "baselineRef": null,
+  "candidateRef": null,
+  "sourceHashes": {},
+  "hypothesis": null,
+  "oneChangeFamily": null,
+  "primaryMetric": null,
+  "target": null,
+  "guardrails": [],
+  "scenarioIds": [],
+  "automatic": { "status": "not_run", "commands": [], "artifacts": [] },
+  "browser": { "status": "not_run", "devices": [], "artifacts": [] },
+  "human": {
+    "status": "not_run",
+    "participants": 0,
+    "assignment": null,
+    "sessions": [],
+    "excludedSessionsWithReasons": [],
+    "rawEvidencePaths": []
+  },
+  "metrics": {},
+  "confounders": [],
+  "decision": "pending",
+  "decisionReason": null,
+  "acceptedRef": null,
+  "nextHypothesis": null
+}

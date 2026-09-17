@@ -43,6 +43,12 @@
     const whole = Math.floor(seconds);
     return `${String(Math.floor(whole / 60)).padStart(2, '0')}:${String(whole % 60).padStart(2, '0')}`;
   }
+  function electricalText(status) {
+    const format = value => Math.abs(value) < .005
+      ? '0'
+      : value.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+    return `${format(status?.voltage || 0)}V, ${format(status?.current || 0)}A`;
+  }
   function toast(text, duration = 4200) {
     $('toast').textContent = text;
     $('toast').classList.add('visible');
@@ -302,7 +308,10 @@
       const name = port === 'plus' ? '+극' : port === 'minus' ? '−극' : port === 'left' ? '왼쪽 단자' : port === 'right' ? '오른쪽 단자' : '분기점';
       return `<g id="terminal-${n.id}-${port}" class="terminal ${port}" data-node="${n.id}" data-port="${port}" role="button" tabindex="0" aria-label="${label} ${name}, 전선 연결" transform="translate(${x} 0)"><circle class="terminal-hit" r="22"/><circle class="terminal-ring" r="8"/>${n.type === 'source' ? `<path class="polarity" d="M-4 0h8${port === 'plus' ? 'M0-4v8' : ''}"/><text class="polarity-label" text-anchor="middle" y="-20">${port === 'plus' ? '+' : '−'}</text>` : '<circle class="terminal-core" r="2.5"/>'}</g>`;
     }).join('');
-    return `<g id="node-${n.id}" class="node ${n.type}" data-node="${n.id}" role="group" aria-label="${label}" transform="translate(${n.x} ${n.y})">${n.type !== 'junction' ? '<path class="terminal-lead" d="M-46 0h24M22 0h24"/>' : ''}<g class="node-art">${art}</g>${terminals}${n.label ? `<text class="node-label" text-anchor="middle" y="49">${n.label}</text>` : ''}</g>`;
+    const reading = n.type === 'lamp' || n.type === 'motor'
+      ? '<text class="device-reading" text-anchor="middle" y="42" aria-hidden="true">0V, 0A</text>'
+      : n.label ? `<text class="node-label" text-anchor="middle" y="49">${n.label}</text>` : '';
+    return `<g id="node-${n.id}" class="node ${n.type}" data-node="${n.id}" role="group" aria-label="${label}" transform="translate(${n.x} ${n.y})">${n.type !== 'junction' ? '<path class="terminal-lead" d="M-46 0h24M22 0h24"/>' : ''}<g class="node-art">${art}</g>${terminals}${reading}</g>`;
   }
   function rebuild() {
     const focused = document.activeElement?.closest?.('.terminal');
@@ -538,8 +547,11 @@
       const on = target > 0 && (n.type === 'source' || age > .22);
       v.brightness += ((on ? target : 0) - v.brightness) * k;
       v.el.classList.toggle('lit', on && v.brightness > .015);
+      v.el.classList.toggle('powered', status.powered);
       const symbol = v.el.querySelector('.node-art');
       symbol.style.opacity = target > 0 ? String(.45 + .55 * v.brightness) : '1';
+      const reading = v.el.querySelector('.device-reading');
+      if (reading) reading.textContent = electricalText(status);
       if (v.halo) v.halo.setAttribute('opacity', v.brightness.toFixed(3));
       if (v.pool) v.pool.setAttribute('opacity', (v.brightness * .9).toFixed(3));
       if (n.type !== 'junction') v.el.setAttribute('aria-label', `${n.label}, ${target >= .8 ? '정상 작동' : target > 0 ? '빛이 약함' : '꺼짐'}`);
