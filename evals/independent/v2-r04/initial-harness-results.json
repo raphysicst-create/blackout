@@ -1,0 +1,160 @@
+{
+  "humanStatus": "not_run",
+  "passed": 6,
+  "total": 7,
+  "cases": [
+    {
+      "name": "four stable loads cannot win before one real demand change",
+      "status": "fail",
+      "error": "load marker absent",
+      "time": 36.00000000000004
+    },
+    {
+      "name": "preventive reassignment during preview avoids warning and blackout",
+      "status": "pass"
+    },
+    {
+      "name": "real increase overheats same feeder; hot reassignment cools without trip",
+      "status": "pass"
+    },
+    {
+      "name": "trip preserves cause while other feeder stays lit; repair/reset completes",
+      "status": "pass"
+    },
+    {
+      "name": "pause/help freeze forecast and heat; restart clears demand and protection",
+      "status": "pass"
+    },
+    {
+      "name": "disconnect cancels preview and preserves requested change until repair",
+      "status": "pass"
+    },
+    {
+      "name": "same physical replay gives identical current and trip timeline",
+      "status": "pass"
+    }
+  ],
+  "metrics": {
+    "preventive": {
+      "changeMs": 40000,
+      "previews": [
+        33000,
+        37050
+      ]
+    },
+    "hot": {
+      "current": 0.8819977544035629,
+      "retainedHeat": 0.3416666666666667
+    },
+    "trip": {
+      "current": 0.8819977544035629,
+      "tripLoads": [
+        "lamp-1",
+        "motor-1"
+      ],
+      "detail": "A 회선 차단 · 0.88 / 0.75 A 주택·급수 펌프의 전류가 몰렸어요 · 시설을 옮긴 뒤 배전함에서 복구",
+      "tripEvent": [
+        {
+          "eventSeq": 69,
+          "wallMs": 1836,
+          "activeMs": 41950,
+          "event": "feeder_trip",
+          "payload": {
+            "id": "feeder-A",
+            "current": 0.8819977544035629,
+            "loads": [
+              "lamp-1",
+              "motor-1"
+            ]
+          }
+        }
+      ],
+      "changed": [
+        {
+          "eventSeq": 60,
+          "wallMs": 1457,
+          "activeMs": 36000,
+          "event": "demand_changed",
+          "payload": {
+            "id": "lamp-1",
+            "from": 0.3,
+            "to": 0.45,
+            "before": [
+              {
+                "id": "feeder-A",
+                "label": "A / 주택 회선",
+                "tripped": false,
+                "tripCurrent": 0,
+                "tripLoads": [],
+                "capacity": 0.75,
+                "current": 0.7366911928753384,
+                "heat": 0,
+                "loads": [
+                  "lamp-1",
+                  "motor-1"
+                ]
+              },
+              {
+                "id": "feeder-B",
+                "label": "B / 공원 회선",
+                "tripped": false,
+                "tripCurrent": 0,
+                "tripLoads": [],
+                "capacity": 0.75,
+                "current": 0.5899166529741959,
+                "heat": 0,
+                "loads": [
+                  "lamp-2",
+                  "lamp-3"
+                ]
+              }
+            ],
+            "after": [
+              {
+                "id": "feeder-A",
+                "label": "A / 주택 회선",
+                "tripped": false,
+                "tripCurrent": 0,
+                "tripLoads": [],
+                "capacity": 0.75,
+                "current": 0.8819977544035629,
+                "heat": 0,
+                "loads": [
+                  "lamp-1",
+                  "motor-1"
+                ]
+              },
+              {
+                "id": "feeder-B",
+                "label": "B / 공원 회선",
+                "tripped": false,
+                "tripCurrent": 0,
+                "tripLoads": [],
+                "capacity": 0.75,
+                "current": 0.5890531036782674,
+                "heat": 0,
+                "loads": [
+                  "lamp-2",
+                  "lamp-3"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "recovery": [
+        {
+          "eventSeq": 104,
+          "wallMs": 3049,
+          "activeMs": 62100,
+          "event": "recovery_complete",
+          "payload": {
+            "seconds": 20.149999999998705,
+            "recoveries": 1
+          }
+        }
+      ]
+    },
+    "deterministicTripMs": 41950
+  }
+}

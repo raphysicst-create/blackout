@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "round": "V2-R1",
+  "revision": 0,
+  "decision": "REVISE",
+  "humanStatus": "not_run",
+  "participants": 0,
+  "productModifiedByEvaluator": false,
+  "manifest": "v2-r01/manifest.json",
+  "gameSha256": "9152077d7ca261ab6f44d73154381c855b14971290f255e2201e19fbf9deb7a5",
+  "stylesSha256": "2610f35519981be68a7c70a9a3aa70f4304174fd616e97a0552ab29419d5d0de",
+  "checks": {"node": {"passed":45,"total":45}, "syntax":"passed", "independentDOM": {"passed":9,"total":11}},
+  "findings": [{"id":"V2-R1-F01","priority":2,"title":"New framing is not applied on first load or start","actual":"Fresh iframe load and start() retain viewBox 0 0 1200 760. Only resize or removeWire applies 140 75 1000 510.","expected":"Default mode initializes the contracted framing before first interaction; legacy retains 0 0 1200 760.","cause":"fitBoard() is called from removeWire and resize, but not initial reset/start.","requestedFix":"Initialize the framing as part of reset/start, retaining the legacy branch and coordinate conversion."}],
+  "evidence": ["v2-r01/v2-results.json","v2-r01/site/evals/v2-r1.js","v2-r01/node-tests.txt","v2-r01/syntax-check.txt"],
+  "scope": "Direct and junction focus, exact keyboard deletion, resize electrical invariance and terminal hit testing at all five specified sizes passed. Actual pointer checks and broader regression were still in progress when this confirmed blocker was reported.",
+  "notRun": ["human fun or strategy learning","physical touch","44 CSS pixel guarantee for all terminals"]
+}

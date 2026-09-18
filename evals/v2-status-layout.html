@@ -1,0 +1,9 @@
+<!doctype html><html><meta charset="utf-8"><title>V2 status layout</title><pre id="results">running</pre><script>
+const reports=[];
+for(const [width,height,scene] of [[1280,720,'trip'],[600,320,'trip'],[761,380,'trip'],[390,844,'trip'],[600,320,'preview'],[761,380,'preview']]){
+ const f=document.createElement('iframe');f.style.cssText=`width:${width}px;height:${height}px;border:0`;f.src='../index.html?test=1';document.body.append(f);
+ f.onload=()=>{const a=f.contentWindow.BlackoutTesting,d=f.contentDocument;a.start();a.connect('feeder-A','lamp-1','plus','left');a.connect('lamp-1','feeder-A','right','minus');a.advance(12.5);a.remove(a.snapshot().edges.find(e=>e.a==='lamp-2'&&e.b==='lamp-3').id);a.connect('lamp-2','feeder-B','right','minus');a.connect('feeder-B','lamp-3','plus','left');a.advance(12.5);a.connect('feeder-A','motor-1','plus','left');a.connect('motor-1','feeder-A','right','minus');a.advance(scene==='trip'?17.1:8.1);
+ setTimeout(()=>{const id=scene==='trip'?'risk-status':'demand-status',panel=d.getElementById(id),range=d.createRange();range.selectNodeContents(panel);const hits=[],rects=[...range.getClientRects()];for(const r of rects){if(r.left<0||r.right>width||r.top<0||r.bottom>height)hits.push('clipped');for(const e of d.querySelectorAll('.device-reading,.facility-name,.terminal')){const n=e.getBoundingClientRect();if(r.left<n.right&&r.right>n.left&&r.top<n.bottom&&r.bottom>n.top)hits.push(e.id||e.parentElement.id+':'+e.classList.value);}}if(!d.getElementById('hint').classList.contains('quiet'))hits.push('competing-hint');reports.push({width,height,scene,hits:[...new Set(hits)],rect:panel.getBoundingClientRect().toJSON(),text:panel.textContent});document.getElementById('results').textContent=JSON.stringify(reports,null,2);},1200);
+ };
+}
+</script></html>

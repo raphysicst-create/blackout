@@ -1,0 +1,18 @@
+{
+  "scrollWidth": 342,
+  "viewport": [
+    761,
+    380
+  ],
+  "whiteSpace": "nowrap",
+  "humanStatus": "not_run",
+  "textRange": {
+    "bottom": 245.800003,
+    "right": 807.400024,
+    "x": 465,
+    "y": 230.600006
+  },
+  "rightClipping": 46.400024,
+  "clientWidth": 280,
+  "source": "Actual screenshot and DOM text Range"
+}

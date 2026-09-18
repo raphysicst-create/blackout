@@ -1,0 +1,71 @@
+{
+  "stylesSha256": "79462f722f3f5fdd2c136059cfd2cfe947848920645d650b20bed8f6508abbae",
+  "revision": 2,
+  "productModifiedByEvaluator": false,
+  "humanStatus": "not_run",
+  "manifest": "v2-r03-revision2/manifest.json",
+  "checks": {
+    "behavior": "9/9 reused original",
+    "settledTextRangeLayout": {
+      "passed": 6,
+      "viewports": [
+        [
+          1280,
+          720
+        ],
+        [
+          1920,
+          1080
+        ],
+        [
+          760,
+          550
+        ],
+        [
+          600,
+          320
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          761,
+          380
+        ]
+      ],
+      "total": 6
+    },
+    "undoHeat": "4/4 reused actual function isolated with synthetic hot fixture",
+    "visual761x380": "passed: complete wrapped instruction visible",
+    "nativeInput": "original pointer delete/undo and keyboard Ctrl+Z/parallel repair reused",
+    "syntax": "revision1 passed; current JS identical"
+  },
+  "round": "V2-R3",
+  "change": "Only white-space:normal CSS property added relative to revision1",
+  "notRun": [
+    "Human fun or strategic learning",
+    "Physical touch"
+  ],
+  "resolvedFindings": [
+    "V2-R3-F01",
+    "V2-R3-F02"
+  ],
+  "schemaVersion": 1,
+  "previousDecisions": [
+    "v2-r03-review.json",
+    "v2-r03-revision1-review.json"
+  ],
+  "decision": "ACCEPT_ENGINEERING",
+  "evidence": [
+    "v2-r03-revision2/repair-layout.json",
+    "v2-r03-revision2/integrity.json",
+    "v2-r03/native-summary.json",
+    "v2-r03/native-history.json",
+    "v2-r03/v2-results.json",
+    "v2-r03/undo-heat.json"
+  ],
+  "gameSha256": "f81042f1e4117d41b43e795f369523ba5c1bd0d7f3210bbd0148278616f6d5bb",
+  "blockingFindings": [],
+  "participants": 0
+}

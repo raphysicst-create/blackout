@@ -1,0 +1,62 @@
+
+> blackout@1.0.0 test
+> node --test tests/*.test.cjs
+
+✔ supports a classic browser script without CommonJS (17.8349ms)
+✔ only explicit valid terminals can be connected (2.9034ms)
+✔ a single complete lamp circuit carries current on feed and return (4.0741ms)
+✔ feed only, return only, and cutting either side leave a lamp off (2.253ms)
+✔ a circuit returning to the positive terminal has no driving voltage (1.0357ms)
+✔ two series lamps share current and are about one quarter bright (1.3157ms)
+✔ parallel closed loops conserve current at feed and return junctions (4.5028ms)
+✔ one closed parallel branch works while its one-sided neighbor stays off (0.8647ms)
+✔ a lamp and motor in parallel stay below the 0.75 A shared-wire limit (1.2268ms)
+✔ mixed series and parallel loops solve individual device voltage drops (3.6582ms)
+✔ lamp and motor polarity can be reversed without changing their output (1.5895ms)
+✔ dangling wires and detached closed rings cannot invent current (21.3661ms)
+✔ redundant wire loops are allowed and solve finite conserved current (7.9617ms)
+✔ a wire across one series lamp bypasses it while the other lamp lights (7.7486ms)
+✔ a direct battery short is finite, lights no loads, and overheats actual wires (0.9909ms)
+✔ joining positive and negative through the same lamp terminal is also a short (0.8978ms)
+✔ three parallel lamps overload both shared conductors and break at six seconds (1.8204ms)
+✔ a cut return opens the whole shared circuit and repair restores it (1.0988ms)
+✔ safe or open wires cool and residual heat prevents premature success (1.868ms)
+✔ three lamps and motor stabilize with two feeds and two explicit returns (1.4939ms)
+✔ missing or invalid ports never receive an implicit return (8.0379ms)
+✔ malformed topology remains finite and cannot win (2.2224ms)
+✔ two distinct allocations serve every load within both circuit capacities (33.0222ms)
+✔ load terminal occupancy, source bypass, feeder bridge and mixed return are refused (1.309ms)
+✔ series loads have low voltage and removing the middle wire permits repair (1.6678ms)
+✔ overload trips only its own circuit at six seconds; unsafe reset is rejected (13.2288ms)
+✔ geometry and unlimited new branch length do not change circuit current (3.9941ms)
+✔ exports the same API to a classic browser script (24.1466ms)
+✔ all actual device terminals route along streets with unchanged endpoints (302.5389ms)
+✔ interior road crossings connect even without explicit intersection vertices (11.6161ms)
+✔ collinear partial overlaps and T endpoints form a single connected graph (1.0749ms)
+✔ Dijkstra chooses the shorter route and equal choices remain reversible (1.3594ms)
+✔ dynamic endpoints on the same road are split in order without modifying cache (1.0187ms)
+✔ off-road previews project to streets with axis-aligned endpoint connectors (1.1704ms)
+✔ geometry uses M/L only, normalizes vertices and interpolates by real distance (0.7885ms)
+✔ splitting projects to the nearest segment and preserves shape and length (0.8449ms)
+✔ lane offsets use miter corners, exact endpoints, and ten-unit endpoint stubs (1.6399ms)
+✔ the two-unit motor spur remains exact and orthogonal for every lane candidate (3.9631ms)
+✔ short, empty and one-point paths do not introduce zero-length or invalid geometry (1.0281ms)
+✔ feed-only circuit stays open with no fabricated return (23.1461ms)
+✔ closed lamp circuit displays both actual wires at the correct battery terminals (3.4937ms)
+✔ two series loads preserve all three wires and the explicit return (4.9307ms)
+✔ parallel branches retain separate feed and return conductors (6.6218ms)
+✔ junction cycle edges all remain visible without flattening into a tree (2.2453ms)
+✔ cut return and disconnected wire remain visible and inactive (1.5363ms)
+✔ battery-terminal short remains an actual self edge and reports the fault (1.2876ms)
+✔ the schematic preserves the actual street route between exact terminals (1.51ms)
+✔ node, edge identifiers and labels are escaped as XML attributes and text (2.2884ms)
+✔ missing terminals never turn into invented conductors (1.1168ms)
+✔ eight shared-street readings avoid each other and device symbols without moving wires (84.4551ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1420.3188

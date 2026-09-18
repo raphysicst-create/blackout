@@ -1,0 +1,19 @@
+{
+  "humanStatus": "not_run",
+  "passed": 3,
+  "total": 3,
+  "states": [
+    {
+      "step": "load",
+      "viewBox": "0 0 1200 760"
+    },
+    {
+      "step": "start",
+      "viewBox": "0 0 1200 760"
+    },
+    {
+      "step": "reset",
+      "viewBox": "0 0 1200 760"
+    }
+  ]
+}

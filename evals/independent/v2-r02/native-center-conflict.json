@@ -1,0 +1,465 @@
+{
+  "humanStatus": "not_run",
+  "history": [
+    {
+      "event": "setup",
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 1.030253337649778,
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "capacity": 0.75,
+          "current": 0.7410628460128478,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ],
+      "mode": "playing",
+      "stable": false,
+      "wireCount": 12,
+      "nodes": [
+        {
+          "id": "source",
+          "x": 63.000000938773155,
+          "y": 211.000003144145
+        },
+        {
+          "id": "feeder-A",
+          "x": 162.0000024139881,
+          "y": 84.40000125765802
+        },
+        {
+          "id": "feeder-B",
+          "x": 162.0000024139881,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-1",
+          "x": 243.00000362098217,
+          "y": 133.00000198185444
+        },
+        {
+          "id": "lamp-2",
+          "x": 396.00000590085983,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-3",
+          "x": 426.00000634789467,
+          "y": 70.0000010430813
+        },
+        {
+          "id": "motor-1",
+          "x": 528.0000078678131,
+          "y": 169.00000251829624
+        }
+      ],
+      "voltage": 0,
+      "firstPowered": false,
+      "resetEvents": [],
+      "terminalIds": [
+        "terminal-feeder-A-plus",
+        "terminal-feeder-A-minus",
+        "terminal-feeder-B-plus",
+        "terminal-feeder-B-minus",
+        "terminal-lamp-1-left",
+        "terminal-lamp-1-right",
+        "terminal-lamp-2-left",
+        "terminal-lamp-2-right",
+        "terminal-lamp-3-left",
+        "terminal-lamp-3-right",
+        "terminal-motor-1-left",
+        "terminal-motor-1-right"
+      ],
+      "button": {
+        "disabled": false,
+        "text": "연결 끊기 ×"
+      }
+    },
+    {
+      "event": "pointerup",
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 1.030253337649778,
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "capacity": 0.75,
+          "current": 0.7410628460128478,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ],
+      "mode": "playing",
+      "stable": false,
+      "wireCount": 12,
+      "nodes": [
+        {
+          "id": "source",
+          "x": 63.000000938773155,
+          "y": 211.000003144145
+        },
+        {
+          "id": "feeder-A",
+          "x": 162.0000024139881,
+          "y": 84.40000125765802
+        },
+        {
+          "id": "feeder-B",
+          "x": 162.0000024139881,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-1",
+          "x": 243.00000362098217,
+          "y": 133.00000198185444
+        },
+        {
+          "id": "lamp-2",
+          "x": 396.00000590085983,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-3",
+          "x": 426.00000634789467,
+          "y": 70.0000010430813
+        },
+        {
+          "id": "motor-1",
+          "x": 528.0000078678131,
+          "y": 169.00000251829624
+        }
+      ],
+      "voltage": 0,
+      "firstPowered": false,
+      "resetEvents": [],
+      "terminalIds": [
+        "terminal-feeder-A-plus",
+        "terminal-feeder-A-minus",
+        "terminal-feeder-B-plus",
+        "terminal-feeder-B-minus",
+        "terminal-lamp-1-left",
+        "terminal-lamp-1-right",
+        "terminal-lamp-2-left",
+        "terminal-lamp-2-right",
+        "terminal-lamp-3-left",
+        "terminal-lamp-3-right",
+        "terminal-motor-1-left",
+        "terminal-motor-1-right"
+      ],
+      "button": {
+        "disabled": false,
+        "text": "연결 끊기 ×"
+      }
+    },
+    {
+      "event": "click",
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 1.030253337649778,
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "capacity": 0.75,
+          "current": 0.7410628460128478,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ],
+      "mode": "playing",
+      "stable": false,
+      "wireCount": 12,
+      "nodes": [
+        {
+          "id": "source",
+          "x": 63.000000938773155,
+          "y": 211.000003144145
+        },
+        {
+          "id": "feeder-A",
+          "x": 162.0000024139881,
+          "y": 84.40000125765802
+        },
+        {
+          "id": "feeder-B",
+          "x": 162.0000024139881,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-1",
+          "x": 243.00000362098217,
+          "y": 133.00000198185444
+        },
+        {
+          "id": "lamp-2",
+          "x": 396.00000590085983,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-3",
+          "x": 426.00000634789467,
+          "y": 70.0000010430813
+        },
+        {
+          "id": "motor-1",
+          "x": 528.0000078678131,
+          "y": 169.00000251829624
+        }
+      ],
+      "voltage": 0,
+      "firstPowered": false,
+      "resetEvents": [],
+      "terminalIds": [
+        "terminal-feeder-A-plus",
+        "terminal-feeder-A-minus",
+        "terminal-feeder-B-plus",
+        "terminal-feeder-B-minus",
+        "terminal-lamp-1-left",
+        "terminal-lamp-1-right",
+        "terminal-lamp-2-left",
+        "terminal-lamp-2-right",
+        "terminal-lamp-3-left",
+        "terminal-lamp-3-right",
+        "terminal-motor-1-left",
+        "terminal-motor-1-right"
+      ],
+      "button": {
+        "disabled": false,
+        "text": "연결 끊기 ×"
+      }
+    },
+    {
+      "event": "pointerup",
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 1.030253337649778,
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "capacity": 0.75,
+          "current": 0.7410628460128478,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ],
+      "mode": "playing",
+      "stable": false,
+      "wireCount": 11,
+      "nodes": [
+        {
+          "id": "source",
+          "x": 63.000000938773155,
+          "y": 211.000003144145
+        },
+        {
+          "id": "feeder-A",
+          "x": 162.0000024139881,
+          "y": 84.40000125765802
+        },
+        {
+          "id": "feeder-B",
+          "x": 162.0000024139881,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-1",
+          "x": 243.00000362098217,
+          "y": 133.00000198185444
+        },
+        {
+          "id": "lamp-2",
+          "x": 396.00000590085983,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-3",
+          "x": 426.00000634789467,
+          "y": 70.0000010430813
+        },
+        {
+          "id": "motor-1",
+          "x": 528.0000078678131,
+          "y": 169.00000251829624
+        }
+      ],
+      "voltage": 0,
+      "firstPowered": false,
+      "resetEvents": [],
+      "terminalIds": [
+        "terminal-feeder-A-plus",
+        "terminal-feeder-A-minus",
+        "terminal-feeder-B-plus",
+        "terminal-feeder-B-minus",
+        "terminal-lamp-1-left",
+        "terminal-lamp-1-right",
+        "terminal-lamp-2-left",
+        "terminal-lamp-2-right",
+        "terminal-lamp-3-left",
+        "terminal-lamp-3-right",
+        "terminal-motor-1-left",
+        "terminal-motor-1-right"
+      ],
+      "button": {
+        "disabled": false,
+        "text": "연결 끊기 ×"
+      }
+    },
+    {
+      "event": "click",
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 1.030253337649778,
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "capacity": 0.75,
+          "current": 0.7410628460128478,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ],
+      "mode": "playing",
+      "stable": false,
+      "wireCount": 11,
+      "nodes": [
+        {
+          "id": "source",
+          "x": 63.000000938773155,
+          "y": 211.000003144145
+        },
+        {
+          "id": "feeder-A",
+          "x": 162.0000024139881,
+          "y": 84.40000125765802
+        },
+        {
+          "id": "feeder-B",
+          "x": 162.0000024139881,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-1",
+          "x": 243.00000362098217,
+          "y": 133.00000198185444
+        },
+        {
+          "id": "lamp-2",
+          "x": 396.00000590085983,
+          "y": 241.00000359117985
+        },
+        {
+          "id": "lamp-3",
+          "x": 426.00000634789467,
+          "y": 70.0000010430813
+        },
+        {
+          "id": "motor-1",
+          "x": 528.0000078678131,
+          "y": 169.00000251829624
+        }
+      ],
+      "voltage": 0,
+      "firstPowered": false,
+      "resetEvents": [],
+      "terminalIds": [
+        "terminal-feeder-A-plus",
+        "terminal-feeder-A-minus",
+        "terminal-feeder-B-plus",
+        "terminal-feeder-B-minus",
+        "terminal-lamp-1-left",
+        "terminal-lamp-1-right",
+        "terminal-lamp-2-left",
+        "terminal-lamp-2-right",
+        "terminal-lamp-3-left",
+        "terminal-lamp-3-right",
+        "terminal-motor-1-left",
+        "terminal-motor-1-right"
+      ],
+      "button": {
+        "disabled": false,
+        "text": "연결 끊기 ×"
+      }
+    }
+  ]
+}

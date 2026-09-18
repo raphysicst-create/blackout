@@ -1,0 +1,105 @@
+diff --git a/C:/Users/22/Desktop/blaockout/evals/independent/v2-r04-revision1/site/game.js b/C:/Users/22/Desktop/blaockout/evals/independent/v2-r05/site/game.js
+index 23cb980..2df5a9b 100644
+--- a/C:/Users/22/Desktop/blaockout/evals/independent/v2-r04-revision1/site/game.js
++++ b/C:/Users/22/Desktop/blaockout/evals/independent/v2-r05/site/game.js
+@@ -71,7 +71,8 @@
+     state.lessonStarted = true;
+     record('repair_opened', { feeder, edges: oldEdges.map(e => e.id) });
+     recalculate(); rebuild(); tone('pop');
+-    hint('연결은 있지만, 두 불빛이 약해요.', '두 시설 사이의 낡은 선을 선택해 끊고, 배전함에서 각 시설로 길을 바꿔 보세요.', Infinity);
++    focusCircuit('lamp-2', 'repair');
++    hint('연결은 있지만, 두 불빛이 약해요.', Runs.scenarios[scenarioIndex].guided ? '두 시설 사이의 낡은 선을 선택해 끊고, 배전함에서 각 시설로 길을 바꿔 보세요.' : '기존 배선과 시설의 전압을 살펴보고, 빛이 돌아올 길을 만들어 주세요.', Infinity);
+   }
+   function applyDemand() {
+     if (state.demandChanged) return;
+@@ -84,10 +85,11 @@
+     state.stableFor = 0;
+     recalculate(); rebuild(); tone('pop');
+     record('demand_changed', { id: load.id, from: .30, to: .45, before, after: G.status(state.nodes, state.edges, state.analysis) });
++    focusCircuit(G.assignment(state.nodes, state.edges, load.id) || load.id, 'demand');
+     hint(`${load.label.replace(/^\d+ \/ /, '')}의 전력 수요가 늘었어요.`, '시설을 추가하지 않아도 전류가 달라져요. 두 회선의 여유를 다시 살펴보세요.', 10);
+   }
+ 
+-  function focusCircuit(id) {
++  function focusCircuit(id, reason = 'player') {
+     const changed = focusedCircuit !== id;
+     focusedCircuit = id;
+     const related = new Set();
+@@ -114,7 +116,7 @@
+     for (const [key, v] of wireViews) v.group.classList.toggle('unfocused', !!id && !related.has(key));
+     for (const edge of state.edges) $(`particles-${edge.id}`)?.classList.toggle('unfocused', !!id && !related.has(edge.id));
+     for (const [key, v] of views) v.el.classList.toggle('circuit-focus', key === id);
+-    if (id && changed) record('circuit_selected', { id });
++    if (id && changed) record('circuit_selected', { id, reason });
+   }
+ 
+   function fitBoard() {
+@@ -150,7 +152,14 @@
+   function positionStatus(id = 'risk-status') {
+     if (legacyMode) return;
+     const box = $(id);
+-    if (box.hidden) { delete statusLayoutKeys[id]; return; }
++    if (box.hidden) {
++      const wasVisible = statusLayoutKeys[id];
++      delete statusLayoutKeys[id];
++      if (wasVisible && $('risk-status').hidden && $('demand-status').hidden && state.mode === 'playing' && !state.paused && state.time <= hintUntil) {
++        $('hint').classList.remove('quiet'); positionHint();
++      }
++      return;
++    }
+     // During a fault this panel contains the action. Avoid a second competing hint.
+     $('hint').classList.add('quiet');
+     const key = `${innerWidth}/${innerHeight}/${state.nodes.length}/${box.className}/${box.textContent.replace(/\d/g, '#')}`;
+@@ -249,13 +258,14 @@
+       recoveries: 0, observations: {}, lastSampleAt: 0,
+       seed: Runs.scenarios[scenarioIndex].seed, resultShown: false,
+       lessonStarted: false, lessonSolved: false,
+-      surgeId: 'lamp-1', demandChanged: legacyMode, demandNotice: false,
++      surgeId: Runs.scenarios[scenarioIndex].surgeId, demandChanged: legacyMode, demandNotice: false,
+     };
+     wireCounter = 0; junctionCounter = 0; selected = null; measured = null; keyboardStart = null; focusedCircuit = null;
+     if (!legacyMode) state.edges = G.infrastructure(makeWire);
+     clearUndo();
+     statusLayoutKeys = {};
+-    journal = window.BlackoutTelemetry.create({ runId: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, variant: 'v2-r4', seed: state.seed, testMode, legacyMode });
++    $('toast').classList.remove('visible'); toastUntil = 0;
++    journal = window.BlackoutTelemetry.create({ runId: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, variant: 'v2-r5', seed: state.seed, testMode, legacyMode });
+     views.clear(); wireViews.clear();
+     game.className = 'game intro-mode';
+     $('intro').hidden = false; $('intro').classList.remove('leaving');
+@@ -617,8 +627,8 @@
+     const oldBrightness = new Map([...views].map(([id, v]) => [id, v.brightness]));
+     const oldIds = new Set(views.keys());
+     $('nodes').innerHTML = state.nodes.map(nodeMarkup).join('');
+-    $('halos').innerHTML = state.nodes.filter(n => n.type !== 'junction').map(n => `<g id="halo-${n.id}" opacity="0"><circle cx="${n.x}" cy="${n.y}" r="120" fill="url(#lamp-halo)"/>${n.type === 'lamp' ? `<circle cx="${n.x}" cy="${n.y}" r="70" fill="url(#lamp-aura)" filter="url(#aura-soften)"/>` : ''}</g>`).join('');
+-    $('light-pools').innerHTML = state.nodes.filter(n => n.type !== 'junction').map(n => `<circle id="pool-${n.id}" cx="${n.x}" cy="${n.y}" r="${n.type === 'source' ? 145 : 195}" fill="url(#pool)" opacity="0"/>`).join('');
++    $('halos').innerHTML = state.nodes.filter(n => !['junction', 'feeder'].includes(n.type)).map(n => `<g id="halo-${n.id}" opacity="0"><circle cx="${n.x}" cy="${n.y}" r="120" fill="url(#lamp-halo)"/>${n.type === 'lamp' ? `<circle cx="${n.x}" cy="${n.y}" r="70" fill="url(#lamp-aura)" filter="url(#aura-soften)"/>` : ''}</g>`).join('');
++    $('light-pools').innerHTML = state.nodes.filter(n => !['junction', 'feeder'].includes(n.type)).map(n => `<circle id="pool-${n.id}" cx="${n.x}" cy="${n.y}" r="${n.type === 'source' ? 145 : 195}" fill="url(#pool)" opacity="0"/>`).join('');
+     views = new Map(state.nodes.map(n => {
+       const el = $(`node-${n.id}`);
+       if (!oldIds.has(n.id)) el.classList.add('new');
+@@ -897,6 +907,7 @@
+     observeFacilities(dt);
+     if (state.lessonStarted && !state.lessonSolved && ['lamp-2', 'lamp-3'].every(id => state.analysis.nodes[id]?.brightness >= E.STABLE_BRIGHTNESS)) {
+       state.lessonSolved = true;
++      focusCircuit(null, 'repair_complete');
+       record('repair_completed', { circuits: G.status(state.nodes, state.edges, state.analysis) });
+       hint('연결을 바꾸자, 불빛이 돌아왔어요.', '이제 새 수요를 어느 회선에 나눌지 살펴보세요.', 7);
+     }
+@@ -991,6 +1002,7 @@
+   function win() {
+     if (state.mode !== 'playing') return;
+     state.mode = 'won'; state.victoryFor = 0;
++    focusCircuit(null, 'complete');
+     updateCable();
+     updateRiskUi();
+     $('demand-status').hidden = true;
+@@ -1000,7 +1012,7 @@
+     cancelDrag(); selectWire(null); measured = null; $('measure-layer').innerHTML = '';
+     $('hint').classList.add('quiet'); $('toast').classList.remove('visible');
+     $('result-time').textContent = timeText(state.time);
+-    $('result-story').textContent = legacyMode ? `전류가 갈라지는 곳 ${state.analysis.branches.length} · 되찾은 위기 ${state.recoveries}회` : G.status(state.nodes, state.edges, state.analysis).map(s => `${s.id.slice(-1)} 회선 ${s.current.toFixed(2)} / ${s.capacity.toFixed(2)} A`).join(' · ');
++    $('result-story').textContent = legacyMode ? `전류가 갈라지는 곳 ${state.analysis.branches.length} · 되찾은 위기 ${state.recoveries}회` : G.status(state.nodes, state.edges, state.analysis).map(s => `${s.id.slice(-1)} · ${s.loads.map(id => state.nodes.find(n => n.id === id)?.label.replace(/^\d+ \/ /, '')).join('·')} ${s.current.toFixed(2)} A`).join(' / ');
+     const next = Runs.scenarios[legacyMode ? 0 : (scenarioIndex + 1) % Runs.scenarios.length];
+     $('next-preview').textContent = `다음 구역 · ${next.name}\n${next.description}`;
+     $('replay-button').textContent = legacyMode ? '다시 연결하기' : '다음 구역 복구하기';

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "productModifiedByEvaluator": false,
+  "previousDecision": "v2-r02-review.json",
+  "revision": 1,
+  "manifest": "v2-r02-revision1/manifest.json",
+  "humanStatus": "not_run",
+  "gameSha256": "fcb66726ca094e6a0a9c3d43049fa9661bbdc7046c5161a49bc5cf0ea5f7470f",
+  "notRun": [
+    "Human fun/strategy learning",
+    "Physical touch",
+    "R3 staged repair",
+    "R4 demand change",
+    "R5 final schematic readability"
+  ],
+  "decision": "ACCEPT_ENGINEERING",
+  "checks": {
+    "nativeSafeReset": "passed: 12 wires retained, both feeders stable",
+    "reusedNode": "50/50, unchanged engine/grid/test inputs",
+    "syntax": "passed",
+    "nativeFeederBody": "passed: source/A fixed circuit recovery action",
+    "selectedTrip": "passed: disabled true -> false",
+    "nativeHotReset": "refused with cooling message",
+    "nativeKeyboard": "passed: A+ -> house left/right -> A-, 6 edges and house normal",
+    "reusedLegacyBrowser": "18/18, 8.7s, initial candidate; revised pointer changes guarded outside legacy",
+    "reusedIndependentRules": "11/11, unchanged electrical policy"
+  },
+  "gridSha256": "f2329e6eca0eb414e4c9ec01f2b5414b50bf1ac07fad1117a5059a7dd0f966f7",
+  "blockingFindings": [],
+  "evidence": [
+    "v2-r02-revision1/selected-trip.json",
+    "v2-r02-revision1/native-history.json",
+    "v2-r02-revision1/integrity.json",
+    "v2-r02-revision1/syntax-check.txt",
+    "v2-r02/v2-results.json",
+    "v2-r02/node-tests.txt",
+    "v2-r02/native-center-conflict.json"
+  ],
+  "resolvedFindings": [
+    "V2-R2-F01",
+    "V2-R2-F02"
+  ],
+  "metrics": {
+    "tripSeconds": 6,
+    "safeMaximumCurrent": 0.7366911928753384,
+    "unlimitedRouteUsed": [
+      7874,
+      7266
+    ],
+    "minimumMarginAmps": 0.0133088071246616,
+    "afterRecoveryCurrentB": 0.7366911928752122,
+    "overloadCurrent": 1.030253337649778,
+    "obsoleteBudgetDiagnosticOnly": 5900,
+    "afterRecoveryCurrentA": 0.5899166529743649,
+    "coolSeconds": 3
+  },
+  "engineSha256": "769a3c947b689332b5b05847a237471613c3dda6aab82731ddd89a3a2cbcb1c5",
+  "participants": 0,
+  "round": "V2-R2"
+}

@@ -1,0 +1,116 @@
+{
+  "capturedAtUTC": "2026-09-18T03:58:35.8869861Z",
+  "humanStatus": "not_run",
+  "files": [
+    {
+      "path": "blackout_ui_mockup.html",
+      "sha256": "df1f723a8a901a03ddc2f617c517e83f47ee26d9b736ebfa591f5b01334f3a3a",
+      "bytes": 7830
+    },
+    {
+      "path": "cable.js",
+      "sha256": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29",
+      "bytes": 1024
+    },
+    {
+      "path": "city.js",
+      "sha256": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19",
+      "bytes": 9027
+    },
+    {
+      "path": "director.js",
+      "sha256": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e",
+      "bytes": 1289
+    },
+    {
+      "path": "engine.js",
+      "sha256": "9ae2a356141a471aee7ae16667a7b7c8943b38865082ffda4e3c54c45bad804e",
+      "bytes": 12651
+    },
+    {
+      "path": "game.js",
+      "sha256": "7af62821df8106cd2d667b9b43f1597d8df01f632715ed59e1487cf54d8ae055",
+      "bytes": 69597
+    },
+    {
+      "path": "grid.js",
+      "sha256": "6a192409a4cedb15ffa069cc180db5f839ba2e6a204a635114f3f8d35c5079c5",
+      "bytes": 5292
+    },
+    {
+      "path": "index.html",
+      "sha256": "182dccd5f9b9fa66e903c2cb09aa7f4b026a573c1af2e0026d3de23b548fddf0",
+      "bytes": 9387
+    },
+    {
+      "path": "package.json",
+      "sha256": "508bfefd7cbb676738de23b8ec505d2a6d98955524055095bd1bd4223af4348b",
+      "bytes": 555
+    },
+    {
+      "path": "router.js",
+      "sha256": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e",
+      "bytes": 11552
+    },
+    {
+      "path": "runs.js",
+      "sha256": "b74c2458fb231d879676014ba77216243a3dabb6bca76265491493150463b6c8",
+      "bytes": 1370
+    },
+    {
+      "path": "schematic.js",
+      "sha256": "c4010431117f3a26726c80e5d196a32b15937099bb777f4920a4d0273f2364de",
+      "bytes": 13637
+    },
+    {
+      "path": "server.cjs",
+      "sha256": "9fe1816905b62ec178297395ae2b9943467e241efa0f4a6d10179488ac33fcc4",
+      "bytes": 1087
+    },
+    {
+      "path": "styles.css",
+      "sha256": "79462f722f3f5fdd2c136059cfd2cfe947848920645d650b20bed8f6508abbae",
+      "bytes": 19585
+    },
+    {
+      "path": "telemetry.js",
+      "sha256": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf",
+      "bytes": 783
+    },
+    {
+      "path": "tests/browser-tests.js",
+      "sha256": "bf79eedd274a5b7e52897b11d132c88b3a8a26d9d25880757fdc18cb8b9acfd4",
+      "bytes": 27561
+    },
+    {
+      "path": "tests/browser.html",
+      "sha256": "1488a1249b3780c6dede9cd1a54f297fb1c74319f0f6bae46498e0ddf9042c2e",
+      "bytes": 3315
+    },
+    {
+      "path": "tests/demand.test.cjs",
+      "sha256": "4a5be8fa1289834c38eb8b67cbb985fc0f5801e1518d3d3b021d09f3cd65c2f2",
+      "bytes": 1785
+    },
+    {
+      "path": "tests/engine.test.cjs",
+      "sha256": "7b0d3f065701d763dc73202b1a4b75045e9b9a0998dfb733eea50bc674da4322",
+      "bytes": 15862
+    },
+    {
+      "path": "tests/grid.test.cjs",
+      "sha256": "5036bdc780e8e25754a8bd70892bba4d742d6078ee5e9984bc981b37a162f603",
+      "bytes": 3759
+    },
+    {
+      "path": "tests/router.test.cjs",
+      "sha256": "49afcbfe45d21e428521301c27232d750c212c8d99659a7bc9e6549e0b906950",
+      "bytes": 7625
+    },
+    {
+      "path": "tests/schematic.test.cjs",
+      "sha256": "20573c8a3a3c4a8c049b82eb564b400dca4d741df93db5c19fb3fdfc988f1e0c",
+      "bytes": 8511
+    }
+  ]
+}

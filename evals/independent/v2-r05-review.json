@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "round": "V2-R5",
+  "revision": 0,
+  "decision": "ACCEPT_ENGINEERING",
+  "humanStatus": "not_run",
+  "participants": 0,
+  "productModifiedByEvaluator": false,
+  "gameSha256": "fe232f9cb9859f8faa05137c54117322736ae559ea8c1d215f7a9b009888f383",
+  "manifest": "v2-r05/manifest.json",
+  "checks": {
+    "independentBrowser": "12/12",
+    "distinctAllocations": "Two per seed, six total; different pump companions, not A/B label swaps",
+    "copiedAllocation": "House+pump trips at.881998A in101, safe at.735612A in202/303",
+    "demand": "Correct surgeId per seed; applied once; completed stable routes",
+    "cycleHistory": "101→202→303→101; same-seed restart; last5 history; defensive copy; reset clears history",
+    "guidance": "Detailed first district only; valid hint restored after forecast cancellation",
+    "schematic": "Exact edge endpoints; two unbridged feeder poles; feeder halo/pool omitted",
+    "resultLayout": "8/8 result/schematic states at1280x720,390x844,761x380,600x320",
+    "nativeInput": "Facility selection, exact deletion, Ctrl+Z, keyboard deletion/reconnection, schematic Escape and next-district Enter passed",
+    "node": "52/52 current candidate",
+    "syntax": "passed current candidate",
+    "legacyBrowser": "18/18 current candidate",
+    "preservation": "city.js and styles.css byte-identical to V2-R4 accepted; game diff preserves city markup/render, core draw and animation timing",
+    "integrity": "all manifest files match live root candidate"
+  },
+  "blockingFindings": [],
+  "evidence": [
+    "v2-r05/v2-results.json",
+    "v2-r05/result-layout.json",
+    "v2-r05/native-history.json",
+    "v2-r05/native-summary.json",
+    "v2-r05/legacy-browser.json",
+    "v2-r05/node-tests.txt",
+    "v2-r05/exit-codes.json",
+    "v2-r05/change-scope.json",
+    "v2-r05/game-diff.txt",
+    "v2-r05/integrity.json"
+  ],
+  "reusedEvidence": [
+    "V2-R2 electrical topology restrictions and independent native breaker access",
+    "V2-R3 one-level undo and heat preservation",
+    "V2-R4 prevention/hot reassignment/post-trip recovery and timing; engine/director unchanged"
+  ],
+  "notRun": [
+    "Human fun",
+    "Human strategic learning or transfer",
+    "Spontaneous replay",
+    "Physical touch"
+  ],
+  "limitations": [
+    "Deterministic browser cases use evaluator API; native interaction scope separately documented",
+    "Small schematic fits viewport but its readability was not tested with human participants",
+    "Screenshots inspected in browser tool; no image artifact claimed"
+  ]
+}

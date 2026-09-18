@@ -1,0 +1,45 @@
+{
+  "humanStatus": "not_run",
+  "participants": 0,
+  "rounds": [
+    {
+      "report": "v2-r01-revision1-review.json",
+      "round": "V2-R1",
+      "decision": "ACCEPT_ENGINEERING",
+      "gameSha256": "ab5440e1ed0cbb6cb273ff2af33f3b1fc7d9ae54e2c2f5538f0b8d713bf9d390"
+    },
+    {
+      "report": "v2-r02-revision1-review.json",
+      "round": "V2-R2",
+      "decision": "ACCEPT_ENGINEERING",
+      "gameSha256": "fcb66726ca094e6a0a9c3d43049fa9661bbdc7046c5161a49bc5cf0ea5f7470f"
+    },
+    {
+      "report": "v2-r03-revision2-review.json",
+      "round": "V2-R3",
+      "decision": "ACCEPT_ENGINEERING",
+      "gameSha256": "f81042f1e4117d41b43e795f369523ba5c1bd0d7f3210bbd0148278616f6d5bb"
+    },
+    {
+      "report": "v2-r04-revision1-review.json",
+      "round": "V2-R4",
+      "decision": "ACCEPT_ENGINEERING",
+      "gameSha256": "7af62821df8106cd2d667b9b43f1597d8df01f632715ed59e1487cf54d8ae055"
+    },
+    {
+      "report": "v2-r05-review.json",
+      "round": "V2-R5",
+      "decision": "ACCEPT_ENGINEERING",
+      "gameSha256": "fe232f9cb9859f8faa05137c54117322736ae559ea8c1d215f7a9b009888f383"
+    }
+  ],
+  "repairCounts": [
+    1,
+    1,
+    2,
+    1,
+    0
+  ],
+  "finalRootMatch": true,
+  "preservation": "Prior original five-round and all V2 failed/revised artifacts retained"
+}

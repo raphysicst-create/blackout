@@ -1,0 +1,36 @@
+{
+  "humanStatus": "not_run",
+  "scope": "Actual undoWire source function isolated in VM; synthetic hot editable wire fixture, not claimed reachable human gameplay",
+  "passed": 4,
+  "total": 4,
+  "cases": [
+    {
+      "name": "partial cooling restores nonzero heat",
+      "status": "pass",
+      "elapsed": 0.6,
+      "heat": 0.9,
+      "expected": 0.7
+    },
+    {
+      "name": "immediate undo preserves heat",
+      "status": "pass",
+      "elapsed": 0,
+      "heat": 0.9,
+      "expected": 0.9
+    },
+    {
+      "name": "long deletion clamps at zero",
+      "status": "pass",
+      "elapsed": 6,
+      "heat": 0.9,
+      "expected": 0
+    },
+    {
+      "name": "inactive input cannot restore heat or topology",
+      "status": "pass",
+      "elapsed": 0.6,
+      "heat": 0.9,
+      "expected": 0.7
+    }
+  ]
+}

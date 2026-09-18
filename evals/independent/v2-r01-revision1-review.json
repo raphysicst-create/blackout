@@ -1,0 +1,90 @@
+{
+  "revision": 1,
+  "viewports": [
+    [
+      1280,
+      720
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      760,
+      550
+    ],
+    [
+      600,
+      320
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "previousDecision": "v2-r01-review.json",
+  "round": "V2-R1",
+  "manifest": "v2-r01-revision1/manifest.json",
+  "gameSha256": "ab5440e1ed0cbb6cb273ff2af33f3b1fc7d9ae54e2c2f5538f0b8d713bf9d390",
+  "blockingFindings": [],
+  "checks": {
+    "syntax": "passed",
+    "nativePointer": "passed",
+    "visualArtChangeScope": "Existing city, palette, animation definitions retained; three CSS selection/label rules added",
+    "defaultFlow": {
+      "passed": 32,
+      "reusedFrom": "v2-r01/browser-r5.json",
+      "total": 32,
+      "reason": "Completed on initial candidate; framing initialization repair covered by 11 targeted probes and native input"
+    },
+    "legacyFrame": {
+      "total": 3,
+      "passed": 3
+    },
+    "legacyBrowser": {
+      "passed": 18,
+      "total": 18,
+      "seconds": 4.6
+    },
+    "targetedDOM": {
+      "total": 11,
+      "passed": 11
+    },
+    "node": {
+      "passed": 45,
+      "reusedFrom": "v2-r01/node-tests.txt",
+      "total": 45,
+      "reason": "Only fitBoard call moved; Node engine inputs unchanged"
+    },
+    "nativeKeyboard": "passed"
+  },
+  "productModifiedByEvaluator": false,
+  "nativeViewport": [
+    600,
+    320
+  ],
+  "integrity": "v2-r01-revision1/integrity.json",
+  "evidence": [
+    "v2-r01-revision1/v2-results.json",
+    "v2-r01-revision1/legacy-frame.json",
+    "v2-r01-revision1/native-pointer-history.json",
+    "v2-r01-revision1/native-history.json",
+    "v2-r01-revision1/native-summary.json",
+    "v2-r01-revision1/syntax-check.txt",
+    "v2-r01/browser-r5.json"
+  ],
+  "participants": 0,
+  "humanStatus": "not_run",
+  "limitations": [
+    "Physical touch not run",
+    "Human fun, tracing speed and strategy learning not run",
+    "44 CSS px guarantee for all terminals excluded by contract",
+    "Native key events stop propagation; evaluator passive listener changed to capture phase to record actual keyboard results"
+  ],
+  "stylesSha256": "2610f35519981be68a7c70a9a3aa70f4304174fd616e97a0552ab29419d5d0de",
+  "resolvedFindings": [
+    "V2-R1-F01"
+  ],
+  "decision": "ACCEPT_ENGINEERING",
+  "schemaVersion": 1
+}

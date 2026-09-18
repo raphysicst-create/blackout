@@ -1,0 +1,18 @@
+{
+  "overlapWidth": 45.681244,
+  "reading": {
+    "right": 912.318863,
+    "x": 777.918762,
+    "y": 565.76001,
+    "bottom": 592.160009
+  },
+  "overlapHeight": 15.860021,
+  "humanStatus": "not_run",
+  "source": "Browser settled DOM after node entry animation",
+  "hint": {
+    "right": 823.600006,
+    "x": 456.399994,
+    "y": 576.299988,
+    "bottom": 594.999989
+  }
+}

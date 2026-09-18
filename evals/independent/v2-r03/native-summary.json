@@ -1,0 +1,16 @@
+{
+  "undoHiddenAfterNewConnection": true,
+  "nativeUndoButton": "same wire8 restored; both facilities dim",
+  "participants": 0,
+  "evidence": "native-history.json",
+  "humanStatus": "not_run",
+  "nativeCtrlZ": "same wire8 restored",
+  "finalWireCount": 10,
+  "finalStable": true,
+  "viewport": [
+    600,
+    320
+  ],
+  "nativeRepair": "Delete middle; connect lamp2-right to B-minus and B-plus to lamp3-left via Enter; both normal",
+  "nativeDeleteButton": "wire8 only removed; both series facilities off"
+}

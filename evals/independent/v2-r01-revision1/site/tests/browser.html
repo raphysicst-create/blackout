@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BLACKOUT · 브라우저 통합 검증</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #101416; color: #edf0ed; font: 15px/1.65 system-ui, sans-serif; }
+    main { display: grid; grid-template-columns: minmax(320px, 1fr) 600px; gap: 36px; max-width: 1420px; margin: auto; padding: 44px 32px; }
+    h1 { margin: 0 0 8px; font-size: 27px; letter-spacing: -.04em; }
+    p { margin: 0 0 24px; color: #a2adae; }
+    #summary { margin-bottom: 14px; color: #fff4d6; }
+    ol { padding: 0; list-style: none; margin: 0; }
+    li { padding: 11px 0; border-top: 1px solid #283033; }
+    li.pass::before { content: '✓ '; color: #9bd5a5; }
+    li.fail::before { content: '× '; color: #f0a096; }
+    li.fail { color: #f0b5ae; }
+    pre { margin: 8px 0 0; color: #efb8b0; white-space: pre-wrap; font: 12px/1.5 ui-monospace, monospace; }
+    iframe { width: 600px; height: 380px; border: 1px solid #303b3e; border-radius: 10px; display: block; background: #090b0c; }
+    aside { position: sticky; top: 32px; align-self: start; }
+    aside p { font-size: 12px; margin: 14px 0; }
+    button { margin-top: 20px; padding: 10px 17px; color: #fff4d6; border: 1px solid #465254; border-radius: 7px; background: #1a2225; font: inherit; cursor: pointer; }
+    button:disabled { opacity: .4; cursor: wait; }
+    .fixtures { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+    .fixtures button { margin: 0; font-size: 13px; }
+    .preview-mode main { display: flex; flex-direction: column; max-width: 1480px; padding: 20px; gap: 28px; }
+    .preview-mode aside { order: -1; position: static; width: 100%; }
+    .preview-mode iframe { width: 100%; height: calc(100vh - 148px); min-height: 380px; }
+    .preview-mode aside p { margin-bottom: 0; }
+    @media (max-width: 1050px) { main { grid-template-columns: 1fr; padding: 24px; } aside { position: static; } iframe { max-width: 100%; } }
+  </style>
+  <script defer src="browser-tests.js"></script>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>BLACKOUT · 브라우저 통합 검증</h1>
+      <p>실제 게임 화면에서 두 단자의 배선, 열린 회로와 닫힌 회로, 전류, 정전과 복구를 검증합니다.</p>
+      <div id="summary" role="status" aria-live="polite">게임을 불러오는 중…</div>
+      <ol id="results"></ol>
+      <button id="rerun" disabled>다시 검증</button>
+    </section>
+    <aside>
+      <div class="fixtures" aria-label="장면 확인">
+        <button id="fixture-city" disabled>네 폐회로로 밝힌 도시</button>
+        <button id="fixture-branch" disabled>공급·귀환선 분기 연습</button>
+      </div>
+      <iframe id="game-frame" title="기존 시간 계약 회귀용 BLACKOUT 게임" src="../index.html?test=1&legacy=1"></iframe>
+      <p id="preview-note">공급선과 귀환선을 실제로 그려야 시설이 켜지는지 확인합니다. 단자별 키보드 입력도 검증하며 실제 터치·드래그는 별도로 확인합니다.<br>다른 탭으로 전환하면 자동 일시 정지가 작동할 수 있으므로 검증 중에는 이 탭을 열어 두세요.</p>
+    </aside>
+  </main>
+</body>
+</html>

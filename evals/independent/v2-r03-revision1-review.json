@@ -1,0 +1,40 @@
+{
+  "round": "V2-R3",
+  "reused": [
+    "original behavior9/9",
+    "undoHeat4/4",
+    "actual delete/undo/keyboard repair"
+  ],
+  "revision": 1,
+  "gameSha256": "f81042f1e4117d41b43e795f369523ba5c1bd0d7f3210bbd0148278616f6d5bb",
+  "limitations": [
+    "Human fun/learning not_run",
+    "Physical touch not_run"
+  ],
+  "checks": {
+    "boxOverlap": "6/6 passed, insufficient alone",
+    "syntax": "passed",
+    "actualText": "4/6; clipping confirmed at600x320 and761x380"
+  },
+  "humanStatus": "not_run",
+  "schemaVersion": 1,
+  "stylesSha256": "7f0eda6dda292614f4fbe7e5531d51c75669bb679811048e06d9314fe1dcf581",
+  "findings": [
+    {
+      "evidence": "v2-r03-revision1/clipped-hint.json",
+      "expected": "Wrap actual instruction to measured available width and place its full multi-line height without clipping/collision",
+      "title": "Narrow hint width retains nowrap, clipping repair instruction",
+      "id": "V2-R3-F02",
+      "actual": "761x380: element x465..745 width280; actual text x465..807.4 width342; last46.4px outside viewport",
+      "priority": 2
+    }
+  ],
+  "participants": 0,
+  "productModifiedByEvaluator": false,
+  "resolvedFindings": [
+    "V2-R3-F01"
+  ],
+  "previousDecision": "v2-r03-review.json",
+  "decision": "REVISE",
+  "manifest": "v2-r03-revision1/manifest.json"
+}

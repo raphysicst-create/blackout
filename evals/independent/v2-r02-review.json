@@ -1,0 +1,52 @@
+{
+  "hashes": {
+    "engine.js": "769a3c947b689332b5b05847a237471613c3dda6aab82731ddd89a3a2cbcb1c5",
+    "grid.js": "f2329e6eca0eb414e4c9ec01f2b5414b50bf1ac07fad1117a5059a7dd0f966f7",
+    "styles.css": "0b08d240175dadedeeb9606392084f45897c37986e352f2351558b65e4853523",
+    "game.js": "25fbce8e06d8778fc69f048f77a8fe19625421e4adfaf8d8e80a1e25cfd88963"
+  },
+  "round": "V2-R2",
+  "notRun": [
+    "Human fun/strategy learning",
+    "Physical touch"
+  ],
+  "checks": {
+    "syntax": "passed",
+    "node": "50/50",
+    "independentRules": "11/11",
+    "nativeFeederRecovery": "failed"
+  },
+  "manifest": "v2-r02/manifest.json",
+  "decision": "REVISE",
+  "productModifiedByEvaluator": false,
+  "participants": 0,
+  "findings": [
+    {
+      "reproduction": "600x320; A supplies house+alley+pump, B park; trip A, move pump to B and cool. Click A center at (162,84).",
+      "title": "Feeder center click selects a passing editable wire instead of the feeder",
+      "actual": "Selects 02 / 골목 ↔ A / 주택 회선 and offers 연결 끊기, not 회선 복구. The fixture then clicked that explicit delete button and removed a normal wire; this was not automatic deletion.",
+      "expected": "Clicking the feeder body must reliably select its fixed circuit/recovery action, prioritizing the feeder body over nearby/passing wires.",
+      "cause": "pointerdown resolves closestWire before the feeder-body branch.",
+      "id": "V2-R2-F01",
+      "priority": 2
+    },
+    {
+      "evidence": "v2-r02/selected-trip.json",
+      "id": "V2-R2-F02",
+      "title": "Selected healthy feeder recovery button stays disabled after trip",
+      "actual": "Select fixed A edge while healthy: disabled true. Advance 6.05s into real trip: tripped true, popup visible, disabled still true.",
+      "priority": 2,
+      "expected": "Refresh selected fixed-feeder action when protection state changes; keep actual unsafe reset guard."
+    }
+  ],
+  "humanStatus": "not_run",
+  "revision": 0,
+  "evidence": [
+    "v2-r02/v2-results.json",
+    "v2-r02/native-center-conflict.json",
+    "v2-r02/site/evals/native-r2.html",
+    "v2-r02/selected-trip.json",
+    "v2-r02/site/evals/selected-trip.html"
+  ],
+  "schemaVersion": 1
+}

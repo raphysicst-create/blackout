@@ -1,0 +1,463 @@
+{
+  "humanStatus": "not_run",
+  "history": [
+    {
+      "event": "ready",
+      "time": 33.0000000000002,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.7366911928753384,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "motor-1"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.5899166529741959,
+          "heat": 0,
+          "loads": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        }
+      ],
+      "riskHidden": true,
+      "demandHidden": false,
+      "hintQuiet": true,
+      "wireAction": "선택한 전선연결 끊기 ×",
+      "wireActionHidden": true
+    },
+    {
+      "event": "pointerup:undefined",
+      "time": 33.0000000000002,
+      "paused": true,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.7366911928753384,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "motor-1"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.5899166529741959,
+          "heat": 0,
+          "loads": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        }
+      ],
+      "riskHidden": true,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "선택한 전선연결 끊기 ×",
+      "wireActionHidden": true
+    },
+    {
+      "event": "pointerup:resume-button",
+      "time": 33.0000000000002,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.7366911928753384,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "motor-1"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.5899166529741959,
+          "heat": 0,
+          "loads": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        }
+      ],
+      "riskHidden": true,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "선택한 전선연결 끊기 ×",
+      "wireActionHidden": true
+    },
+    {
+      "event": "pointerup:help-button",
+      "time": 33.0000000000002,
+      "paused": true,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.7366911928753384,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "motor-1"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.5899166529741959,
+          "heat": 0,
+          "loads": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        }
+      ],
+      "riskHidden": true,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "선택한 전선연결 끊기 ×",
+      "wireActionHidden": true
+    },
+    {
+      "event": "pointerup:close-help",
+      "time": 33.0000000000002,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.7366911928753384,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "motor-1"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.5899166529741959,
+          "heat": 0,
+          "loads": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        }
+      ],
+      "riskHidden": true,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "선택한 전선연결 끊기 ×",
+      "wireActionHidden": true
+    },
+    {
+      "event": "evaluator advanced to cooled trip",
+      "time": 45.19999999999947,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 0.8819977544035629,
+          "tripLoads": [
+            "lamp-1",
+            "motor-1"
+          ],
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "motor-1"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.5942947702060225,
+          "heat": 0,
+          "loads": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        }
+      ],
+      "riskHidden": false,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "선택한 전선연결 끊기 ×",
+      "wireActionHidden": true
+    },
+    {
+      "event": "pointerup:wire-actions",
+      "time": 45.19999999999947,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 0.8819977544035629,
+          "tripLoads": [
+            "lamp-1",
+            "motor-1"
+          ],
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "motor-1"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.5942947702060225,
+          "heat": 0,
+          "loads": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        }
+      ],
+      "riskHidden": false,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "건전지 ↔ A / 주택 회선회선 복구 ↗",
+      "wireActionHidden": false
+    },
+    {
+      "event": "pointerup:delete-wire",
+      "time": 45.19999999999947,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 0.8819977544035629,
+          "tripLoads": [
+            "lamp-1",
+            "motor-1"
+          ],
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "motor-1"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.5942947702060225,
+          "heat": 0,
+          "loads": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        }
+      ],
+      "riskHidden": false,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "건전지 ↔ A / 주택 회선회선 복구 ↗",
+      "wireActionHidden": false
+    },
+    {
+      "event": "evaluator safe reassignment",
+      "time": 45.19999999999947,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 0.8819977544035629,
+          "tripLoads": [
+            "lamp-1",
+            "motor-1"
+          ],
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.7410628460128478,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ],
+      "riskHidden": false,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "건전지 ↔ A / 주택 회선회선 복구 ↗",
+      "wireActionHidden": false
+    },
+    {
+      "event": "pointerup:wire-actions",
+      "time": 45.19999999999947,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": true,
+          "tripCurrent": 0.8819977544035629,
+          "tripLoads": [
+            "lamp-1",
+            "motor-1"
+          ],
+          "capacity": 0.75,
+          "current": 0,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.7410628460128478,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ],
+      "riskHidden": false,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "건전지 ↔ A / 주택 회선회선 복구 ↗",
+      "wireActionHidden": false
+    },
+    {
+      "event": "pointerup:delete-wire",
+      "time": 45.19999999999947,
+      "paused": false,
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": false,
+          "tripCurrent": 0.8819977544035629,
+          "tripLoads": [
+            "lamp-1",
+            "motor-1"
+          ],
+          "capacity": 0.75,
+          "current": 0.7356115024770848,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "tripLoads": [],
+          "capacity": 0.75,
+          "current": 0.7356115024769931,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ],
+      "riskHidden": false,
+      "demandHidden": true,
+      "hintQuiet": true,
+      "wireAction": "건전지 ↔ A / 주택 회선회선 복구 ↗",
+      "wireActionHidden": true
+    }
+  ]
+}

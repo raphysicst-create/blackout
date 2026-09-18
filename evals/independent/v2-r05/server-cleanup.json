@@ -1,0 +1,56 @@
+{
+  "stopped": [
+    {
+      "port": 4215,
+      "pid": 16448,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    },
+    {
+      "port": 4214,
+      "pid": 7588,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    },
+    {
+      "port": 4213,
+      "pid": 1564,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    },
+    {
+      "port": 4212,
+      "pid": 8228,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    },
+    {
+      "port": 4211,
+      "pid": 16812,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    },
+    {
+      "port": 4220,
+      "pid": 16784,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" ../evidence-server.cjs"
+    },
+    {
+      "port": 4219,
+      "pid": 18008,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    },
+    {
+      "port": 4218,
+      "pid": 11060,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    },
+    {
+      "port": 4217,
+      "pid": 14696,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    },
+    {
+      "port": 4216,
+      "pid": 7384,
+      "command": "\"C:\\Program Files\\nodejs\\node.exe\" evidence-server.cjs"
+    }
+  ],
+  "preservedPort4173": true,
+  "port4200": "not listening when inspected; untouched"
+}

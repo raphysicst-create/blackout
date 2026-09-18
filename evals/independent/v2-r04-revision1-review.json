@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "round": "V2-R4",
+  "revision": 1,
+  "decision": "ACCEPT_ENGINEERING",
+  "humanStatus": "not_run",
+  "participants": 0,
+  "productModifiedByEvaluator": false,
+  "manifest": "v2-r04-revision1/manifest.json",
+  "gameSha256": "7af62821df8106cd2d667b9b43f1597d8df01f632715ed59e1487cf54d8ae055",
+  "changedFiles": [
+    "game.js"
+  ],
+  "change": "Status overlay placement avoids facilities and controls; suppresses duplicate hint while visible; resets placement on resize and reset.",
+  "checks": {
+    "layout": "8/8 preview/trip states at1280x720,390x844,761x380,600x320; actual text ranges in viewport, panels avoid facility names/readings/terminal rings, hint quiet in all",
+    "visual600x320": "passed; complete wrapped cause text and facility information visible",
+    "nativeInput": "passed pause/help opening and closing, feeder center selection, unsafe reset rejection, safe reset success",
+    "syntax": "passed current game.js",
+    "behavior": "7/7 reused from initial R4: electrical and director logic unchanged",
+    "node": "52/52 reused from initial R4: engine/grid and rule logic unchanged",
+    "integrity": "all candidate files match frozen revision; only game.js differs from original"
+  },
+  "resolvedFindings": [
+    "V2-R4-F01"
+  ],
+  "blockingFindings": [],
+  "previousDecision": "v2-r04-review.json",
+  "evidence": [
+    "v2-r04-revision1/demand-layout.json",
+    "v2-r04-revision1/native-history.json",
+    "v2-r04-revision1/native-summary.json",
+    "v2-r04-revision1/syntax-check.json",
+    "v2-r04-revision1/integrity.json",
+    "v2-r04/v2-results.json",
+    "v2-r04/node-tests.txt"
+  ],
+  "notRun": [
+    "Human fun or strategic learning",
+    "Spontaneous replay",
+    "Physical touch"
+  ],
+  "limitations": [
+    "Native test circuit construction/time advancement/reassignment were evaluator API setup, not manual play",
+    "Visual screenshots inspected in browser tool, no saved image artifact"
+  ]
+}

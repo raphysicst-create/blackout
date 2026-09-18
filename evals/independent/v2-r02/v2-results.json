@@ -1,0 +1,212 @@
+{
+  "humanStatus": "not_run",
+  "passed": 11,
+  "total": 11,
+  "cases": [
+    {
+      "name": "complete allocation lamp-1+motor-1",
+      "status": "pass"
+    },
+    {
+      "name": "complete allocation lamp-1+lamp-3",
+      "status": "pass"
+    },
+    {
+      "name": "invalid connections have no graph side effects",
+      "status": "pass"
+    },
+    {
+      "name": "series reverse connection and indirect cross-feeder rejection",
+      "status": "pass"
+    },
+    {
+      "name": "unlimited geometry preserves actual engine currents and voltages",
+      "status": "pass"
+    },
+    {
+      "name": "six-second trip isolates A, retains B, unsafe reset stays refused",
+      "status": "pass"
+    },
+    {
+      "name": "zero-current tripped feeder cannot reset into unchanged overload",
+      "status": "pass"
+    },
+    {
+      "name": "preventive move retains heat and cools without forced blackout",
+      "status": "pass"
+    },
+    {
+      "name": "pause and help freeze protection, forbid resets; run reset clears protection",
+      "status": "pass"
+    },
+    {
+      "name": "distribution controls and current UI 600x320",
+      "status": "pass"
+    },
+    {
+      "name": "distribution controls and current UI 390x844",
+      "status": "pass"
+    }
+  ],
+  "metrics": {
+    "solutions": [
+      {
+        "allocation": {
+          "A": [
+            "lamp-1",
+            "motor-1"
+          ],
+          "B": [
+            "lamp-2",
+            "lamp-3"
+          ]
+        },
+        "circuits": [
+          {
+            "id": "feeder-A",
+            "label": "A / 주택 회선",
+            "tripped": false,
+            "tripCurrent": 0,
+            "capacity": 0.75,
+            "current": 0.7366911928753384,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "motor-1"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 공원 회선",
+            "tripped": false,
+            "tripCurrent": 0,
+            "capacity": 0.75,
+            "current": 0.5899166529741959,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "lamp-3"
+            ]
+          }
+        ],
+        "voltage": 0.9820195216310679,
+        "cableDiagnostic": {
+          "budget": 5900,
+          "used": 7874,
+          "remaining": -1974
+        }
+      },
+      {
+        "allocation": {
+          "A": [
+            "lamp-1",
+            "lamp-3"
+          ],
+          "B": [
+            "lamp-2",
+            "motor-1"
+          ]
+        },
+        "circuits": [
+          {
+            "id": "feeder-A",
+            "label": "A / 주택 회선",
+            "tripped": false,
+            "tripCurrent": 0,
+            "capacity": 0.75,
+            "current": 0.5899166529743649,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "lamp-3"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 공원 회선",
+            "tripped": false,
+            "tripCurrent": 0,
+            "capacity": 0.75,
+            "current": 0.7366911928752122,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "motor-1"
+            ]
+          }
+        ],
+        "voltage": 0.9820195216310681,
+        "cableDiagnostic": {
+          "budget": 5900,
+          "used": 7266,
+          "remaining": -1366
+        }
+      }
+    ],
+    "viewports": [
+      {
+        "width": 600,
+        "height": 320,
+        "text": "A 0.30 / 0.75 A · B 0.00 / 0.75 A"
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "text": "A 0.30 / 0.75 A · B 0.00 / 0.75 A"
+      }
+    ],
+    "unlimited": {
+      "budget": 5900,
+      "used": 7600,
+      "remaining": -1700
+    },
+    "trip": {
+      "current": 1.030253337649778,
+      "trip": [
+        {
+          "eventSeq": 66,
+          "wallMs": 1352,
+          "activeMs": 42000,
+          "event": "feeder_trip",
+          "payload": {
+            "id": "feeder-A",
+            "current": 1.030253337649778,
+            "loads": [
+              "lamp-1",
+              "lamp-2",
+              "motor-1"
+            ]
+          }
+        }
+      ],
+      "circuits": [
+        {
+          "id": "feeder-A",
+          "label": "A / 주택 회선",
+          "tripped": false,
+          "tripCurrent": 1.030253337649778,
+          "capacity": 0.75,
+          "current": 0.5899166529743649,
+          "heat": 0,
+          "loads": [
+            "lamp-1",
+            "lamp-2"
+          ]
+        },
+        {
+          "id": "feeder-B",
+          "label": "B / 공원 회선",
+          "tripped": false,
+          "tripCurrent": 0,
+          "capacity": 0.75,
+          "current": 0.7366911928752122,
+          "heat": 0,
+          "loads": [
+            "lamp-3",
+            "motor-1"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,414 @@
+{
+  "humanStatus": "not_run",
+  "participants": 0,
+  "passed": 12,
+  "total": 12,
+  "cases": [
+    {
+      "name": "seed 101 pump paired with lamp-2",
+      "status": "pass"
+    },
+    {
+      "name": "seed 101 pump paired with lamp-3",
+      "status": "pass"
+    },
+    {
+      "name": "seed 202 pump paired with lamp-1",
+      "status": "pass"
+    },
+    {
+      "name": "seed 202 pump paired with lamp-3",
+      "status": "pass"
+    },
+    {
+      "name": "seed 303 pump paired with lamp-1",
+      "status": "pass"
+    },
+    {
+      "name": "seed 303 pump paired with lamp-2",
+      "status": "pass"
+    },
+    {
+      "name": "copied house+pump allocation in 101",
+      "status": "pass"
+    },
+    {
+      "name": "copied house+pump allocation in 202",
+      "status": "pass"
+    },
+    {
+      "name": "copied house+pump allocation in 303",
+      "status": "pass"
+    },
+    {
+      "name": "three-district cycle, restart same district, history cap and reset",
+      "status": "pass"
+    },
+    {
+      "name": "guided repair only in first district and valid hint returns after preview cancellation",
+      "status": "pass"
+    },
+    {
+      "name": "schematic exactly preserves edges and separate feeder poles; feeder glow excluded",
+      "status": "pass"
+    }
+  ],
+  "metrics": {
+    "allocations": [
+      {
+        "seed": 101,
+        "surge": "lamp-1",
+        "companion": "lamp-2",
+        "circuits": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024770848,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "lamp-3"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024769931,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "motor-1"
+            ]
+          }
+        ],
+        "story": "A · 주택·공원 0.74 A / B · 골목·급수 펌프 0.74 A",
+        "changeCount": 1
+      },
+      {
+        "seed": 101,
+        "surge": "lamp-1",
+        "companion": "lamp-3",
+        "circuits": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024770848,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "lamp-2"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024769931,
+            "heat": 0,
+            "loads": [
+              "lamp-3",
+              "motor-1"
+            ]
+          }
+        ],
+        "story": "A · 주택·골목 0.74 A / B · 공원·급수 펌프 0.74 A",
+        "changeCount": 1
+      },
+      {
+        "seed": 202,
+        "surge": "lamp-2",
+        "companion": "lamp-1",
+        "circuits": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024770848,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "lamp-3"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024769931,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "motor-1"
+            ]
+          }
+        ],
+        "story": "A · 골목·공원 0.74 A / B · 주택·급수 펌프 0.74 A",
+        "changeCount": 1
+      },
+      {
+        "seed": 202,
+        "surge": "lamp-2",
+        "companion": "lamp-3",
+        "circuits": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024770848,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "lamp-2"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.735611502476993,
+            "heat": 0,
+            "loads": [
+              "lamp-3",
+              "motor-1"
+            ]
+          }
+        ],
+        "story": "A · 주택·골목 0.74 A / B · 공원·급수 펌프 0.74 A",
+        "changeCount": 1
+      },
+      {
+        "seed": 303,
+        "surge": "lamp-3",
+        "companion": "lamp-1",
+        "circuits": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024770848,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "lamp-3"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.735611502476993,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "motor-1"
+            ]
+          }
+        ],
+        "story": "A · 골목·공원 0.74 A / B · 주택·급수 펌프 0.74 A",
+        "changeCount": 1
+      },
+      {
+        "seed": 303,
+        "surge": "lamp-3",
+        "companion": "lamp-2",
+        "circuits": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024770848,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "lamp-3"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.735611502476993,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "motor-1"
+            ]
+          }
+        ],
+        "story": "A · 주택·공원 0.74 A / B · 골목·급수 펌프 0.74 A",
+        "changeCount": 1
+      }
+    ],
+    "copied": [
+      {
+        "seed": 101,
+        "unsafe": true,
+        "currents": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.5890531036785163,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "lamp-3"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.8819977544034835,
+            "heat": 0.008333333333333333,
+            "loads": [
+              "lamp-1",
+              "motor-1"
+            ]
+          }
+        ],
+        "trip": [
+          {
+            "eventSeq": 83,
+            "wallMs": 1103,
+            "activeMs": 41950,
+            "event": "feeder_trip",
+            "payload": {
+              "id": "feeder-B",
+              "current": 0.8819977544034835,
+              "loads": [
+                "lamp-1",
+                "motor-1"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "seed": 202,
+        "unsafe": false,
+        "currents": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024770848,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "lamp-3"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024769931,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "motor-1"
+            ]
+          }
+        ],
+        "trip": []
+      },
+      {
+        "seed": 303,
+        "unsafe": false,
+        "currents": [
+          {
+            "id": "feeder-A",
+            "label": "A / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.7356115024770848,
+            "heat": 0,
+            "loads": [
+              "lamp-2",
+              "lamp-3"
+            ]
+          },
+          {
+            "id": "feeder-B",
+            "label": "B / 배전함",
+            "tripped": false,
+            "tripCurrent": 0,
+            "tripLoads": [],
+            "capacity": 0.75,
+            "current": 0.735611502476993,
+            "heat": 0,
+            "loads": [
+              "lamp-1",
+              "motor-1"
+            ]
+          }
+        ],
+        "trip": []
+      }
+    ],
+    "cycle": [
+      101,
+      202,
+      303
+    ],
+    "guidance": [
+      "두 시설 사이의 낡은 선을 선택해 끊고, 배전함에서 각 시설로 길을 바꿔 보세요.",
+      "기존 배선과 시설의 전압을 살펴보고, 빛이 돌아올 길을 만들어 주세요.",
+      "기존 배선과 시설의 전압을 살펴보고, 빛이 돌아올 길을 만들어 주세요."
+    ]
+  }
+}

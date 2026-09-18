@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "round": "V2-R4",
+  "revision": 0,
+  "decision": "REVISE",
+  "humanStatus": "not_run",
+  "participants": 0,
+  "productModifiedByEvaluator": false,
+  "gameSha256": "ed695d8050e906158b6a3fecc4cbd8e31c8215023758b672a3c2f4fc189cf616",
+  "manifest": "v2-r04/manifest.json",
+  "checks": {
+    "behavior": "7/7",
+    "node": "52/52",
+    "syntax": "passed",
+    "layoutTextClipping": "6/6",
+    "layoutFacilityInterference": "4/6; preview and tripped 600x320 fail",
+    "integrity": "all frozen product files match live candidate",
+    "nativeInput": "Prior V2-R2/R3 interaction evidence reused for unchanged controls; no new physical touch claim"
+  },
+  "blockingFindings": [
+    {
+      "id": "V2-R4-F01",
+      "severity": "P2",
+      "title": "Small landscape demand and trip overlays obscure facility state",
+      "viewport": [
+        600,
+        320
+      ],
+      "reproduction": "Seed101: house on A; advance12; repair inherited alley/park into parallel B; advance12; pump on A; advance9 for forecast; advance9.1 for trip; wait1000ms after viewport/entry animation.",
+      "observed": "Forecast panel covers house label. Trip panel covers house demand marker and part of lit park current reading. Recovery hint title/detail intersect house 0V,0A reading.",
+      "evidence": "v2-r04/demand-layout.json",
+      "required": "Position forecast/risk/recovery overlays without covering facility names, electrical readings, or terminals at 600x320; preserve existing visuals and three tested electrical paths."
+    }
+  ],
+  "metrics": {
+    "vulnerableBeforeA": 0.7366911928753384,
+    "vulnerableAfterA": 0.8819977544035629,
+    "capacity": 0.75,
+    "safeFinalEach": 0.735611502477,
+    "demandChangeActiveMs": 36000,
+    "tripActiveMs": 41950,
+    "retainedHotHeat": 0.3416666666666667
+  },
+  "harnessCorrection": "Initial exact-string marker assertion expected 수요↑ but actual visible marker is 수요 ↑. Original harness/result preserved; corrected assertion passes. This is not a product defect.",
+  "evidence": [
+    "v2-r04/v2-results.json",
+    "v2-r04/demand-layout.json",
+    "v2-r04/clipping-only-layout.json",
+    "v2-r04/initial-harness-results.json",
+    "v2-r04/node-tests.txt",
+    "v2-r04/exit-codes.json",
+    "v2-r04/integrity.json"
+  ],
+  "limitations": [
+    "Human fun, learning and spontaneous replay not measured",
+    "Physical touch not run",
+    "Simulation boundaries quantized to 50ms; demand frame contributes first heating/stability tick",
+    "Screenshots visually inspected through browser tool; no screenshot file saved"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "humanStatus": "not_run",
+  "passed": 9,
+  "total": 10,
+  "cases": [
+    {
+      "name": "first graph preserved, actual dim series opens on opposite feeder once",
+      "status": "pass"
+    },
+    {
+      "name": "middle delete makes open circuit, undo restores exact wire once",
+      "status": "pass"
+    },
+    {
+      "name": "standard repair completes once and pump waits until 24 seconds",
+      "status": "pass"
+    },
+    {
+      "name": "alternative reverse-polarity repair on swapped feeder is accepted",
+      "status": "pass"
+    },
+    {
+      "name": "invalid edits keep undo; successful new topology invalidates old undo",
+      "status": "pass"
+    },
+    {
+      "name": "latest deletion only can be undone, reset clears history",
+      "status": "pass"
+    },
+    {
+      "name": "help/pause block edits and freeze lesson clock; intro blocks edits",
+      "status": "pass"
+    },
+    {
+      "name": "brief delete/undo resets stability and prevents inherited progress bypass",
+      "status": "pass"
+    },
+    {
+      "name": "delete/undo keeps live feeder heat and cannot untrip protection",
+      "status": "pass"
+    },
+    {
+      "name": "repair guidance avoids facility voltage reading at 1280x720",
+      "status": "fail",
+      "error": "hint-detail overlaps lamp-2 voltage {\"hint\":{\"x\":456.3999938964844,\"y\":576.2999877929688,\"right\":823.6000061035156,\"bottom\":594.9999885559082},\"reading\":{\"x\":777.9187622070312,\"y\":565.760009765625,\"right\":912.3188629150391,\"bottom\":592.1600093841553}}",
+      "time": 12
+    }
+  ],
+  "metrics": {
+    "series": [
+      {
+        "id": "lamp-2",
+        "powered": true,
+        "brightness": 0.24702810842771142,
+        "current": 0.14910576701956912,
+        "voltage": 0.49701922339856375,
+        "terminals": {
+          "left": 0.9949330813991943,
+          "right": 0.4979138580006306
+        },
+        "bypassed": false
+      },
+      {
+        "id": "lamp-3",
+        "powered": true,
+        "brightness": 0.24702810842766115,
+        "current": 0.14910576701955394,
+        "voltage": 0.4970192233985132,
+        "terminals": {
+          "left": 0.4976156464665914,
+          "right": 0.0005964230680782158
+        },
+        "bypassed": false
+      }
+    ],
+    "seriesUI": "0.5V, 0.15A골목",
+    "winTime": 32.050000000000246,
+    "retainedHeat": 0.3333333333333333,
+    "repairLayout": {
+      "hint": {
+        "x": 456.3999938964844,
+        "y": 576.2999877929688,
+        "right": 823.6000061035156,
+        "bottom": 594.9999885559082
+      },
+      "reading": {
+        "x": 777.9187622070312,
+        "y": 565.760009765625,
+        "right": 912.3188629150391,
+        "bottom": 592.1600093841553
+      }
+    }
+  }
+}

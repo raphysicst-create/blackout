@@ -1,0 +1,16 @@
+{
+  "humanStatus": "not_run",
+  "participants": 0,
+  "viewport": [
+    600,
+    320
+  ],
+  "results": [
+    "Native pause and help opened and closed; active simulation time held at33 seconds",
+    "Native feeder-A center click selected fixed circuit and offered recovery",
+    "Native recovery button refused unsafe reclose with explanatory toast",
+    "After evaluator API safely reassigned loads, native feeder selection and recovery succeeded",
+    "Final circuits both untripped, zero heat, approximately0.735612A"
+  ],
+  "fixtureScope": "Initial circuit, advancing simulated time and safe reassignment used evaluator API. Pause/help, feeder center selection and recovery used real browser input."
+}

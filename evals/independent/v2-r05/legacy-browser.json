@@ -1,0 +1,8 @@
+{
+  "humanStatus": "not_run",
+  "passed": 18,
+  "total": 18,
+  "source": "/tests/browser.html legacy=1",
+  "observation": "Rendered summary18 /18; all18 case labels read from DOM",
+  "scope": "Legacy terminal loops, timelines, series, routing, branching, overload, pause/help, win/result, schematic, reset"
+}

@@ -1,0 +1,81 @@
+{
+  "files": [
+    {
+      "path": "blackout_ui_mockup.html",
+      "current": "df1f723a8a901a03ddc2f617c517e83f47ee26d9b736ebfa591f5b01334f3a3a",
+      "frozen": "df1f723a8a901a03ddc2f617c517e83f47ee26d9b736ebfa591f5b01334f3a3a"
+    },
+    {
+      "path": "cable.js",
+      "current": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29",
+      "frozen": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29"
+    },
+    {
+      "path": "city.js",
+      "current": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19",
+      "frozen": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19"
+    },
+    {
+      "path": "director.js",
+      "current": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e",
+      "frozen": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e"
+    },
+    {
+      "path": "engine.js",
+      "current": "769a3c947b689332b5b05847a237471613c3dda6aab82731ddd89a3a2cbcb1c5",
+      "frozen": "769a3c947b689332b5b05847a237471613c3dda6aab82731ddd89a3a2cbcb1c5"
+    },
+    {
+      "path": "game.js",
+      "current": "fcb66726ca094e6a0a9c3d43049fa9661bbdc7046c5161a49bc5cf0ea5f7470f",
+      "frozen": "fcb66726ca094e6a0a9c3d43049fa9661bbdc7046c5161a49bc5cf0ea5f7470f"
+    },
+    {
+      "path": "grid.js",
+      "current": "f2329e6eca0eb414e4c9ec01f2b5414b50bf1ac07fad1117a5059a7dd0f966f7",
+      "frozen": "f2329e6eca0eb414e4c9ec01f2b5414b50bf1ac07fad1117a5059a7dd0f966f7"
+    },
+    {
+      "path": "index.html",
+      "current": "14c36db59a35a3fd727446e3b3514d446679bf5eeb13965d143ac67ebc85a3e0",
+      "frozen": "14c36db59a35a3fd727446e3b3514d446679bf5eeb13965d143ac67ebc85a3e0"
+    },
+    {
+      "path": "package.json",
+      "current": "508bfefd7cbb676738de23b8ec505d2a6d98955524055095bd1bd4223af4348b",
+      "frozen": "508bfefd7cbb676738de23b8ec505d2a6d98955524055095bd1bd4223af4348b"
+    },
+    {
+      "path": "router.js",
+      "current": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e",
+      "frozen": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e"
+    },
+    {
+      "path": "runs.js",
+      "current": "3db31b6a28fc6a6b621cf67274e93675e2daf46a9c1de629736e1b7068ab15fd",
+      "frozen": "3db31b6a28fc6a6b621cf67274e93675e2daf46a9c1de629736e1b7068ab15fd"
+    },
+    {
+      "path": "schematic.js",
+      "current": "c4010431117f3a26726c80e5d196a32b15937099bb777f4920a4d0273f2364de",
+      "frozen": "c4010431117f3a26726c80e5d196a32b15937099bb777f4920a4d0273f2364de"
+    },
+    {
+      "path": "server.cjs",
+      "current": "9fe1816905b62ec178297395ae2b9943467e241efa0f4a6d10179488ac33fcc4",
+      "frozen": "9fe1816905b62ec178297395ae2b9943467e241efa0f4a6d10179488ac33fcc4"
+    },
+    {
+      "path": "styles.css",
+      "current": "0b08d240175dadedeeb9606392084f45897c37986e352f2351558b65e4853523",
+      "frozen": "0b08d240175dadedeeb9606392084f45897c37986e352f2351558b65e4853523"
+    },
+    {
+      "path": "telemetry.js",
+      "current": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf",
+      "frozen": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf"
+    }
+  ],
+  "currentMatches": true,
+  "humanStatus": "not_run"
+}

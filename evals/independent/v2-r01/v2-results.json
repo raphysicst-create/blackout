@@ -1,0 +1,440 @@
+{
+  "humanStatus": "not_run",
+  "scope": "API/DOM probes; synthetic facility-center event and keyboard events, separate native testing required",
+  "passed": 9,
+  "total": 11,
+  "cases": [
+    {
+      "name": "initial default framing is applied without any resize or deletion",
+      "status": "fail",
+      "error": "initial viewBox 0 0 1200 760"
+    },
+    {
+      "name": "start alone preserves intended framing",
+      "status": "fail",
+      "error": "start viewBox 0 0 1200 760"
+    },
+    {
+      "name": "facility center focuses direct wires and deduplicates selection event",
+      "status": "pass"
+    },
+    {
+      "name": "focus traverses real junction and remains after rebuild",
+      "status": "pass"
+    },
+    {
+      "name": "selected wire names both endpoints and Delete removes exactly it",
+      "status": "pass"
+    },
+    {
+      "name": "reset clears focused state and framing remains correct",
+      "status": "pass"
+    },
+    {
+      "name": "all facility terminals reachable 1280x720",
+      "status": "pass"
+    },
+    {
+      "name": "all facility terminals reachable 1920x1080",
+      "status": "pass"
+    },
+    {
+      "name": "all facility terminals reachable 760x550",
+      "status": "pass"
+    },
+    {
+      "name": "all facility terminals reachable 600x320",
+      "status": "pass"
+    },
+    {
+      "name": "all facility terminals reachable 390x844",
+      "status": "pass"
+    }
+  ],
+  "metrics": {
+    "initialViewBox": "0 0 1200 760",
+    "endpointText": "건전지 ↔ 03 / 공원",
+    "viewports": [
+      {
+        "width": 1280,
+        "height": 720,
+        "points": [
+          {
+            "id": "source",
+            "port": "plus",
+            "x": 193.28000288009642,
+            "y": 468.80000698566437,
+            "hit": "terminal-source-plus"
+          },
+          {
+            "id": "source",
+            "port": "minus",
+            "x": 75.52000112533568,
+            "y": 468.80000698566437,
+            "hit": "terminal-source-minus"
+          },
+          {
+            "id": "lamp-1",
+            "port": "left",
+            "x": 459.52000684738164,
+            "y": 302.40000450611115,
+            "hit": "terminal-lamp-1-left"
+          },
+          {
+            "id": "lamp-1",
+            "port": "right",
+            "x": 577.2800086021424,
+            "y": 302.40000450611115,
+            "hit": "terminal-lamp-1-right"
+          },
+          {
+            "id": "lamp-2",
+            "port": "left",
+            "x": 785.9200117111207,
+            "y": 532.8000079393387,
+            "hit": "terminal-lamp-2-left"
+          },
+          {
+            "id": "lamp-2",
+            "port": "right",
+            "x": 903.6800134658813,
+            "y": 532.8000079393387,
+            "hit": "terminal-lamp-2-right"
+          },
+          {
+            "id": "lamp-3",
+            "port": "left",
+            "x": 849.920012664795,
+            "y": 168.00000250339508,
+            "hit": "terminal-lamp-3-left"
+          },
+          {
+            "id": "lamp-3",
+            "port": "right",
+            "x": 967.6800144195556,
+            "y": 168.00000250339508,
+            "hit": "terminal-lamp-3-right"
+          },
+          {
+            "id": "motor-1",
+            "port": "left",
+            "x": 1067.5200159072876,
+            "y": 379.2000056505203,
+            "hit": "terminal-motor-1-left"
+          },
+          {
+            "id": "motor-1",
+            "port": "right",
+            "x": 1185.2800176620483,
+            "y": 379.2000056505203,
+            "hit": "terminal-motor-1-right"
+          }
+        ]
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "points": [
+          {
+            "id": "source",
+            "port": "plus",
+            "x": 289.9200043201446,
+            "y": 703.2000104784966,
+            "hit": "terminal-source-plus"
+          },
+          {
+            "id": "source",
+            "port": "minus",
+            "x": 113.28000168800355,
+            "y": 703.2000104784966,
+            "hit": "terminal-source-minus"
+          },
+          {
+            "id": "lamp-1",
+            "port": "left",
+            "x": 689.2800102710723,
+            "y": 453.6000067591667,
+            "hit": "terminal-lamp-1-left"
+          },
+          {
+            "id": "lamp-1",
+            "port": "right",
+            "x": 865.9200129032135,
+            "y": 453.6000067591667,
+            "hit": "terminal-lamp-1-right"
+          },
+          {
+            "id": "lamp-2",
+            "port": "left",
+            "x": 1178.8800175666809,
+            "y": 799.200011909008,
+            "hit": "terminal-lamp-2-left"
+          },
+          {
+            "id": "lamp-2",
+            "port": "right",
+            "x": 1355.520020198822,
+            "y": 799.200011909008,
+            "hit": "terminal-lamp-2-right"
+          },
+          {
+            "id": "lamp-3",
+            "port": "left",
+            "x": 1274.8800189971923,
+            "y": 252.00000375509262,
+            "hit": "terminal-lamp-3-left"
+          },
+          {
+            "id": "lamp-3",
+            "port": "right",
+            "x": 1451.5200216293335,
+            "y": 252.00000375509262,
+            "hit": "terminal-lamp-3-right"
+          },
+          {
+            "id": "motor-1",
+            "port": "left",
+            "x": 1601.2800238609314,
+            "y": 568.8000084757805,
+            "hit": "terminal-motor-1-left"
+          },
+          {
+            "id": "motor-1",
+            "port": "right",
+            "x": 1777.9200264930726,
+            "y": 568.8000084757805,
+            "hit": "terminal-motor-1-right"
+          }
+        ]
+      },
+      {
+        "width": 760,
+        "height": 550,
+        "points": [
+          {
+            "id": "source",
+            "port": "plus",
+            "x": 114.76000171005725,
+            "y": 339.800017270446,
+            "hit": "terminal-source-plus"
+          },
+          {
+            "id": "source",
+            "port": "minus",
+            "x": 44.840000668168074,
+            "y": 339.800017270446,
+            "hit": "terminal-source-minus"
+          },
+          {
+            "id": "lamp-1",
+            "port": "left",
+            "x": 272.8400040656328,
+            "y": 241.00001579821128,
+            "hit": "terminal-lamp-1-left"
+          },
+          {
+            "id": "lamp-1",
+            "port": "right",
+            "x": 342.760005107522,
+            "y": 241.00001579821128,
+            "hit": "terminal-lamp-1-right"
+          },
+          {
+            "id": "lamp-2",
+            "port": "left",
+            "x": 466.64000695347784,
+            "y": 377.80001783669013,
+            "hit": "terminal-lamp-2-left"
+          },
+          {
+            "id": "lamp-2",
+            "port": "right",
+            "x": 536.5600079953671,
+            "y": 377.80001783669013,
+            "hit": "terminal-lamp-2-right"
+          },
+          {
+            "id": "lamp-3",
+            "port": "left",
+            "x": 504.64000751972196,
+            "y": 161.20001460909862,
+            "hit": "terminal-lamp-3-left"
+          },
+          {
+            "id": "lamp-3",
+            "port": "right",
+            "x": 574.5600085616112,
+            "y": 161.20001460909862,
+            "hit": "terminal-lamp-3-right"
+          },
+          {
+            "id": "motor-1",
+            "port": "left",
+            "x": 633.840009444952,
+            "y": 286.60001647770423,
+            "hit": "terminal-motor-1-left"
+          },
+          {
+            "id": "motor-1",
+            "port": "right",
+            "x": 703.7600104868412,
+            "y": 286.60001647770423,
+            "hit": "terminal-motor-1-right"
+          }
+        ]
+      },
+      {
+        "width": 600,
+        "height": 320,
+        "points": [
+          {
+            "id": "source",
+            "port": "plus",
+            "x": 90.6000013500452,
+            "y": 211.000003144145,
+            "hit": "terminal-source-plus"
+          },
+          {
+            "id": "source",
+            "port": "minus",
+            "x": 35.400000527501106,
+            "y": 211.000003144145,
+            "hit": "terminal-source-minus"
+          },
+          {
+            "id": "lamp-1",
+            "port": "left",
+            "x": 215.40000320971012,
+            "y": 133.00000198185444,
+            "hit": "terminal-lamp-1-left"
+          },
+          {
+            "id": "lamp-1",
+            "port": "right",
+            "x": 270.6000040322542,
+            "y": 133.00000198185444,
+            "hit": "terminal-lamp-1-right"
+          },
+          {
+            "id": "lamp-2",
+            "port": "left",
+            "x": 368.4000054895878,
+            "y": 241.00000359117985,
+            "hit": "terminal-lamp-2-left"
+          },
+          {
+            "id": "lamp-2",
+            "port": "right",
+            "x": 423.6000063121319,
+            "y": 241.00000359117985,
+            "hit": "terminal-lamp-2-right"
+          },
+          {
+            "id": "lamp-3",
+            "port": "left",
+            "x": 398.4000059366226,
+            "y": 70.0000010430813,
+            "hit": "terminal-lamp-3-left"
+          },
+          {
+            "id": "lamp-3",
+            "port": "right",
+            "x": 453.6000067591667,
+            "y": 70.0000010430813,
+            "hit": "terminal-lamp-3-right"
+          },
+          {
+            "id": "motor-1",
+            "port": "left",
+            "x": 500.40000745654106,
+            "y": 169.00000251829624,
+            "hit": "terminal-motor-1-left"
+          },
+          {
+            "id": "motor-1",
+            "port": "right",
+            "x": 555.6000082790852,
+            "y": 169.00000251829624,
+            "hit": "terminal-motor-1-right"
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "points": [
+          {
+            "id": "source",
+            "port": "plus",
+            "x": 58.95039995679854,
+            "y": 421.4152556434311,
+            "hit": "terminal-source-plus"
+          },
+          {
+            "id": "source",
+            "port": "minus",
+            "x": 23.033599983119963,
+            "y": 421.4152556434311,
+            "hit": "terminal-source-minus"
+          },
+          {
+            "id": "lamp-1",
+            "port": "left",
+            "x": 140.15359989728924,
+            "y": 370.6632556806244,
+            "hit": "terminal-lamp-1-left"
+          },
+          {
+            "id": "lamp-1",
+            "port": "right",
+            "x": 176.07039987096783,
+            "y": 370.6632556806244,
+            "hit": "terminal-lamp-1-right"
+          },
+          {
+            "id": "lamp-2",
+            "port": "left",
+            "x": 239.70559982433312,
+            "y": 440.935255629126,
+            "hit": "terminal-lamp-2-left"
+          },
+          {
+            "id": "lamp-2",
+            "port": "right",
+            "x": 275.6223997980117,
+            "y": 440.935255629126,
+            "hit": "terminal-lamp-2-right"
+          },
+          {
+            "id": "lamp-3",
+            "port": "left",
+            "x": 259.225599810028,
+            "y": 329.67125571066515,
+            "hit": "terminal-lamp-3-left"
+          },
+          {
+            "id": "lamp-3",
+            "port": "right",
+            "x": 295.14239978370654,
+            "y": 329.67125571066515,
+            "hit": "terminal-lamp-3-right"
+          },
+          {
+            "id": "motor-1",
+            "port": "left",
+            "x": 325.5935997613906,
+            "y": 394.0872556634582,
+            "hit": "terminal-motor-1-left"
+          },
+          {
+            "id": "motor-1",
+            "port": "right",
+            "x": 361.51039973506914,
+            "y": 394.0872556634582,
+            "hit": "terminal-motor-1-right"
+          }
+        ]
+      }
+    ]
+  }
+}

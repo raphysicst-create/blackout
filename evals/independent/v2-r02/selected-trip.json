@@ -1,0 +1,8 @@
+{
+  "humanStatus": "not_run",
+  "beforeDisabled": true,
+  "afterDisabled": true,
+  "tripped": true,
+  "popupHidden": false,
+  "passed": false
+}

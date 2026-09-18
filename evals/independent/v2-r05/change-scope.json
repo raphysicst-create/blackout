@@ -1,0 +1,12 @@
+{
+  "cityUnchanged": true,
+  "stylesUnchanged": true,
+  "changedFiles": [
+    "game.js",
+    "grid.js",
+    "README.md",
+    "runs.js",
+    "schematic.js",
+    "tests/demand.test.cjs"
+  ]
+}

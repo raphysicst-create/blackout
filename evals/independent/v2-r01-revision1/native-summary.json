@@ -1,0 +1,22 @@
+{
+  "nativeKeyboard": "Enter selection; Delete; Enter on motor-right and park-right restored 8 edges and normal pump aria-label",
+  "pointerFrames": [
+    "140 75 1000 510"
+  ],
+  "keyboardFinalWireCount": 8,
+  "humanStatus": "not_run",
+  "keyboardLastWire": {
+    "id": "wire-9",
+    "a": "motor-1",
+    "b": "lamp-3",
+    "point": {
+      "x": 559.2000083327293,
+      "y": 294.2500043846667
+    }
+  },
+  "nativePointer": "repeat click kept8; explicit delete removed only wire8; drag restored motor-right to park-right",
+  "viewport": [
+    600,
+    320
+  ]
+}

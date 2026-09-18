@@ -1,0 +1,40 @@
+{
+  "notRun": [
+    "Human fun/strategy learning",
+    "Physical touch"
+  ],
+  "evidence": [
+    "v2-r03/v2-results.json",
+    "v2-r03/settled-layout.json",
+    "v2-r03/undo-heat.json"
+  ],
+  "revision": 0,
+  "findings": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "title": "Repair hint overlaps alley voltage after entry animation",
+      "expected": "Keep repair instruction and actual voltage independently readable",
+      "priority": 2,
+      "actual": "hint-detail intersects lamp-2 device-reading by about45.68x15.86 CSS px",
+      "id": "V2-R3-F01"
+    }
+  ],
+  "participants": 0,
+  "gameSha256": "ff02d220e4785a4d36e5700ccca8b5b3f681757f32e333c6039781b1090b40c5",
+  "schemaVersion": 1,
+  "decision": "REVISE",
+  "harnessCorrection": "Initial 100ms geometry sample happened during entry animation and missed overlap. Initial result preserved and layout wait corrected to 1000ms.",
+  "manifest": "v2-r03/manifest.json",
+  "round": "V2-R3",
+  "checks": {
+    "settledLayout": "failed",
+    "undoHeatUnit": "4/4 synthetic nonzero-heat fixture",
+    "syntax": "passed",
+    "behavior": "9/9"
+  },
+  "productModifiedByEvaluator": false,
+  "humanStatus": "not_run"
+}

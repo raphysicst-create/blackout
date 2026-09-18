@@ -1,0 +1,35 @@
+{
+  "humanStatus": "not_run",
+  "participants": 0,
+  "setup": "First house loop and time advancement use evaluator API; all following actions use native browser input",
+  "viewport": [
+    600,
+    320
+  ],
+  "facilitySelection": "lamp-2 pointer center adds circuit-focus",
+  "delete": "wire-8 selected with Enter and removed by explicit button",
+  "undo": "Control+z restores exact wire-8",
+  "keyboardRepair": "Enter/Delete removes wire-8; Enter terminal pairs restore parallel lamps",
+  "finalStable": true,
+  "finalReadings": [
+    {
+      "id": "lamp-1",
+      "voltage": 0.9887355085619604,
+      "powered": true,
+      "text": "0.99V, 0.3A주택"
+    },
+    {
+      "id": "lamp-2",
+      "voltage": 0.9875532819674259,
+      "powered": true,
+      "text": "0.99V, 0.3A골목"
+    },
+    {
+      "id": "lamp-3",
+      "voltage": 0.9875532819674259,
+      "powered": true,
+      "text": "0.99V, 0.3A공원"
+    }
+  ],
+  "resultInputs": "Native schematic-button opens; Escape returns result; replay-button Enter enters 공원의 새벽 with source+two feeders+one load"
+}
