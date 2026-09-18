@@ -1,0 +1,409 @@
+{
+  "humanStatus": "not_run",
+  "participants": 0,
+  "evaluatorThread": "01a0af48-8456-7601-bd66-44dda5017e4d",
+  "implementationThread": "01a0af3e-3901-70e2-9330-90077cfa9993",
+  "separateTasks": true,
+  "productModifiedByEvaluator": false,
+  "baselineCountsAsRound": false,
+  "priorRounds": [
+    {
+      "round": "R1",
+      "report": "r01-revision1-review.json",
+      "reportSha256": "bc29571b211e2855fa2d22141e3a042c12f6a7d1a9b20c176fbf78076e3a7bb0",
+      "decision": "ACCEPT_ENGINEERING",
+      "humanStatus": "not_run",
+      "participants": 0,
+      "repairs": 1,
+      "checkpointMatches": true,
+      "files": [
+        {
+          "path": "city.js",
+          "checkpoint": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19",
+          "evaluated": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19"
+        },
+        {
+          "path": "engine.js",
+          "checkpoint": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645",
+          "evaluated": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645"
+        },
+        {
+          "path": "game.js",
+          "checkpoint": "cb52e705923e6ed40af7796d0d410dc8974410cb0daa958ef045316fbe5726a2",
+          "evaluated": "cb52e705923e6ed40af7796d0d410dc8974410cb0daa958ef045316fbe5726a2"
+        },
+        {
+          "path": "index.html",
+          "checkpoint": "79cd9936905542e1e9ab3512ae8f7e85c65990b85e081c817c56d76e04a5ac08",
+          "evaluated": "79cd9936905542e1e9ab3512ae8f7e85c65990b85e081c817c56d76e04a5ac08"
+        },
+        {
+          "path": "package.json",
+          "checkpoint": "4c3bc2e6afd274a61cedd49a42ad6dfcf058a13d69e0d29cc2834b5ecf015fac",
+          "evaluated": "4c3bc2e6afd274a61cedd49a42ad6dfcf058a13d69e0d29cc2834b5ecf015fac"
+        },
+        {
+          "path": "router.js",
+          "checkpoint": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e",
+          "evaluated": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e"
+        },
+        {
+          "path": "schematic.js",
+          "checkpoint": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f",
+          "evaluated": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f"
+        },
+        {
+          "path": "styles.css",
+          "checkpoint": "06fb6b6baaf25b87f9fd828e858181ee81f0af9f639f9d4c84e72677a2480518",
+          "evaluated": "06fb6b6baaf25b87f9fd828e858181ee81f0af9f639f9d4c84e72677a2480518"
+        },
+        {
+          "path": "telemetry.js",
+          "checkpoint": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf",
+          "evaluated": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf"
+        }
+      ]
+    },
+    {
+      "round": "R2",
+      "report": "r02-review.json",
+      "reportSha256": "16298d1751c3cc59d9f52cfc4f2251f759cd0a0fd0cfba8567dfc3a712803d30",
+      "decision": "ACCEPT_ENGINEERING",
+      "humanStatus": "not_run",
+      "participants": 0,
+      "repairs": 0,
+      "checkpointMatches": true,
+      "files": [
+        {
+          "path": "city.js",
+          "checkpoint": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19",
+          "evaluated": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19"
+        },
+        {
+          "path": "director.js",
+          "checkpoint": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e",
+          "evaluated": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e"
+        },
+        {
+          "path": "engine.js",
+          "checkpoint": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645",
+          "evaluated": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645"
+        },
+        {
+          "path": "game.js",
+          "checkpoint": "08fd0a06a3bd5242ad5f7a18d166c38bf60e4942b3ff06c7af1ef262abbb6029",
+          "evaluated": "08fd0a06a3bd5242ad5f7a18d166c38bf60e4942b3ff06c7af1ef262abbb6029"
+        },
+        {
+          "path": "index.html",
+          "checkpoint": "7ca89f354753a638737d94bc6da77a7dcc954dc9fc65566ae21bd424f36e5cc1",
+          "evaluated": "7ca89f354753a638737d94bc6da77a7dcc954dc9fc65566ae21bd424f36e5cc1"
+        },
+        {
+          "path": "package.json",
+          "checkpoint": "eba65dce0bd13f59a40f0610c6cbf7baa353867c658ab9e4c91d9109c36d9d41",
+          "evaluated": "eba65dce0bd13f59a40f0610c6cbf7baa353867c658ab9e4c91d9109c36d9d41"
+        },
+        {
+          "path": "router.js",
+          "checkpoint": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e",
+          "evaluated": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e"
+        },
+        {
+          "path": "schematic.js",
+          "checkpoint": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f",
+          "evaluated": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f"
+        },
+        {
+          "path": "styles.css",
+          "checkpoint": "1dfe1d086d4a41496d9571837eda3e542f09a15833d94045356f7f8c6da9f90d",
+          "evaluated": "1dfe1d086d4a41496d9571837eda3e542f09a15833d94045356f7f8c6da9f90d"
+        },
+        {
+          "path": "telemetry.js",
+          "checkpoint": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf",
+          "evaluated": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf"
+        }
+      ]
+    },
+    {
+      "round": "R3",
+      "report": "r03-revision2-review.json",
+      "reportSha256": "1abdcebca067d12be439264f1996e501ad7c3818e827e67c99f72af78435ceef",
+      "decision": "ACCEPT_ENGINEERING",
+      "humanStatus": "not_run",
+      "participants": 0,
+      "repairs": 2,
+      "checkpointMatches": true,
+      "files": [
+        {
+          "path": "cable.js",
+          "checkpoint": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29",
+          "evaluated": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29"
+        },
+        {
+          "path": "city.js",
+          "checkpoint": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19",
+          "evaluated": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19"
+        },
+        {
+          "path": "director.js",
+          "checkpoint": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e",
+          "evaluated": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e"
+        },
+        {
+          "path": "engine.js",
+          "checkpoint": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645",
+          "evaluated": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645"
+        },
+        {
+          "path": "game.js",
+          "checkpoint": "fe810da72378b4e535b35209fe20fb3d60c4da452dee7add0173d5b8687f2422",
+          "evaluated": "fe810da72378b4e535b35209fe20fb3d60c4da452dee7add0173d5b8687f2422"
+        },
+        {
+          "path": "index.html",
+          "checkpoint": "a5bce4b094f41f9bc58831fee9647aaafd554468760c689e63f0f4bf6a0883af",
+          "evaluated": "a5bce4b094f41f9bc58831fee9647aaafd554468760c689e63f0f4bf6a0883af"
+        },
+        {
+          "path": "package.json",
+          "checkpoint": "5a4ace68ff4a59f11dc9d7d387d4b8128363990857f4dd0215941fdb603dd75c",
+          "evaluated": "5a4ace68ff4a59f11dc9d7d387d4b8128363990857f4dd0215941fdb603dd75c"
+        },
+        {
+          "path": "router.js",
+          "checkpoint": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e",
+          "evaluated": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e"
+        },
+        {
+          "path": "schematic.js",
+          "checkpoint": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f",
+          "evaluated": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f"
+        },
+        {
+          "path": "styles.css",
+          "checkpoint": "118dcb1ab6d9dfec9d2e1cc62cee975fe166da2d909f73f24c944f1701f578d1",
+          "evaluated": "118dcb1ab6d9dfec9d2e1cc62cee975fe166da2d909f73f24c944f1701f578d1"
+        },
+        {
+          "path": "telemetry.js",
+          "checkpoint": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf",
+          "evaluated": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf"
+        }
+      ]
+    },
+    {
+      "round": "R4",
+      "report": "r04-revision1-review.json",
+      "reportSha256": "211082869f0abde4da9e8e06864ee09e434e81686a7839a040823737be3d15b7",
+      "decision": "ACCEPT_ENGINEERING",
+      "humanStatus": "not_run",
+      "participants": 0,
+      "repairs": 1,
+      "checkpointMatches": true,
+      "files": [
+        {
+          "path": "cable.js",
+          "checkpoint": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29",
+          "evaluated": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29"
+        },
+        {
+          "path": "city.js",
+          "checkpoint": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19",
+          "evaluated": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19"
+        },
+        {
+          "path": "director.js",
+          "checkpoint": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e",
+          "evaluated": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e"
+        },
+        {
+          "path": "engine.js",
+          "checkpoint": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645",
+          "evaluated": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645"
+        },
+        {
+          "path": "game.js",
+          "checkpoint": "32e37d18ea6159a17847713e4ab0d4c4ae17c27ff5a75fbbdba81ab5b70a3097",
+          "evaluated": "32e37d18ea6159a17847713e4ab0d4c4ae17c27ff5a75fbbdba81ab5b70a3097"
+        },
+        {
+          "path": "index.html",
+          "checkpoint": "48a2dd6439b16221082541a1a821c361ca1d187943830595841deb002973542a",
+          "evaluated": "48a2dd6439b16221082541a1a821c361ca1d187943830595841deb002973542a"
+        },
+        {
+          "path": "package.json",
+          "checkpoint": "5a4ace68ff4a59f11dc9d7d387d4b8128363990857f4dd0215941fdb603dd75c",
+          "evaluated": "5a4ace68ff4a59f11dc9d7d387d4b8128363990857f4dd0215941fdb603dd75c"
+        },
+        {
+          "path": "router.js",
+          "checkpoint": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e",
+          "evaluated": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e"
+        },
+        {
+          "path": "schematic.js",
+          "checkpoint": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f",
+          "evaluated": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f"
+        },
+        {
+          "path": "styles.css",
+          "checkpoint": "049f73b4d2699cf764550ac33188fab710a07451aabeb5bc4c96eeb54c106b01",
+          "evaluated": "049f73b4d2699cf764550ac33188fab710a07451aabeb5bc4c96eeb54c106b01"
+        },
+        {
+          "path": "telemetry.js",
+          "checkpoint": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf",
+          "evaluated": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf"
+        }
+      ]
+    }
+  ],
+  "priorDecisionFiles": [
+    {
+      "path": "r01-review.json",
+      "sha256": "a002fcd52c79ef27f6e97046ec2d711e45743229719ff075a48be7986402806f",
+      "decision": "REVISE"
+    },
+    {
+      "path": "r01-revision1-review.json",
+      "sha256": "bc29571b211e2855fa2d22141e3a042c12f6a7d1a9b20c176fbf78076e3a7bb0",
+      "decision": "ACCEPT_ENGINEERING"
+    },
+    {
+      "path": "r02-review.json",
+      "sha256": "16298d1751c3cc59d9f52cfc4f2251f759cd0a0fd0cfba8567dfc3a712803d30",
+      "decision": "ACCEPT_ENGINEERING"
+    },
+    {
+      "path": "r03-review.json",
+      "sha256": "9f2f7b6a5765dd44700f30524223b5bdf8842d38e507aaf6cb4380fb6b1545eb",
+      "decision": "REVISE"
+    },
+    {
+      "path": "r03-revision1-review.json",
+      "sha256": "cbb3caa709d95b9705aa372304df16757672faeccb067d4d14d4b69a4949cffb",
+      "decision": "REVISE"
+    },
+    {
+      "path": "r03-revision2-review.json",
+      "sha256": "1abdcebca067d12be439264f1996e501ad7c3818e827e67c99f72af78435ceef",
+      "decision": "ACCEPT_ENGINEERING"
+    },
+    {
+      "path": "r04-review.json",
+      "sha256": "637772eeed18da86bcf2b8b048a025c60a107f529f0a0da78e63b9614e182bb4",
+      "decision": "REVISE"
+    },
+    {
+      "path": "r04-revision1-review.json",
+      "sha256": "211082869f0abde4da9e8e06864ee09e434e81686a7839a040823737be3d15b7",
+      "decision": "ACCEPT_ENGINEERING"
+    }
+  ],
+  "finalProductMatchesFrozenSnapshot": true,
+  "finalProductFiles": [
+    {
+      "path": "blackout_ui_mockup.html",
+      "sha256": "df1f723a8a901a03ddc2f617c517e83f47ee26d9b736ebfa591f5b01334f3a3a",
+      "currentSha256": "df1f723a8a901a03ddc2f617c517e83f47ee26d9b736ebfa591f5b01334f3a3a"
+    },
+    {
+      "path": "cable.js",
+      "sha256": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29",
+      "currentSha256": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29"
+    },
+    {
+      "path": "city.js",
+      "sha256": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19",
+      "currentSha256": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19"
+    },
+    {
+      "path": "director.js",
+      "sha256": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e",
+      "currentSha256": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e"
+    },
+    {
+      "path": "engine.js",
+      "sha256": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645",
+      "currentSha256": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645"
+    },
+    {
+      "path": "game.js",
+      "sha256": "a62076f3cb6ac0adec8a01816bd7c6cb98fa56a20959031f3e787c296d93019e",
+      "currentSha256": "a62076f3cb6ac0adec8a01816bd7c6cb98fa56a20959031f3e787c296d93019e"
+    },
+    {
+      "path": "index.html",
+      "sha256": "a0d7c8eaa9d0031f8db20e731da180ffd4014ef78741c9c47cce8ef68bca0dcb",
+      "currentSha256": "a0d7c8eaa9d0031f8db20e731da180ffd4014ef78741c9c47cce8ef68bca0dcb"
+    },
+    {
+      "path": "package.json",
+      "sha256": "71ee6696fef19d85afe1492500d3eb0c17973a5defcde7a20077983e2329effa",
+      "currentSha256": "71ee6696fef19d85afe1492500d3eb0c17973a5defcde7a20077983e2329effa"
+    },
+    {
+      "path": "router.js",
+      "sha256": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e",
+      "currentSha256": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e"
+    },
+    {
+      "path": "runs.js",
+      "sha256": "3db31b6a28fc6a6b621cf67274e93675e2daf46a9c1de629736e1b7068ab15fd",
+      "currentSha256": "3db31b6a28fc6a6b621cf67274e93675e2daf46a9c1de629736e1b7068ab15fd"
+    },
+    {
+      "path": "schematic.js",
+      "sha256": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f",
+      "currentSha256": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f"
+    },
+    {
+      "path": "server.cjs",
+      "sha256": "9fe1816905b62ec178297395ae2b9943467e241efa0f4a6d10179488ac33fcc4",
+      "currentSha256": "9fe1816905b62ec178297395ae2b9943467e241efa0f4a6d10179488ac33fcc4"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "74a1f89108a39b67564d9688260cb24d11ba61eb84105a2d7da96b4ac09937d6",
+      "currentSha256": "74a1f89108a39b67564d9688260cb24d11ba61eb84105a2d7da96b4ac09937d6"
+    },
+    {
+      "path": "telemetry.js",
+      "sha256": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf",
+      "currentSha256": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf"
+    }
+  ],
+  "aggregateSha256": "591e5c1c9364b3185608504ce94f5b99e4546368cac55542ccf9806cf72df374",
+  "changedAfterFreeze": [
+    {
+      "path": "evals/independent-r1.html",
+      "initial": "05254b63878c506113985e2e44e605f371236d9db7a85e451aafc8fc16d4a503",
+      "now": "ff5b3edfb4625fc70e42984bf51f17ecfbae1d74c6a0e1ca25513d4f58ff6739"
+    },
+    {
+      "path": "evals/independent-r3.html",
+      "initial": "7e23e8236feda50a4d00efea083931af4bdf6a2104e4d9101336b036f9967ff4",
+      "now": "7ca9e705d4fa5a2cf71feb70a405f11cca70e420bd4381acb94f0ee3cef3fc51"
+    },
+    {
+      "path": "evals/independent-r4.html",
+      "initial": "94ffe30124b4322d7ce3849dc2945e35c4abd90915823521eb462dcbbc62ab38",
+      "now": "bb2229728815e7e5380e77f39c755204f22dd01f09b8c541b287229822fa61cc"
+    }
+  ],
+  "documentation": [
+    {
+      "path": "README.md",
+      "sha256": "9276504ec8f10b766d5a7a6c41fe2ff033b4edec107a6c122205bd9e361dbfea",
+      "snapshotMatches": true
+    },
+    {
+      "path": "evals/README.md",
+      "sha256": "494ea9f18f1e918cd234d1804da6f85e25962714ec2f2bb65cd9433d2ebed926",
+      "snapshotMatches": true
+    }
+  ]
+}

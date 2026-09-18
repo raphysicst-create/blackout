@@ -1,0 +1,97 @@
+{
+  "stopped": [
+    {
+      "pid": 17572,
+      "snapshot": "baseline",
+      "port": 4187,
+      "status": "stopped",
+      "verifiedGameSha256": "9d984527926075b89510c66cb6675ebf675261e4d47060c3b07c446c08a87c65"
+    },
+    {
+      "pid": 16348,
+      "snapshot": "r01",
+      "port": 4188,
+      "status": "stopped",
+      "verifiedGameSha256": "d00025c106c26bcef1c5c4d1170bf90b710d625584809099c2e6da6cf9c87913"
+    },
+    {
+      "pid": 7148,
+      "snapshot": "r01-revision1",
+      "port": 4189,
+      "status": "stopped",
+      "verifiedGameSha256": "7ff592d7097b1b8ca519ee0f4cfbffbebea37f9272d7f84e67bd1d27bd97832e"
+    },
+    {
+      "pid": 17764,
+      "snapshot": "r01-revision1-final",
+      "port": 4190,
+      "status": "stopped",
+      "verifiedGameSha256": "cb52e705923e6ed40af7796d0d410dc8974410cb0daa958ef045316fbe5726a2"
+    },
+    {
+      "pid": 12820,
+      "snapshot": "r02",
+      "port": 4191,
+      "status": "stopped",
+      "verifiedGameSha256": "08fd0a06a3bd5242ad5f7a18d166c38bf60e4942b3ff06c7af1ef262abbb6029"
+    },
+    {
+      "pid": 18744,
+      "snapshot": "r03",
+      "port": 4192,
+      "status": "stopped",
+      "verifiedGameSha256": "fe810da72378b4e535b35209fe20fb3d60c4da452dee7add0173d5b8687f2422"
+    },
+    {
+      "pid": 16108,
+      "snapshot": "r03-revision1",
+      "port": 4193,
+      "status": "stopped",
+      "verifiedGameSha256": "fe810da72378b4e535b35209fe20fb3d60c4da452dee7add0173d5b8687f2422"
+    },
+    {
+      "pid": 8752,
+      "snapshot": "r03-revision2",
+      "port": 4194,
+      "status": "stopped",
+      "verifiedGameSha256": "fe810da72378b4e535b35209fe20fb3d60c4da452dee7add0173d5b8687f2422"
+    },
+    {
+      "pid": 11636,
+      "snapshot": "r04",
+      "port": 4195,
+      "status": "stopped",
+      "verifiedGameSha256": "5f71b0c2887af019b2281e72763a4bc9589893fe016a063922fe2179ce12b0b4"
+    },
+    {
+      "pid": 15280,
+      "snapshot": "r04-revision1",
+      "port": 4196,
+      "status": "stopped",
+      "verifiedGameSha256": "32e37d18ea6159a17847713e4ab0d4c4ae17c27ff5a75fbbdba81ab5b70a3097"
+    },
+    {
+      "pid": 11224,
+      "snapshot": "r05",
+      "port": 4197,
+      "status": "stopped",
+      "verifiedGameSha256": "a62076f3cb6ac0adec8a01816bd7c6cb98fa56a20959031f3e787c296d93019e"
+    },
+    {
+      "pid": 11780,
+      "snapshot": "r05",
+      "port": 4198,
+      "status": "stopped",
+      "verifiedGameSha256": "a62076f3cb6ac0adec8a01816bd7c6cb98fa56a20959031f3e787c296d93019e"
+    },
+    {
+      "pid": 13604,
+      "snapshot": "r05-revision1",
+      "port": 4199,
+      "status": "stopped",
+      "verifiedGameSha256": "500e881c6aca9ac28d03c497e366f56cfb847a5cf576c2f94a25ff9b46c5b4af"
+    }
+  ],
+  "retainedPreview": "http://127.0.0.1:4200/index.html",
+  "humanStatus": "not_run"
+}

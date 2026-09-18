@@ -1,0 +1,47 @@
+{
+  "round": 1,
+  "topic": "첫 폐회로 안내",
+  "status": "evaluated",
+  "sourceReport": "independent/r01-revision1-review.json",
+  "decision": "ACCEPT_ENGINEERING",
+  "decisionImportedFromEvaluator": true,
+  "evaluatorThread": "01a0af48-8456-7601-bd66-44dda5017e4d",
+  "implementerThread": "01a0af3e-3901-70e2-9330-90077cfa9993",
+  "revision": 1,
+  "humanStatus": "not_run",
+  "participants": 0,
+  "productModifiedByEvaluator": false,
+  "gameSha256": "cb52e705923e6ed40af7796d0d410dc8974410cb0daa958ef045316fbe5726a2",
+  "checkpoint": "checkpoints/r01/game.js",
+  "checkpointMatches": true,
+  "checks": {
+    "node": {
+      "passed": 45,
+      "total": 45
+    },
+    "syntax": "passed",
+    "existingBrowser": {
+      "passed": 18,
+      "total": 18,
+      "seconds": 6.1,
+      "url": "http://127.0.0.1:4190/tests/browser.html"
+    },
+    "independentBrowser": {
+      "passed": 18,
+      "total": 18,
+      "url": "http://127.0.0.1:4190/evals/independent-r1.html"
+    },
+    "firstStableBoundary": {
+      "at249ms": 0,
+      "at250ms": 1
+    },
+    "pauseNoAccumulation": "passed",
+    "unstableIntervalReset": "passed",
+    "restartReset": "passed",
+    "dimSeriesNotStable": "passed",
+    "realKeyboardFinalCandidate": "passed",
+    "realMouse": "passed on initial R1; unchanged input handling",
+    "realTouch": "not_run"
+  },
+  "evidence": []
+}

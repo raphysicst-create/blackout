@@ -1,0 +1,57 @@
+
+> blackout@1.0.0 test
+> node --test tests/*.test.cjs
+
+✔ supports a classic browser script without CommonJS (11.8155ms)
+✔ only explicit valid terminals can be connected (6.8178ms)
+✔ a single complete lamp circuit carries current on feed and return (4.3291ms)
+✔ feed only, return only, and cutting either side leave a lamp off (9.1249ms)
+✔ a circuit returning to the positive terminal has no driving voltage (0.9557ms)
+✔ two series lamps share current and are about one quarter bright (1.3034ms)
+✔ parallel closed loops conserve current at feed and return junctions (3.2927ms)
+✔ one closed parallel branch works while its one-sided neighbor stays off (0.8985ms)
+✔ a lamp and motor in parallel stay below the 0.75 A shared-wire limit (2.5245ms)
+✔ mixed series and parallel loops solve individual device voltage drops (4.7718ms)
+✔ lamp and motor polarity can be reversed without changing their output (7.8895ms)
+✔ dangling wires and detached closed rings cannot invent current (0.9938ms)
+✔ redundant wire loops are allowed and solve finite conserved current (0.6676ms)
+✔ a wire across one series lamp bypasses it while the other lamp lights (0.7163ms)
+✔ a direct battery short is finite, lights no loads, and overheats actual wires (0.5724ms)
+✔ joining positive and negative through the same lamp terminal is also a short (0.4883ms)
+✔ three parallel lamps overload both shared conductors and break at six seconds (4.6598ms)
+✔ a cut return opens the whole shared circuit and repair restores it (1.2017ms)
+✔ safe or open wires cool and residual heat prevents premature success (1.4511ms)
+✔ three lamps and motor stabilize with two feeds and two explicit returns (1.2171ms)
+✔ missing or invalid ports never receive an implicit return (1.2059ms)
+✔ malformed topology remains finite and cannot win (1.064ms)
+✔ exports the same API to a classic browser script (31.1185ms)
+✔ all actual device terminals route along streets with unchanged endpoints (675.0845ms)
+✔ interior road crossings connect even without explicit intersection vertices (1.2979ms)
+✔ collinear partial overlaps and T endpoints form a single connected graph (2.0927ms)
+✔ Dijkstra chooses the shorter route and equal choices remain reversible (1.1862ms)
+✔ dynamic endpoints on the same road are split in order without modifying cache (0.8615ms)
+✔ off-road previews project to streets with axis-aligned endpoint connectors (0.9567ms)
+✔ geometry uses M/L only, normalizes vertices and interpolates by real distance (0.7406ms)
+✔ splitting projects to the nearest segment and preserves shape and length (0.9127ms)
+✔ lane offsets use miter corners, exact endpoints, and ten-unit endpoint stubs (1.3917ms)
+✔ the two-unit motor spur remains exact and orthogonal for every lane candidate (10.3868ms)
+✔ short, empty and one-point paths do not introduce zero-length or invalid geometry (0.8799ms)
+✔ feed-only circuit stays open with no fabricated return (42.2397ms)
+✔ closed lamp circuit displays both actual wires at the correct battery terminals (13.5507ms)
+✔ two series loads preserve all three wires and the explicit return (4.6032ms)
+✔ parallel branches retain separate feed and return conductors (4.971ms)
+✔ junction cycle edges all remain visible without flattening into a tree (3.3307ms)
+✔ cut return and disconnected wire remain visible and inactive (1.3659ms)
+✔ battery-terminal short remains an actual self edge and reports the fault (1.2434ms)
+✔ the schematic preserves the actual street route between exact terminals (1.2591ms)
+✔ node, edge identifiers and labels are escaped as XML attributes and text (1.4419ms)
+✔ missing terminals never turn into invented conductors (1.0865ms)
+✔ eight shared-street readings avoid each other and device symbols without moving wires (181.0417ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1307.3163

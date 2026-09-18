@@ -1,0 +1,11 @@
+{
+  "round": 1,
+  "implementerThread": "01a0af3e-3901-70e2-9330-90077cfa9993",
+  "evaluatorThread": "01a0af48-8456-7601-bd66-44dda5017e4d",
+  "hypothesis": "A topology-aware two-step guide and explicit missed-drop feedback make the next first-circuit action legible.",
+  "changedFamily": "first-connection feedback",
+  "infrastructure": ["local event journal", "deterministic test clock"],
+  "engineeringGates": ["guide matches feed-first and return-first states", "same-terminal wiring explains the error", "guide ends after first light", "pause/help hide the guide", "missed drag has feedback", "existing regression tests pass"],
+  "humanStatus": "not_run",
+  "decisionOwner": "independent evaluator"
+}

@@ -1,0 +1,46 @@
+{
+  "round": 2,
+  "topic": "수요 진행",
+  "status": "evaluated",
+  "sourceReport": "independent/r02-review.json",
+  "decision": "ACCEPT_ENGINEERING",
+  "decisionImportedFromEvaluator": true,
+  "evaluatorThread": "01a0af48-8456-7601-bd66-44dda5017e4d",
+  "implementerThread": "01a0af3e-3901-70e2-9330-90077cfa9993",
+  "revision": 0,
+  "humanStatus": "not_run",
+  "participants": 0,
+  "productModifiedByEvaluator": false,
+  "gameSha256": "08fd0a06a3bd5242ad5f7a18d166c38bf60e4942b3ff06c7af1ef262abbb6029",
+  "checkpoint": "checkpoints/r02/game.js",
+  "checkpointMatches": true,
+  "checks": {
+    "node": {
+      "passed": 45,
+      "total": 45
+    },
+    "syntax": "passed",
+    "engine": "passed",
+    "independentDirector": {
+      "passed": 5,
+      "total": 5
+    },
+    "legacyBrowser": {
+      "passed": 18,
+      "total": 18
+    },
+    "defaultBrowser": {
+      "passed": 10,
+      "total": 10
+    },
+    "generalModeRealKeyboardAndPause": "passed"
+  },
+  "evidence": [
+    "r02/node-tests.txt",
+    "r02/syntax-check.txt",
+    "r02/engine-diagnostics.json",
+    "r02/director-probes.json",
+    "r02/browser-results.json",
+    "r02/integrity-after.json"
+  ]
+}

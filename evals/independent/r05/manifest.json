@@ -1,0 +1,136 @@
+{
+  "capturedAtUTC": "2026-09-17T13:12:08.7708576Z",
+  "files": [
+    {
+      "bytes": 7830,
+      "path": "blackout_ui_mockup.html",
+      "sha256": "df1f723a8a901a03ddc2f617c517e83f47ee26d9b736ebfa591f5b01334f3a3a"
+    },
+    {
+      "bytes": 1024,
+      "path": "cable.js",
+      "sha256": "d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29"
+    },
+    {
+      "bytes": 9027,
+      "path": "city.js",
+      "sha256": "f1706f7c3cb5c4b423293188724a80fa1a081c9df32b2bf89811a11291124c19"
+    },
+    {
+      "bytes": 1289,
+      "path": "director.js",
+      "sha256": "aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e"
+    },
+    {
+      "bytes": 12461,
+      "path": "engine.js",
+      "sha256": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645"
+    },
+    {
+      "bytes": 3161,
+      "path": "evals/baseline.cjs",
+      "sha256": "2a034992c7d9b9cdea88d127c82f6819feb84612ceff5f4b991bfb099212090e"
+    },
+    {
+      "bytes": 388,
+      "path": "evals/independent-r1.html",
+      "sha256": "05254b63878c506113985e2e44e605f371236d9db7a85e451aafc8fc16d4a503"
+    },
+    {
+      "bytes": 6653,
+      "path": "evals/independent-r1.js",
+      "sha256": "4811fa0feb8814918f09aabf7f0ab499ec9ec04c9d88f1f469f04dd2c3154173"
+    },
+    {
+      "bytes": 394,
+      "path": "evals/independent-r3.html",
+      "sha256": "7e23e8236feda50a4d00efea083931af4bdf6a2104e4d9101336b036f9967ff4"
+    },
+    {
+      "bytes": 9547,
+      "path": "evals/independent-r3.js",
+      "sha256": "9a9c81d9878a30c9e8235d19c6364453c9473e017a0fe447751fc4d83cde9dfb"
+    },
+    {
+      "bytes": 395,
+      "path": "evals/independent-r4.html",
+      "sha256": "94ffe30124b4322d7ce3849dc2945e35c4abd90915823521eb462dcbbc62ab38"
+    },
+    {
+      "bytes": 11322,
+      "path": "evals/independent-r4.js",
+      "sha256": "b01dc02de28762f7ed4a5c55f759975885529f80f90a419f7ec4c1756fec9a9d"
+    },
+    {
+      "bytes": 53052,
+      "path": "game.js",
+      "sha256": "a62076f3cb6ac0adec8a01816bd7c6cb98fa56a20959031f3e787c296d93019e"
+    },
+    {
+      "bytes": 9148,
+      "path": "index.html",
+      "sha256": "a0d7c8eaa9d0031f8db20e731da180ffd4014ef78741c9c47cce8ef68bca0dcb"
+    },
+    {
+      "bytes": 531,
+      "path": "package.json",
+      "sha256": "71ee6696fef19d85afe1492500d3eb0c17973a5defcde7a20077983e2329effa"
+    },
+    {
+      "bytes": 11552,
+      "path": "router.js",
+      "sha256": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e"
+    },
+    {
+      "bytes": 1403,
+      "path": "runs.js",
+      "sha256": "3db31b6a28fc6a6b621cf67274e93675e2daf46a9c1de629736e1b7068ab15fd"
+    },
+    {
+      "bytes": 13610,
+      "path": "schematic.js",
+      "sha256": "7db7f5b625f1b83d59782f7cb5e88709fe468e9739e238b21036db6625a7008f"
+    },
+    {
+      "bytes": 1087,
+      "path": "server.cjs",
+      "sha256": "9fe1816905b62ec178297395ae2b9943467e241efa0f4a6d10179488ac33fcc4"
+    },
+    {
+      "bytes": 19188,
+      "path": "styles.css",
+      "sha256": "74a1f89108a39b67564d9688260cb24d11ba61eb84105a2d7da96b4ac09937d6"
+    },
+    {
+      "bytes": 783,
+      "path": "telemetry.js",
+      "sha256": "7daad31e9b6e3460109407b3ebc12f9e5158f927c5538add8eee3a4d09e2cbcf"
+    },
+    {
+      "bytes": 27561,
+      "path": "tests/browser-tests.js",
+      "sha256": "bf79eedd274a5b7e52897b11d132c88b3a8a26d9d25880757fdc18cb8b9acfd4"
+    },
+    {
+      "bytes": 3315,
+      "path": "tests/browser.html",
+      "sha256": "1488a1249b3780c6dede9cd1a54f297fb1c74319f0f6bae46498e0ddf9042c2e"
+    },
+    {
+      "bytes": 15862,
+      "path": "tests/engine.test.cjs",
+      "sha256": "7b0d3f065701d763dc73202b1a4b75045e9b9a0998dfb733eea50bc674da4322"
+    },
+    {
+      "bytes": 7625,
+      "path": "tests/router.test.cjs",
+      "sha256": "49afcbfe45d21e428521301c27232d750c212c8d99659a7bc9e6549e0b906950"
+    },
+    {
+      "bytes": 8511,
+      "path": "tests/schematic.test.cjs",
+      "sha256": "20573c8a3a3c4a8c049b82eb564b400dca4d741df93db5c19fb3fdfc988f1e0c"
+    }
+  ],
+  "humanStatus": "not_run"
+}

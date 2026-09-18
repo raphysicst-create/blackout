@@ -1,0 +1,9 @@
+{
+ "schemaVersion":1,"round":"R3","attempt":1,"decision":"REVISE","humanStatus":"not_run","participants":0,"productModifiedByEvaluator":false,"manifest":"r03/manifest.json",
+ "checks":{"node":{"passed":45,"total":45},"syntax":"passed","engine":"passed","cableUnit":{"passed":5,"total":5},"legacyBrowser":{"passed":18,"total":18,"seconds":6.2},"defaultBrowser":{"passed":13,"total":14},"nativeMouseMissAndCostPreview":"passed"},
+ "strategies":[{"name":"ab+cm","stageUse":[1124,2254,4238,5460],"remaining":440,"won":true},{"name":"ac+bm","stageUse":[1124,2974,4090,5084],"remaining":816,"won":true},{"name":"am+bc","stageUse":[1124,2974,3850,5440],"remaining":460,"won":true}],
+ "stageBudgets":[1350,3250,4600,5900],"maxStrategyCurrent":0.7370386729510514,
+ "findings":[{"id":"R3-F01","priority":2,"viewport":[600,380],"actual":"cable-note overlaps hint-title","hintTitleRect":{"x":182.40,"y":271.20,"right":417.60,"bottom":288},"cableNoteRect":{"x":236.40,"y":276.80,"right":363.60,"bottom":292},"overlap":{"width":127.2,"height":11.2},"expected":"Separate cable and gameplay guidance text at short landscape viewport"}],
+ "nativeInput":{"missUsed":0,"supplyPreviewAndCost":338,"returnPreviewAndCost":786,"finalUsed":1124,"remaining":226,"powered":true},
+ "notRun":["physical touch","human redesign, strategy distribution, fun and learning metrics"]
+}

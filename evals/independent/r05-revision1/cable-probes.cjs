@@ -1,0 +1,8 @@
+'use strict';const assert=require('node:assert/strict'),C=require('./site/cable.js'),R=require('./site/router.js');const out=[];
+const test=(name,fn)=>{try{fn();out.push({name,status:'pass'})}catch(e){out.push({name,status:'fail',error:e.message})}};
+test('stage budgets clamp and match contract',()=>{assert.deepEqual([0,1,2,3,4,8].map(n=>C.status([],n).budget),[1350,1350,3250,4600,5900,5900])});
+test('fractional geometry preserved without display rounding',()=>{assert.equal(C.length([{x:0,y:0},{x:0,y:.4},{x:.3,y:.4}]),.7);assert.equal(C.canAdd([{route:[{x:0,y:0},{x:1349.5,y:0}]}],1,[{x:0,y:0},{x:.6,y:0}]),false)});
+test('split route conserves exact length at many split points',()=>{const route=[{x:0,y:0},{x:0,y:100},{x:250,y:100},{x:250,y:400}];for(const p of [{x:0,y:10},{x:70,y:100},{x:250,y:175},{x:110.2,y:100}]){const s=R.split(route,p);assert(Math.abs(C.length(s.before)+C.length(s.after)-C.length(route))<1e-8)}});
+test('deletion refunds stored length with no duplicate credit',()=>{let edges=[{route:[{x:0,y:0},{x:345.4,y:0}]},{route:[{x:0,y:0},{x:111.2,y:0}]}];let before=C.status(edges,2);let removed=C.length(edges[0].route);edges=edges.slice(1);assert(Math.abs(C.status(edges,2).remaining-before.remaining-removed)<1e-8);assert.equal(C.status(edges,2).remaining,C.status(edges,2).remaining)});
+test('invalid routes fail closed',()=>{for(const route of [null,[],[{x:0,y:0}],[{x:0,y:0},{x:NaN,y:0}]])assert.equal(C.canAdd([],1,route),false)});
+console.log(JSON.stringify({humanStatus:'not_run',passed:out.filter(x=>x.status==='pass').length,total:out.length,cases:out},null,2));process.exitCode=out.some(x=>x.status==='fail')?1:0;

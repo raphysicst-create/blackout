@@ -1,0 +1,11 @@
+{
+  "name": "blackout",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A five-minute circuit strategy game. No dependencies or build step.",
+  "scripts": {
+    "start": "node server.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "check": "node --check game.js && node --check engine.js && node --check city.js && node --check router.js && node --check schematic.js && node --check telemetry.js && node --check director.js"
+  }
+}

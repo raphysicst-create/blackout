@@ -1,0 +1,10 @@
+{
+ "schemaVersion":1,"round":"R3","revision":2,"decision":"ACCEPT_ENGINEERING","humanStatus":"not_run","participants":0,"productModifiedByEvaluator":false,
+ "previousDecisions":["r03-review.json","r03-revision1-review.json"],"repairsUsed":2,"resolvedFindings":["R3-F01"],
+ "manifest":"r03-revision2/manifest.json","stylesSha256":"118dcb1ab6d9dfec9d2e1cc62cee975fe166da2d909f73f24c944f1701f578d1","gameSha256":"fe810da72378b4e535b35209fe20fb3d60c4da452dee7add0173d5b8687f2422","cableSha256":"d827efed2255ec8693ca343e04b8cdfacce0b5321cbde449ef8944ef4e32fb29",
+ "checks":{"defaultBrowser":{"passed":22,"total":22},"legacyBrowser":{"passed":18,"total":18,"seconds":4.9},"node":{"passed":45,"total":45,"reusedUnchangedInputs":true},"cableUnit":{"passed":5,"total":5,"reusedUnchangedInputs":true},"visual600x380":"passed"},
+ "strategies":[{"name":"ab+cm","used":5460,"remaining":440,"won":true},{"name":"ac+bm","used":5084,"remaining":816,"won":true},{"name":"am+bc","used":5440,"remaining":460,"won":true}],
+ "viewportResults":[{"size":[600,380],"hintBottom":230,"cableTop":255.8},{"size":[640,480],"hintBottom":330,"cableTop":355.8},{"size":[740,500],"hintBottom":350,"cableTop":375.8},{"size":[600,520],"hintBottom":370,"cableTop":395.8},{"size":[760,550],"hintBottom":400.4,"cableTop":426.2},{"size":[761,380],"hintBottom":255,"cableTop":307},{"size":[390,844],"hintBottom":670,"cableTop":719.8},{"size":[1280,720],"hintBottom":595,"cableTop":647}],
+ "portraitOrientation":{"bottom":709,"cableNoteTop":740.8,"overlap":false},
+ "notRun":["physical touch","human strategy distribution, redesign and fun metrics"]
+}

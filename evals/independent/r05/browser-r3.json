@@ -1,0 +1,683 @@
+{
+  "humanStatus": "not_run",
+  "mode": "default ?test=1",
+  "passed": 22,
+  "total": 22,
+  "cases": [
+    {
+      "name": "complete real routed strategy ab+cm",
+      "status": "pass"
+    },
+    {
+      "name": "complete real routed strategy ac+bm",
+      "status": "pass"
+    },
+    {
+      "name": "complete real routed strategy am+bc",
+      "status": "pass"
+    },
+    {
+      "name": "third all-independent circuit refused atomically, logs failure and can recover",
+      "status": "pass"
+    },
+    {
+      "name": "fourth all-independent design constrained by actual budget",
+      "status": "pass"
+    },
+    {
+      "name": "deletion and duplicate deletion refund exactly stored length",
+      "status": "pass"
+    },
+    {
+      "name": "duplicate and invalid attempts leave graph and resource intact",
+      "status": "pass"
+    },
+    {
+      "name": "successful split consumes only added branch and preserves original length",
+      "status": "pass"
+    },
+    {
+      "name": "invalid and resource-rejected branch leave no phantom junction",
+      "status": "pass"
+    },
+    {
+      "name": "automatic short-wire break refunds the broken stored route",
+      "status": "pass"
+    },
+    {
+      "name": "reset restores stage-one resource and no leftover use",
+      "status": "pass"
+    },
+    {
+      "name": "viewport/CSS scale changes cannot alter world-space accounting",
+      "status": "pass"
+    },
+    {
+      "name": "R2 unresolved/pause/help and first-light semantics remain",
+      "status": "pass"
+    },
+    {
+      "name": "600x380 cable text must not overlap gameplay hint text",
+      "status": "pass"
+    },
+    {
+      "name": "640x480 cable text must not overlap gameplay hint text",
+      "status": "pass"
+    },
+    {
+      "name": "740x500 cable text must not overlap gameplay hint text",
+      "status": "pass"
+    },
+    {
+      "name": "600x520 cable text must not overlap gameplay hint text",
+      "status": "pass"
+    },
+    {
+      "name": "760x550 cable text must not overlap gameplay hint text",
+      "status": "pass"
+    },
+    {
+      "name": "761x380 cable text must not overlap gameplay hint text",
+      "status": "pass"
+    },
+    {
+      "name": "390x844 cable text must not overlap gameplay hint text",
+      "status": "pass"
+    },
+    {
+      "name": "1280x720 cable text must not overlap gameplay hint text",
+      "status": "pass"
+    },
+    {
+      "name": "portrait cable note must not overlap orientation guidance",
+      "status": "pass"
+    }
+  ],
+  "metrics": {
+    "strategies": [
+      {
+        "kind": "ab+cm",
+        "stages": [
+          {
+            "budget": 1350,
+            "used": 1124,
+            "remaining": 226
+          },
+          {
+            "budget": 3250,
+            "used": 2254,
+            "remaining": 996
+          },
+          {
+            "budget": 4600,
+            "used": 4238,
+            "remaining": 362
+          },
+          {
+            "budget": 5900,
+            "used": 5460,
+            "remaining": 440
+          }
+        ],
+        "maxCurrent": 0.7370386729510514,
+        "edges": [
+          {
+            "a": "source",
+            "b": "lamp-1",
+            "aPort": "plus",
+            "bPort": "left",
+            "length": 338
+          },
+          {
+            "a": "lamp-1",
+            "b": "source",
+            "aPort": "right",
+            "bPort": "minus",
+            "length": 786
+          },
+          {
+            "a": "lamp-1",
+            "b": "lamp-2",
+            "aPort": "left",
+            "bPort": "left",
+            "length": 451
+          },
+          {
+            "a": "lamp-2",
+            "b": "lamp-1",
+            "aPort": "right",
+            "bPort": "right",
+            "length": 679
+          },
+          {
+            "a": "source",
+            "b": "lamp-3",
+            "aPort": "plus",
+            "bPort": "left",
+            "length": 780
+          },
+          {
+            "a": "lamp-3",
+            "b": "source",
+            "aPort": "right",
+            "bPort": "minus",
+            "length": 1204
+          },
+          {
+            "a": "lamp-3",
+            "b": "motor-1",
+            "aPort": "left",
+            "bPort": "left",
+            "length": 347
+          },
+          {
+            "a": "motor-1",
+            "b": "lamp-3",
+            "aPort": "right",
+            "bPort": "right",
+            "length": 875
+          }
+        ],
+        "winTime": 43.99999999999955
+      },
+      {
+        "kind": "ac+bm",
+        "stages": [
+          {
+            "budget": 1350,
+            "used": 1124,
+            "remaining": 226
+          },
+          {
+            "budget": 3250,
+            "used": 2974,
+            "remaining": 276
+          },
+          {
+            "budget": 4600,
+            "used": 4090,
+            "remaining": 510
+          },
+          {
+            "budget": 5900,
+            "used": 5084,
+            "remaining": 816
+          }
+        ],
+        "maxCurrent": 0.7370386729510514,
+        "edges": [
+          {
+            "a": "source",
+            "b": "lamp-1",
+            "aPort": "plus",
+            "bPort": "left",
+            "length": 338
+          },
+          {
+            "a": "lamp-1",
+            "b": "source",
+            "aPort": "right",
+            "bPort": "minus",
+            "length": 786
+          },
+          {
+            "a": "source",
+            "b": "lamp-2",
+            "aPort": "plus",
+            "bPort": "left",
+            "length": 657
+          },
+          {
+            "a": "lamp-2",
+            "b": "source",
+            "aPort": "right",
+            "bPort": "minus",
+            "length": 1193
+          },
+          {
+            "a": "lamp-1",
+            "b": "lamp-3",
+            "aPort": "left",
+            "bPort": "left",
+            "length": 582
+          },
+          {
+            "a": "lamp-3",
+            "b": "lamp-1",
+            "aPort": "right",
+            "bPort": "right",
+            "length": 534
+          },
+          {
+            "a": "lamp-2",
+            "b": "motor-1",
+            "aPort": "left",
+            "bPort": "left",
+            "length": 402
+          },
+          {
+            "a": "motor-1",
+            "b": "lamp-2",
+            "aPort": "right",
+            "bPort": "right",
+            "length": 592
+          }
+        ],
+        "winTime": 43.99999999999955
+      },
+      {
+        "kind": "am+bc",
+        "stages": [
+          {
+            "budget": 1350,
+            "used": 1124,
+            "remaining": 226
+          },
+          {
+            "budget": 3250,
+            "used": 2974,
+            "remaining": 276
+          },
+          {
+            "budget": 4600,
+            "used": 3850,
+            "remaining": 750
+          },
+          {
+            "budget": 5900,
+            "used": 5440,
+            "remaining": 460
+          }
+        ],
+        "maxCurrent": 0.7370386729509963,
+        "edges": [
+          {
+            "a": "source",
+            "b": "lamp-1",
+            "aPort": "plus",
+            "bPort": "left",
+            "length": 338
+          },
+          {
+            "a": "lamp-1",
+            "b": "source",
+            "aPort": "right",
+            "bPort": "minus",
+            "length": 786
+          },
+          {
+            "a": "source",
+            "b": "lamp-2",
+            "aPort": "plus",
+            "bPort": "left",
+            "length": 657
+          },
+          {
+            "a": "lamp-2",
+            "b": "source",
+            "aPort": "right",
+            "bPort": "minus",
+            "length": 1193
+          },
+          {
+            "a": "lamp-2",
+            "b": "lamp-3",
+            "aPort": "left",
+            "bPort": "left",
+            "length": 397
+          },
+          {
+            "a": "lamp-3",
+            "b": "lamp-2",
+            "aPort": "right",
+            "bPort": "right",
+            "length": 479
+          },
+          {
+            "a": "lamp-1",
+            "b": "motor-1",
+            "aPort": "left",
+            "bPort": "left",
+            "length": 571
+          },
+          {
+            "a": "motor-1",
+            "b": "lamp-1",
+            "aPort": "right",
+            "bPort": "right",
+            "length": 1019
+          }
+        ],
+        "winTime": 43.99999999999955
+      }
+    ],
+    "thirdIndependent": {
+      "accepted": 1,
+      "rejected": 1
+    },
+    "fourIndependent": {
+      "rejected": 1,
+      "used": 5719
+    },
+    "viewports": [
+      {
+        "width": 600,
+        "height": 380,
+        "rects": {
+          "hint-title": {
+            "x": 182.40000915527344,
+            "y": 191.1999969482422,
+            "width": 235.1999969482422,
+            "height": 16.80000114440918,
+            "right": 417.6000061035156,
+            "bottom": 207.99999809265137
+          },
+          "hint-detail": {
+            "x": 182.40000915527344,
+            "y": 213,
+            "width": 235.1999969482422,
+            "height": 17,
+            "right": 417.6000061035156,
+            "bottom": 230
+          },
+          "cable-value": {
+            "x": 236.40000915527344,
+            "y": 255.8000030517578,
+            "width": 127.20000457763672,
+            "height": 16,
+            "right": 363.60001373291016,
+            "bottom": 271.8000030517578
+          },
+          "cable-note": {
+            "x": 236.40000915527344,
+            "y": 276.8000183105469,
+            "width": 127.20000457763672,
+            "height": 15.199999809265137,
+            "right": 363.60001373291016,
+            "bottom": 292.000018119812
+          }
+        }
+      },
+      {
+        "width": 640,
+        "height": 480,
+        "rects": {
+          "hint-title": {
+            "x": 202.40000915527344,
+            "y": 291.20001220703125,
+            "width": 235.1999969482422,
+            "height": 16.80000114440918,
+            "right": 437.6000061035156,
+            "bottom": 308.00001335144043
+          },
+          "hint-detail": {
+            "x": 202.40000915527344,
+            "y": 313,
+            "width": 235.1999969482422,
+            "height": 17,
+            "right": 437.6000061035156,
+            "bottom": 330
+          },
+          "cable-value": {
+            "x": 256.3999938964844,
+            "y": 355.8000183105469,
+            "width": 127.20000457763672,
+            "height": 16,
+            "right": 383.5999984741211,
+            "bottom": 371.8000183105469
+          },
+          "cable-note": {
+            "x": 256.3999938964844,
+            "y": 376.8000183105469,
+            "width": 127.20000457763672,
+            "height": 15.199999809265137,
+            "right": 383.5999984741211,
+            "bottom": 392.000018119812
+          }
+        }
+      },
+      {
+        "width": 740,
+        "height": 500,
+        "rects": {
+          "hint-title": {
+            "x": 252.40000915527344,
+            "y": 311.20001220703125,
+            "width": 235.1999969482422,
+            "height": 16.80000114440918,
+            "right": 487.6000061035156,
+            "bottom": 328.00001335144043
+          },
+          "hint-detail": {
+            "x": 252.40000915527344,
+            "y": 333,
+            "width": 235.1999969482422,
+            "height": 17,
+            "right": 487.6000061035156,
+            "bottom": 350
+          },
+          "cable-value": {
+            "x": 306.3999938964844,
+            "y": 375.8000183105469,
+            "width": 127.20000457763672,
+            "height": 16,
+            "right": 433.5999984741211,
+            "bottom": 391.8000183105469
+          },
+          "cable-note": {
+            "x": 306.3999938964844,
+            "y": 396.8000183105469,
+            "width": 127.20000457763672,
+            "height": 15.199999809265137,
+            "right": 433.5999984741211,
+            "bottom": 412.000018119812
+          }
+        }
+      },
+      {
+        "width": 600,
+        "height": 520,
+        "rects": {
+          "hint-title": {
+            "x": 182.40000915527344,
+            "y": 331.20001220703125,
+            "width": 235.1999969482422,
+            "height": 16.80000114440918,
+            "right": 417.6000061035156,
+            "bottom": 348.00001335144043
+          },
+          "hint-detail": {
+            "x": 182.40000915527344,
+            "y": 353,
+            "width": 235.1999969482422,
+            "height": 17,
+            "right": 417.6000061035156,
+            "bottom": 370
+          },
+          "cable-value": {
+            "x": 236.40000915527344,
+            "y": 395.8000183105469,
+            "width": 127.20000457763672,
+            "height": 16,
+            "right": 363.60001373291016,
+            "bottom": 411.8000183105469
+          },
+          "cable-note": {
+            "x": 236.40000915527344,
+            "y": 416.8000183105469,
+            "width": 127.20000457763672,
+            "height": 15.199999809265137,
+            "right": 363.60001373291016,
+            "bottom": 432.000018119812
+          }
+        }
+      },
+      {
+        "width": 760,
+        "height": 550,
+        "rects": {
+          "hint-title": {
+            "x": 253.60000610351562,
+            "y": 350.1000061035156,
+            "width": 252.8000030517578,
+            "height": 21.600000381469727,
+            "right": 506.40000915527344,
+            "bottom": 371.70000648498535
+          },
+          "hint-detail": {
+            "x": 253.60000610351562,
+            "y": 381.70001220703125,
+            "width": 252.8000030517578,
+            "height": 18.700000762939453,
+            "right": 506.40000915527344,
+            "bottom": 400.4000129699707
+          },
+          "cable-value": {
+            "x": 316.3999938964844,
+            "y": 426.20001220703125,
+            "width": 127.20000457763672,
+            "height": 16,
+            "right": 443.5999984741211,
+            "bottom": 442.20001220703125
+          },
+          "cable-note": {
+            "x": 316.3999938964844,
+            "y": 447.20001220703125,
+            "width": 127.20000457763672,
+            "height": 15.199999809265137,
+            "right": 443.5999984741211,
+            "bottom": 462.4000120162964
+          }
+        }
+      },
+      {
+        "width": 761,
+        "height": 380,
+        "rects": {
+          "hint-title": {
+            "x": 262.8000183105469,
+            "y": 216.1999969482422,
+            "width": 235.1999969482422,
+            "height": 16.80000114440918,
+            "right": 498.00001525878906,
+            "bottom": 232.99999809265137
+          },
+          "hint-detail": {
+            "x": 262.8000183105469,
+            "y": 238,
+            "width": 235.1999969482422,
+            "height": 17,
+            "right": 498.00001525878906,
+            "bottom": 255
+          },
+          "cable-value": {
+            "x": 314.8000183105469,
+            "y": 307,
+            "width": 131.1999969482422,
+            "height": 16.80000114440918,
+            "right": 446.00001525878906,
+            "bottom": 323.8000011444092
+          },
+          "cable-note": {
+            "x": 314.8000183105469,
+            "y": 328.8000183105469,
+            "width": 131.1999969482422,
+            "height": 15.199999809265137,
+            "right": 446.00001525878906,
+            "bottom": 344.000018119812
+          }
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "rects": {
+          "hint-title": {
+            "x": 19.524999618530273,
+            "y": 619.7000122070312,
+            "width": 351.3500061035156,
+            "height": 21.600000381469727,
+            "right": 370.8750057220459,
+            "bottom": 641.300012588501
+          },
+          "hint-detail": {
+            "x": 19.524999618530273,
+            "y": 651.2999877929688,
+            "width": 351.3500061035156,
+            "height": 18.700000762939453,
+            "right": 370.8750057220459,
+            "bottom": 669.9999885559082
+          },
+          "cable-value": {
+            "x": 131.60000610351562,
+            "y": 719.7999877929688,
+            "width": 127.20000457763672,
+            "height": 16,
+            "right": 258.80001068115234,
+            "bottom": 735.7999877929688
+          },
+          "cable-note": {
+            "x": 131.60000610351562,
+            "y": 740.7999877929688,
+            "width": 127.20000457763672,
+            "height": 15.199999809265137,
+            "right": 258.80001068115234,
+            "bottom": 755.9999876022339
+          }
+        }
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "rects": {
+          "hint-title": {
+            "x": 513.6000366210938,
+            "y": 544.7000122070312,
+            "width": 252.8000030517578,
+            "height": 21.600000381469727,
+            "right": 766.4000396728516,
+            "bottom": 566.300012588501
+          },
+          "hint-detail": {
+            "x": 513.6000366210938,
+            "y": 576.2999877929688,
+            "width": 252.8000030517578,
+            "height": 18.700000762939453,
+            "right": 766.4000396728516,
+            "bottom": 594.9999885559082
+          },
+          "cable-value": {
+            "x": 574.4000244140625,
+            "y": 647,
+            "width": 131.1999969482422,
+            "height": 16.80000114440918,
+            "right": 705.6000213623047,
+            "bottom": 663.8000011444092
+          },
+          "cable-note": {
+            "x": 574.4000244140625,
+            "y": 668.7999877929688,
+            "width": 131.1999969482422,
+            "height": 15.199999809265137,
+            "right": 705.6000213623047,
+            "bottom": 683.9999876022339
+          }
+        }
+      }
+    ],
+    "orientation": {
+      "cable": {
+        "x": 131.60000610351562,
+        "y": 740.7999877929688,
+        "right": 258.80001068115234,
+        "bottom": 755.9999876022339
+      },
+      "orientation": {
+        "x": 0,
+        "y": 696.2000122070312,
+        "right": 390.3999938964844,
+        "bottom": 709.0000123977661
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion":1,"round":"R2","attempt":1,
+  "decision":"ACCEPT_ENGINEERING","humanStatus":"not_run","participants":0,
+  "productModifiedByEvaluator":false,
+  "contract":"r02/director-contract.md","manifest":"r02/manifest.json",
+  "gameSha256":"08fd0a06a3bd5242ad5f7a18d166c38bf60e4942b3ff06c7af1ef262abbb6029",
+  "directorSha256":"aad7016c77fd5075e2a1d10f49f8978ad1a05e8eccd3b8f672f4e9cad4d25a8e",
+  "checks":{"node":{"passed":45,"total":45},"syntax":"passed","engine":"passed","independentDirector":{"passed":5,"total":5},"legacyBrowser":{"passed":18,"total":18},"defaultBrowser":{"passed":10,"total":10},"generalModeRealKeyboardAndPause":"passed"},
+  "metrics":{"population":"automated fixed policy; not humans","maxForcedWaitSeconds":12,"fastSpawnSeconds":[12,24,36],"fastWinSeconds":44,"unsolved45SecondsSpawnCount":0,"delayedFirstSpawnSeconds":52,"coolingScenarioSeconds":1.5,"duplicateSpawns":0},
+  "blockingFindings":[],
+  "evidence":["r02/node-tests.txt","r02/syntax-check.txt","r02/engine-diagnostics.json","r02/director-probes.json","r02/browser-results.json","r02/integrity-after.json"],
+  "limitations":["Human completion, idle-time, fun and learning metrics not run","Physical touch and mobile layout not newly tested","Timing boundaries quantized by one frame","Full telemetry contract still incomplete"]
+}

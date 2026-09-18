@@ -1,0 +1,27 @@
+{
+  "humanStatus": "not_run",
+  "passed": 5,
+  "total": 5,
+  "cases": [
+    {
+      "name": "stage budgets clamp and match contract",
+      "status": "pass"
+    },
+    {
+      "name": "fractional geometry preserved without display rounding",
+      "status": "pass"
+    },
+    {
+      "name": "split route conserves exact length at many split points",
+      "status": "pass"
+    },
+    {
+      "name": "deletion refunds stored length with no duplicate credit",
+      "status": "pass"
+    },
+    {
+      "name": "invalid routes fail closed",
+      "status": "pass"
+    }
+  ]
+}

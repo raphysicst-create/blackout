@@ -1,0 +1,23 @@
+{
+  "humanStatus":"not_run",
+  "recordingMethod":"Transcribed from actual in-app browser DOM and accessibility observations",
+  "legacy":{"url":"http://127.0.0.1:4191/tests/browser.html","passed":18,"total":18,"seconds":5.2},
+  "default":{"url":"http://127.0.0.1:4191/evals/independent-r2.html","mode":"?test=1 without legacy","passed":10,"total":10,
+    "cases":[
+      {"name":"45 second unresolved demand suppression and help","status":"pass"},
+      {"name":"Delayed player seven stable seconds, no backlog","status":"pass"},
+      {"name":"Fast policy max 12 second waits, final win and result","status":"pass"},
+      {"name":"Three second preview, second-facility tool unlocks","status":"pass"},
+      {"name":"Preview cancellation restarts stability","status":"pass"},
+      {"name":"Pause and help freeze clocks and hide demand","status":"pass"},
+      {"name":"Short circuit suppresses demand and recovers after break","status":"pass"},
+      {"name":"Heated shared trunk cools before stable interval and minimum spawn spacing","status":"pass"},
+      {"name":"Reset clears director, tools and events","status":"pass"},
+      {"name":"Repeated action sequence deterministic demand events","status":"pass"}
+    ],
+    "metrics":{"fastSpawnTimes":[12,24,36],"fastWaitTimes":[12,12,12],"fastWinTime":44,"delayedFirstSpawn":52,"delayedRepeatedSpawnTimes":[52,64,76],"coolingSeconds":1.5,"coolingScenarioNextSpawn":36}
+  },
+  "generalMode":{"url":"http://127.0.0.1:4191/index.html","input":"real keyboard Enter via browser locator press","firstConnectedDisplay":"00:08","secondFacilityVisibleDisplay":"00:15","progress":"1 / 4 복구","visibleTool":"A enabled and branch unlock toast","pausedDisplay":"00:24","accelerated":false},
+  "harnessCorrections":["Evaluator fixed its own missing parenthesis before test execution","Initial cooling assertion expected spawn before 12 second minimum interval; corrected expected time to max(cooling end+7,last spawn+12). Product unchanged."],
+  "notRun":["physical touch","human learning/fun metrics"]
+}

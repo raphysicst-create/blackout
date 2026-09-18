@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "round": "R1",
+  "attempt": 1,
+  "decision": "REVISE",
+  "humanStatus": "not_run",
+  "participants": 0,
+  "manifest": "r01/manifest.json",
+  "productModifiedByEvaluator": false,
+  "checks": {
+    "node": {"passed":45,"total":45,"evidence":"r01/node-tests.txt"},
+    "syntax": {"status":"passed","additionalCheck":"node --check telemetry.js"},
+    "engine": {"status":"passed","evidence":"r01/engine-diagnostics.json"},
+    "existingBrowser": {"passed":18,"total":18,"durationSeconds":5.8,"url":"http://127.0.0.1:4188/tests/browser.html","observedTitle":"PASS · BLACKOUT 18/18"},
+    "independentBrowser": {"passed":11,"total":13,"url":"http://127.0.0.1:4188/evals/independent-r1.html","harness":"r01/site/evals/independent-r1.js"},
+    "nativeMouse": {"status":"passed","viewport":[1280,720],"actions":["drag source plus to empty space: feedback and no wire","drag supply: one wire, load off, 1/2 guide","drag return: two wires, load normal, guide removed"]},
+    "nativeTouch": "not_run",
+    "smallViewport": "not_run"
+  },
+  "findings": [
+    {"id":"R1-F01","priority":2,"status":"requires_revision","reproduction":["reset/start","lamp-1.right -> source.minus"],"actual":"1 / 2 연결 · 빛이 켜지려면 돌아오는 길이 필요해요.","highlightedTargets":["terminal-lamp-1-left","terminal-source-plus"],"expected":"Instruction describes missing supply or uses order-neutral wording; upper and lower hints agree"},
+    {"id":"R1-F02","priority":2,"status":"requires_revision","reproduction":["reset/start","advance(30.1)","source.plus -> lamp-1.left","lamp-1.right -> lamp-2.left","lamp-2.right -> source.minus"],"brightness":0.24880430621737198,"stableThreshold":0.8,"actualFirstLightEvents":1,"expected":"Dim first power must not be counted as contract first stable light; separate event or stable-transition measurement required"}
+  ],
+  "limitations":["No human outcome inferred","Browser observations transcribed from tool output; no saved screenshot","Telemetry common fields and cancel/episode events remain incomplete"]
+}

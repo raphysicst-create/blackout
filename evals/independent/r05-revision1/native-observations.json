@@ -1,0 +1,18 @@
+{
+  "viewport": [
+    600,
+    320
+  ],
+  "humanStatus": "not_run",
+  "nativeInput": "browser pointer clicks, not human study",
+  "sequence": [
+    "seed101 won result: story 5460 / branches3 / recoveries0; next202 preview visible",
+    "native next district -> seed202 playing, history101",
+    "native pause -> paused true, accessible name 계속하기",
+    "native restart -> seed202 playing, paused false, history101/202, accessible name 일시 정지",
+    "native pause and resume -> same seed202, paused false, name 일시 정지"
+  ],
+  "screenshot": "Observed through browser tool; no screenshot file saved",
+  "participants": 0,
+  "evidence": "native-latest.json"
+}

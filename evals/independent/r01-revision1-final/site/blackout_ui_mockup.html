@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BLACKOUT — UI Mockup</title>
+<style>
+:root{
+  --bg:#f2efe7; --ink:#1f2d35; --muted:#9da19d;
+  --wire:#536067; --electric:#e9b44c; --danger:#d95d4f;
+  --panel:#f8f5ee;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:Inter, Pretendard, "Noto Sans KR", system-ui, sans-serif;
+  overflow:hidden; user-select:none;
+}
+header{
+  height:72px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 38px; letter-spacing:.28em; font-size:14px; font-weight:800;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand i{width:8px;height:8px;background:var(--electric);border-radius:50%;box-shadow:0 0 14px var(--electric)}
+.progress{display:flex;gap:10px;align-items:center}
+.progress span{width:7px;height:7px;border:1px solid #9da19d;border-radius:50%}
+.progress span.on{background:var(--ink);border-color:var(--ink)}
+main{height:calc(100vh - 144px);position:relative}
+.stage{position:absolute;inset:0}
+svg{width:100%;height:100%;display:block}
+.wire{
+  fill:none;stroke:var(--wire);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+  transition:.3s;
+}
+.wire.live{stroke:#8b7444;filter:drop-shadow(0 0 5px rgba(233,180,76,.35))}
+.node{cursor:pointer}
+.source polygon{fill:var(--ink)}
+.source text{fill:var(--electric);font-size:32px}
+.load circle.shell{fill:var(--panel);stroke:var(--ink);stroke-width:3}
+.load circle.glow{fill:var(--electric);opacity:.18;filter:blur(9px)}
+.bulb{fill:#f8f5ee;stroke:var(--ink);stroke-width:3}
+.filament{stroke:var(--electric);stroke-width:3;fill:none}
+.junction{fill:var(--ink)}
+.particle{fill:#ffd36e;filter:drop-shadow(0 0 4px #e9b44c)}
+.copy{
+ position:absolute;left:50%;top:7%;transform:translateX(-50%);text-align:center;
+ pointer-events:none;
+}
+.copy h1{font-size:23px;margin:0 0 8px}
+.copy p{font-size:13px;margin:0;color:#69747a}
+.hint{
+ position:absolute;left:50%;bottom:28px;transform:translateX(-50%);
+ background:rgba(248,245,238,.86);border:1px solid #d8d3c8;border-radius:18px;
+ padding:10px 18px;font-size:12px;color:#667178;backdrop-filter:blur(8px)
+}
+.tools{
+ position:absolute;bottom:26px;left:38px;display:flex;gap:8px;
+ background:rgba(248,245,238,.8);padding:6px;border:1px solid #d8d3c8;border-radius:16px;
+}
+.tool{width:52px;height:42px;border:0;border-radius:11px;background:transparent;font-size:17px;color:#6d777b}
+.tool.active{background:var(--ink);color:#ffd36e}
+footer{
+ height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 38px;
+ border-top:1px solid rgba(31,45,53,.09);font-size:12px;color:#7d8587
+}
+button.next{
+ border:0;background:var(--ink);color:white;border-radius:13px;padding:12px 20px;
+ font-weight:700;cursor:pointer
+}
+button.next:hover{transform:translateY(-1px)}
+.measure{
+ position:absolute;display:none;background:var(--panel);border:1px solid #cfc9bc;
+ border-radius:9px;padding:7px 10px;font-weight:800;box-shadow:0 8px 25px #00000012
+}
+.overload{animation:shake .12s infinite alternate;stroke:var(--danger)!important}
+@keyframes shake{from{transform:translateX(-1px)}to{transform:translateX(1px)}}
+@media(max-width:700px){header,footer{padding-left:18px;padding-right:18px}.copy{width:90%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><i></i>BLACKOUT</div>
+  <div class="progress"><span class="on"></span><span></span><span></span><span></span></div>
+</header>
+
+<main>
+ <div class="copy">
+   <h1 id="title">전원을 전구에 연결해 보세요.</h1>
+   <p id="sub">전원에서 전구까지 드래그하세요.</p>
+ </div>
+
+ <div class="stage">
+  <svg viewBox="0 0 1200 650" aria-label="전기 회로 게임 목업">
+   <defs>
+    <path id="route" d="M280 340 C430 340 510 340 600 340 S780 340 920 340"/>
+   </defs>
+
+   <path id="wire" class="wire" d="M280 340 C430 340 510 340 600 340 S780 340 920 340" opacity=".18"/>
+
+   <g class="node source" transform="translate(240 300)" id="source">
+    <polygon points="40,0 75,20 75,60 40,80 5,60 5,20"/>
+    <text x="40" y="52" text-anchor="middle">ϟ</text>
+   </g>
+
+   <g class="node load" transform="translate(920 340)" id="lamp">
+    <circle class="glow" cx="0" cy="0" r="52" opacity="0"/>
+    <circle class="bulb" cx="0" cy="-8" r="27"/>
+    <path class="filament" d="M-9 -8 L0 2 L9 -8"/>
+    <path d="M-13 18 L13 18 M-10 25 L10 25" stroke="#1f2d35" stroke-width="4"/>
+   </g>
+
+   <g id="particles" opacity="0">
+    <circle class="particle" r="4"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#route"/></animateMotion></circle>
+    <circle class="particle" r="4"><animateMotion dur="2.2s" begin="-.55s" repeatCount="indefinite"><mpath href="#route"/></animateMotion></circle>
+    <circle class="particle" r="4"><animateMotion dur="2.2s" begin="-1.1s" repeatCount="indefinite"><mpath href="#route"/></animateMotion></circle>
+    <circle class="particle" r="4"><animateMotion dur="2.2s" begin="-1.65s" repeatCount="indefinite"><mpath href="#route"/></animateMotion></circle>
+   </g>
+  </svg>
+ </div>
+
+ <div class="tools">
+   <button class="tool active" id="connect">⌁</button>
+   <button class="tool" id="amp">A</button>
+   <button class="tool" id="volt">V</button>
+ </div>
+ <div class="measure" id="measure">0.30 A</div>
+ <div class="hint" id="hint">⚡ 전원을 눌러 연결해도 됩니다</div>
+</main>
+
+<footer>
+ <span>MINIMAL CIRCUIT LAB · MVP 01</span>
+ <button class="next" id="next">다음 →</button>
+</footer>
+
+<script>
+const source = document.querySelector('#source');
+const lamp = document.querySelector('#lamp');
+const wire = document.querySelector('#wire');
+const particles = document.querySelector('#particles');
+const glow = document.querySelector('.glow');
+const title = document.querySelector('#title');
+const sub = document.querySelector('#sub');
+const hint = document.querySelector('#hint');
+const progress = [...document.querySelectorAll('.progress span')];
+const measure = document.querySelector('#measure');
+let live=false, step=0, tool='connect';
+
+function powerOn(){
+ live=true;
+ wire.style.opacity=1; wire.classList.add('live');
+ particles.style.opacity=1; glow.style.opacity=.8;
+ title.textContent='빛이 들어왔습니다!';
+ sub.textContent='전선 위의 작은 점은 전류의 흐름을 나타냅니다.';
+ hint.textContent='전선을 눌러 흐르는 전류를 측정해 보세요';
+ step=1; progress[1].classList.add('on');
+}
+source.onclick=()=>{ if(tool==='connect') powerOn(); };
+lamp.onclick=()=>{ if(tool==='connect') powerOn(); };
+
+wire.onclick=(e)=>{
+ if(tool==='amp' && live){
+   measure.style.display='block';
+   measure.style.left=(e.clientX+12)+'px';
+   measure.style.top=(e.clientY-90)+'px';
+   measure.textContent='0.30 A';
+ }
+ if(tool==='volt' && live){
+   measure.style.display='block';
+   measure.style.left=(e.clientX+12)+'px';
+   measure.style.top=(e.clientY-90)+'px';
+   measure.textContent='6.0 V';
+ }
+};
+
+document.querySelectorAll('.tool').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.tool').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active');
+ tool=b.id==='amp'?'amp':b.id==='volt'?'volt':'connect';
+});
+
+document.querySelector('#next').onclick=()=>{
+ if(!live){ powerOn(); return; }
+ step++;
+ if(step===2){
+   title.textContent='새로운 부하가 등장합니다.';
+   sub.textContent='같은 전원에서 여러 시설로 전력을 나누는 것이 다음 과제입니다.';
+   progress[2].classList.add('on');
+   hint.textContent='MVP에서는 이 다음 화면에서 분기 회로가 등장합니다';
+ } else if(step>=3){
+   title.textContent='SYSTEM STABLE';
+   sub.textContent='이 인터랙션을 중심으로 5분짜리 게임을 확장합니다.';
+   progress[3].classList.add('on');
+ }
+};
+</script>
+</body>
+</html>

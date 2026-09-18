@@ -1,0 +1,390 @@
+{
+  "humanStatus": "not_run",
+  "mode": "default ?test=1",
+  "passed": 19,
+  "total": 19,
+  "cases": [
+    {
+      "name": "two overload episodes each warn and use distinct IDs",
+      "status": "pass"
+    },
+    {
+      "name": "warning current/capacity/heat/countdown match live engine",
+      "status": "pass"
+    },
+    {
+      "name": "preventive redesign keeps residual heat and shows cooling until stable",
+      "status": "pass"
+    },
+    {
+      "name": "cooling top and lower guidance describe the same current state",
+      "status": "pass"
+    },
+    {
+      "name": "six-second break enters recovery, safe repair completes once then next demand",
+      "status": "pass"
+    },
+    {
+      "name": "safe complete run has no warning episode or fabricated crisis",
+      "status": "pass"
+    },
+    {
+      "name": "pause/help freeze heat, logs and clocks; hide all status banners",
+      "status": "pass"
+    },
+    {
+      "name": "facility_state waits .25 active seconds and suppresses transient off",
+      "status": "pass"
+    },
+    {
+      "name": "one-second samples carry current cable and safe load state",
+      "status": "pass"
+    },
+    {
+      "name": "only explicit wire measurement logs measure, rebuild does not duplicate",
+      "status": "pass"
+    },
+    {
+      "name": "reset clears risk, episode, observations and sample clock",
+      "status": "pass"
+    },
+    {
+      "name": "first-run short makes risk exclusive with onboarding guide",
+      "status": "pass"
+    },
+    {
+      "name": "settled copy is not emitted for incomplete or dim recovery",
+      "status": "pass"
+    },
+    {
+      "name": "settled copy appears after delayed final reconnection while cooling stays factual",
+      "status": "pass"
+    },
+    {
+      "name": "risk layout 600x380",
+      "status": "pass"
+    },
+    {
+      "name": "risk layout 600x320",
+      "status": "pass"
+    },
+    {
+      "name": "risk layout 760x550",
+      "status": "pass"
+    },
+    {
+      "name": "risk layout 761x380",
+      "status": "pass"
+    },
+    {
+      "name": "risk layout 390x844",
+      "status": "pass"
+    }
+  ],
+  "metrics": {
+    "episodes": [
+      {
+        "activeMs": 24050,
+        "episode": 1,
+        "shortCircuit": false,
+        "edges": [
+          "wire-1",
+          "wire-2"
+        ]
+      },
+      {
+        "activeMs": 25550,
+        "episode": 2,
+        "shortCircuit": false,
+        "edges": [
+          "wire-1",
+          "wire-2"
+        ]
+      }
+    ],
+    "warning": {
+      "current": 0.8880997474620678,
+      "heat": 40,
+      "hidden": false,
+      "title": "과열 · 한 전선의 부담을 나눠 주세요",
+      "detail": "0.89 A / 0.75 A · 끊어지기까지 약 3.6초"
+    },
+    "cooling": {
+      "initialRemaining": "냉각까지 약 2.7초 · 열이 식으면 안정화가 시작됩니다",
+      "breaks": 0
+    },
+    "coolingCopy": {
+      "risk": {
+        "hidden": false,
+        "title": "전류는 안전해요 · 전선이 식고 있어요",
+        "detail": "냉각까지 약 0.9초 · 열이 식으면 안정화가 시작됩니다",
+        "heat": 32
+      },
+      "lower": "모든 시설에 전류가 돌아왔어요."
+    },
+    "recovery": {
+      "starts": [
+        {
+          "eventSeq": 49,
+          "wallMs": 324,
+          "activeMs": 30000,
+          "event": "recovery_start",
+          "payload": {
+            "episode": 1
+          }
+        }
+      ],
+      "complete": [
+        {
+          "eventSeq": 87,
+          "wallMs": 441,
+          "activeMs": 50050,
+          "event": "recovery_complete",
+          "payload": {
+            "seconds": 20.049999999998853,
+            "recoveries": 1
+          }
+        }
+      ],
+      "breaks": [
+        {
+          "eventSeq": 50,
+          "wallMs": 324,
+          "activeMs": 30000,
+          "event": "wire_break",
+          "payload": {
+            "id": "wire-1",
+            "episode": 1
+          }
+        },
+        {
+          "eventSeq": 51,
+          "wallMs": 327,
+          "activeMs": 30000,
+          "event": "wire_break",
+          "payload": {
+            "id": "wire-2",
+            "episode": 1
+          }
+        }
+      ]
+    },
+    "samples": [
+      1000,
+      2000,
+      3000
+    ],
+    "viewports": [
+      {
+        "width": 600,
+        "height": 380,
+        "rects": {
+          "risk-title": {
+            "x": 214.8000030517578,
+            "y": 82.80000305175781,
+            "right": 385.20001220703125,
+            "bottom": 99.30000305175781
+          },
+          "risk-detail": {
+            "x": 214.8000030517578,
+            "y": 101.30000305175781,
+            "right": 385.20001220703125,
+            "bottom": 114.80000305175781
+          },
+          "hint-title": {
+            "x": 172,
+            "y": 191.1999969482422,
+            "right": 428,
+            "bottom": 207.99999809265137
+          },
+          "hint-detail": {
+            "x": 172,
+            "y": 213,
+            "right": 428,
+            "bottom": 230
+          },
+          "cable-value": {
+            "x": 236.40000915527344,
+            "y": 255.8000030517578,
+            "right": 363.60001373291016,
+            "bottom": 271.8000030517578
+          },
+          "cable-note": {
+            "x": 236.40000915527344,
+            "y": 276.8000183105469,
+            "right": 363.60001373291016,
+            "bottom": 292.000018119812
+          }
+        }
+      },
+      {
+        "width": 600,
+        "height": 320,
+        "rects": {
+          "risk-title": {
+            "x": 214.8000030517578,
+            "y": 82.80000305175781,
+            "right": 385.20001220703125,
+            "bottom": 99.30000305175781
+          },
+          "risk-detail": {
+            "x": 214.8000030517578,
+            "y": 101.30000305175781,
+            "right": 385.20001220703125,
+            "bottom": 114.80000305175781
+          },
+          "hint-title": {
+            "x": 172,
+            "y": 131.1999969482422,
+            "right": 428,
+            "bottom": 147.99999809265137
+          },
+          "hint-detail": {
+            "x": 172,
+            "y": 153,
+            "right": 428,
+            "bottom": 170
+          },
+          "cable-value": {
+            "x": 236.40000915527344,
+            "y": 195.8000030517578,
+            "right": 363.60001373291016,
+            "bottom": 211.8000030517578
+          },
+          "cable-note": {
+            "x": 236.40000915527344,
+            "y": 216.8000030517578,
+            "right": 363.60001373291016,
+            "bottom": 232.00000286102295
+          }
+        }
+      },
+      {
+        "width": 760,
+        "height": 550,
+        "rects": {
+          "risk-title": {
+            "x": 294.8000183105469,
+            "y": 82.80000305175781,
+            "right": 465.2000274658203,
+            "bottom": 99.30000305175781
+          },
+          "risk-detail": {
+            "x": 294.8000183105469,
+            "y": 101.30000305175781,
+            "right": 465.2000274658203,
+            "bottom": 114.80000305175781
+          },
+          "hint-title": {
+            "x": 242.8000030517578,
+            "y": 350.1000061035156,
+            "right": 517.1999969482422,
+            "bottom": 371.70000648498535
+          },
+          "hint-detail": {
+            "x": 242.8000030517578,
+            "y": 381.70001220703125,
+            "right": 517.1999969482422,
+            "bottom": 400.4000129699707
+          },
+          "cable-value": {
+            "x": 316.3999938964844,
+            "y": 426.20001220703125,
+            "right": 443.5999984741211,
+            "bottom": 442.20001220703125
+          },
+          "cable-note": {
+            "x": 316.3999938964844,
+            "y": 447.20001220703125,
+            "right": 443.5999984741211,
+            "bottom": 462.4000120162964
+          }
+        }
+      },
+      {
+        "width": 761,
+        "height": 380,
+        "rects": {
+          "risk-title": {
+            "x": 289.20001220703125,
+            "y": 104.80000305175781,
+            "right": 471.6000213623047,
+            "bottom": 122.80000305175781
+          },
+          "risk-detail": {
+            "x": 289.20001220703125,
+            "y": 124.80000305175781,
+            "right": 471.6000213623047,
+            "bottom": 139.8000030517578
+          },
+          "hint-title": {
+            "x": 252.40000915527344,
+            "y": 216.1999969482422,
+            "right": 508.40000915527344,
+            "bottom": 232.99999809265137
+          },
+          "hint-detail": {
+            "x": 252.40000915527344,
+            "y": 238,
+            "right": 508.40000915527344,
+            "bottom": 255
+          },
+          "cable-value": {
+            "x": 314.8000183105469,
+            "y": 307,
+            "right": 446.00001525878906,
+            "bottom": 323.8000011444092
+          },
+          "cable-note": {
+            "x": 314.8000183105469,
+            "y": 328.8000183105469,
+            "right": 446.00001525878906,
+            "bottom": 344.000018119812
+          }
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "rects": {
+          "risk-title": {
+            "x": 110,
+            "y": 82.80000305175781,
+            "right": 280.40000915527344,
+            "bottom": 99.30000305175781
+          },
+          "risk-detail": {
+            "x": 110,
+            "y": 101.30000305175781,
+            "right": 280.40000915527344,
+            "bottom": 114.80000305175781
+          },
+          "hint-title": {
+            "x": 19.524999618530273,
+            "y": 619.7000122070312,
+            "right": 370.8750057220459,
+            "bottom": 641.300012588501
+          },
+          "hint-detail": {
+            "x": 19.524999618530273,
+            "y": 651.2999877929688,
+            "right": 370.8750057220459,
+            "bottom": 669.9999885559082
+          },
+          "cable-value": {
+            "x": 131.60000610351562,
+            "y": 719.7999877929688,
+            "right": 258.80001068115234,
+            "bottom": 735.7999877929688
+          },
+          "cable-note": {
+            "x": 131.60000610351562,
+            "y": 740.7999877929688,
+            "right": 258.80001068115234,
+            "bottom": 755.9999876022339
+          }
+        }
+      }
+    ]
+  }
+}

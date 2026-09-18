@@ -1,0 +1,39 @@
+{
+  "humanStatus": "not_run",
+  "passed": 4,
+  "total": 4,
+  "cases": [
+    {
+      "query": "seed=202",
+      "expected": 202,
+      "actual": 202,
+      "title": "골목의 물길",
+      "resetSeed": 303,
+      "status": "pass"
+    },
+    {
+      "query": "seed=303",
+      "expected": 303,
+      "actual": 303,
+      "title": "공원의 새벽",
+      "resetSeed": 303,
+      "status": "pass"
+    },
+    {
+      "query": "seed=999",
+      "expected": 101,
+      "actual": 101,
+      "title": "주택가의 밤",
+      "resetSeed": 303,
+      "status": "pass"
+    },
+    {
+      "query": "legacy=1&seed=303",
+      "expected": 101,
+      "actual": 101,
+      "title": "주택가의 밤",
+      "resetSeed": 101,
+      "status": "pass"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion":1,
+  "round":"R1",
+  "revision":1,
+  "decision":"ACCEPT_ENGINEERING",
+  "humanStatus":"not_run",
+  "participants":0,
+  "productModifiedByEvaluator":false,
+  "previousDecision":"REVISE",
+  "previousReport":"r01-review.json",
+  "adoptedManifest":"r01-revision1-final/manifest.json",
+  "gameSha256":"cb52e705923e6ed40af7796d0d410dc8974410cb0daa958ef045316fbe5726a2",
+  "resolvedFindings":["R1-F01","R1-F02"],
+  "checks":{
+    "node":{"passed":45,"total":45},
+    "syntax":"passed",
+    "existingBrowser":{"passed":18,"total":18,"seconds":6.1,"url":"http://127.0.0.1:4190/tests/browser.html"},
+    "independentBrowser":{"passed":18,"total":18,"url":"http://127.0.0.1:4190/evals/independent-r1.html"},
+    "firstStableBoundary":{"at249ms":0,"at250ms":1},
+    "pauseNoAccumulation":"passed",
+    "unstableIntervalReset":"passed",
+    "restartReset":"passed",
+    "dimSeriesNotStable":"passed",
+    "realKeyboardFinalCandidate":"passed",
+    "realMouse":"passed on initial R1; unchanged input handling",
+    "realTouch":"not_run"
+  },
+  "observedReturnFirstGuide":"1 / 2 연결 · +극에서 전구 반대쪽까지 전기를 보내는 길을 이어 주세요.",
+  "observedLowerHint":"전구의 양쪽 단자까지 이어 주세요.",
+  "limitations":["Human outcomes not measured","Small viewport and physical touch not tested","Full telemetry contract remains future work"]
+}

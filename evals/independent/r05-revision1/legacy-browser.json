@@ -1,0 +1,8 @@
+{
+  "humanStatus": "not_run",
+  "url": "http://127.0.0.1:4199/tests/browser.html",
+  "seconds": 4.7,
+  "passed": 18,
+  "source": "Browser visible #summary transcribed",
+  "total": 18
+}

@@ -1,0 +1,121 @@
+{
+  "scope": "Independent API/DOM integration, not native input or human measurement",
+  "humanStatus": "not_run",
+  "passed": 18,
+  "total": 18,
+  "cases": [
+    {
+      "name": "initial guide and exactly two targets",
+      "status": "pass"
+    },
+    {
+      "name": "supply first: open until return; hides on first light",
+      "status": "pass"
+    },
+    {
+      "name": "return first targets missing supply",
+      "status": "pass"
+    },
+    {
+      "name": "reverse load polarity still identifies missing terminals",
+      "status": "pass"
+    },
+    {
+      "name": "same exact terminal is refused without phantom wire",
+      "status": "pass"
+    },
+    {
+      "name": "both source poles on same lamp terminal: no light and error",
+      "status": "pass"
+    },
+    {
+      "name": "removing first wire restores initial progress",
+      "status": "pass"
+    },
+    {
+      "name": "pause and help hide guide and freeze simulation",
+      "status": "pass"
+    },
+    {
+      "name": "first light event emitted once across repair",
+      "status": "pass"
+    },
+    {
+      "name": "test mode does not advance from real animation frames",
+      "status": "pass"
+    },
+    {
+      "name": "telemetry sequence, active clock, immutable export",
+      "status": "pass"
+    },
+    {
+      "name": "return-first instruction must describe missing supply rather than return",
+      "status": "pass"
+    },
+    {
+      "name": "first_light metric must wait for first house stable, per eval contract",
+      "status": "pass"
+    },
+    {
+      "name": "return-first lower hint agrees with missing supply",
+      "status": "pass"
+    },
+    {
+      "name": "first_power immediate, first_light after exactly .25 active seconds",
+      "status": "pass"
+    },
+    {
+      "name": "pause cannot accumulate stable light duration",
+      "status": "pass"
+    },
+    {
+      "name": "unstable interval resets stable duration",
+      "status": "pass"
+    },
+    {
+      "name": "restart clears stable event and duration",
+      "status": "pass"
+    }
+  ],
+  "diagnostic": {
+    "returnFirstGuide": {
+      "hidden": false,
+      "text": "1 / 2 연결 · +극에서 전구 반대쪽까지 전기를 보내는 길을 이어 주세요.",
+      "targets": [
+        "terminal-lamp-1-left",
+        "terminal-source-plus"
+      ]
+    },
+    "lowerHint": "전구의 양쪽 단자까지 이어 주세요.",
+    "telemetry": {
+      "schemaVersion": 1,
+      "runId": "1789651035376-q7z2yn",
+      "variant": "r5",
+      "seed": 101,
+      "testMode": true,
+      "legacyMode": true,
+      "events": [
+        {
+          "eventSeq": 1,
+          "wallMs": 4,
+          "activeMs": 0,
+          "event": "run_start",
+          "payload": {}
+        },
+        {
+          "eventSeq": 2,
+          "wallMs": 5,
+          "activeMs": 0,
+          "event": "connect_result",
+          "payload": {
+            "from": "lamp-1",
+            "to": "source",
+            "fromPort": "right",
+            "toPort": "minus",
+            "ok": true
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+'use strict';
+document.getElementById('fixture').addEventListener('load', async () => {
+ const f=document.getElementById('fixture'), w=f.contentWindow, d=f.contentDocument, a=w.BlackoutTesting;
+ const cases=[]; const assert=(v,m)=>{if(!v)throw Error(m)};
+ const g=()=>({hidden:d.getElementById('connection-guide').hidden,text:d.getElementById('connection-guide').textContent,targets:[...d.querySelectorAll('.guided')].map(x=>x.id).sort()});
+ const eq=(x,y)=>assert(JSON.stringify(x)===JSON.stringify(y),JSON.stringify({actual:x,expected:y}));
+ const targets=(...ids)=>eq(g().targets,ids.sort());
+ const reset=()=>{a.reset();a.start()};
+ const feed=(port='left')=>a.connect('source','lamp-1','plus',port);
+ const back=(port='right')=>a.connect('lamp-1','source',port,'minus');
+ const test=async(name,fn)=>{try{reset();await fn();cases.push({name,status:'pass'})}catch(e){cases.push({name,status:'fail',error:e.message,guide:g()})}};
+ await test('initial guide and exactly two targets',()=>{assert(!g().hidden && g().text.includes('0 / 2'),'initial missing');targets('terminal-source-plus','terminal-lamp-1-left')});
+ await test('supply first: open until return; hides on first light',()=>{feed();assert(!a.snapshot().analysis.nodes['lamp-1'].powered,'open powered');assert(g().text.includes('1 / 2'),'missing progress');targets('terminal-source-minus','terminal-lamp-1-right');back();assert(a.snapshot().analysis.nodes['lamp-1'].powered && g().hidden,'light/guide failure');targets();});
+ await test('return first targets missing supply',()=>{back();assert(g().text.includes('1 / 2'),'missing progress');targets('terminal-source-plus','terminal-lamp-1-left');feed();assert(g().hidden,'guide remains')});
+ await test('reverse load polarity still identifies missing terminals',()=>{feed('right');targets('terminal-source-minus','terminal-lamp-1-left');back('left');assert(g().hidden,'guide remains')});
+ await test('same exact terminal is refused without phantom wire',()=>{assert(!a.connect('source','source','plus','plus'),'same terminal accepted');eq(a.snapshot().edges.length,0);assert(d.getElementById('toast').textContent.length>0,'no error');targets('terminal-source-plus','terminal-lamp-1-left')});
+ await test('both source poles on same lamp terminal: no light and error',()=>{feed();back('left');assert(!a.snapshot().analysis.nodes['lamp-1'].powered,'invalid lit');assert(/합선|같은 단자/.test(g().text),'error missing')});
+ await test('removing first wire restores initial progress',()=>{feed();a.remove(a.snapshot().edges[0].id);assert(g().text.includes('0 / 2'),'stale guide')});
+ await test('pause and help hide guide and freeze simulation',()=>{for(const [open,close] of [['pause-button','resume-button'],['help-button','close-help']]){d.getElementById(open).click();assert(g().hidden,'guide during modal');let t=a.snapshot().time;a.advance(20);eq(a.snapshot().time,t);d.getElementById(close).click();assert(!g().hidden,'guide not restored')}});
+ await test('first light event emitted once across repair',()=>{feed();back();a.remove(a.snapshot().edges[0].id);feed();eq(a.events().events.filter(e=>e.event==='first_light').length,1)});
+ await test('test mode does not advance from real animation frames',async()=>{const t=a.snapshot().time;await new Promise(r=>setTimeout(r,350));eq(a.snapshot().time,t);a.advance(1);assert(Math.abs(a.snapshot().time-t-1)<1e-8,'manual advance wrong')});
+ await test('telemetry sequence, active clock, immutable export',()=>{feed();a.advance(.5);back();const x=a.events();assert(x.events.every((e,i)=>e.eventSeq===i+1),'sequence');assert(x.events.every((e,i)=>i===0||e.activeMs>=x.events[i-1].activeMs),'active order');x.events[0].event='mutated';assert(a.events().events[0].event==='run_start','mutable export')});
+ await test('return-first instruction must describe missing supply rather than return',()=>{back();assert(!g().text.includes('돌아오는 길이 필요'), 'Return already exists but copy says return is missing: '+g().text)});
+ await test('first_light metric must wait for first house stable, per eval contract',()=>{a.advance(30.1);feed();a.connect('lamp-1','lamp-2','right','left');a.connect('lamp-2','source','right','minus');const brightness=a.snapshot().analysis.nodes['lamp-1'].brightness;assert(brightness<.8,'fixture must be dim');assert(a.events().events.filter(e=>e.event==='first_light').length===0,'first_light emitted for dim series brightness '+brightness)});
+ const diagnostic={returnFirstGuide:null,telemetry:null};reset();back();diagnostic.returnFirstGuide=g();diagnostic.telemetry=a.events();
+ const result={scope:'Independent API/DOM integration, not native input or human measurement',humanStatus:'not_run',passed:cases.filter(x=>x.status==='pass').length,total:cases.length,cases,diagnostic};
+ document.getElementById('results').textContent=JSON.stringify(result,null,2);document.title=`${result.passed===result.total?'PASS':'FAIL'} R1 ${result.passed}/${result.total}`;
+});

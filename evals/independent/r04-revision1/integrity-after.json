@@ -1,0 +1,9 @@
+{
+  "verifiedAt": "2026-09-17T13:04:29.0252596Z",
+  "productSnapshotUnchanged": true,
+  "currentGameMatchesSnapshot": true,
+  "intentionalEvaluatorScriptUpdates": [
+    "evals/independent-r4.js"
+  ],
+  "finalHarnessSha256": "b01dc02de28762f7ed4a5c55f759975885529f80f90a419f7ec4c1756fec9a9d"
+}

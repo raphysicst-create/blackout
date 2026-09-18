@@ -1,0 +1,70 @@
+{
+  "humanStatus": "not_run",
+  "passed": 5,
+  "total": 5,
+  "cases": [
+    {
+      "name": "fast stable policy dt=0.05",
+      "status": "pass",
+      "result": {
+        "spawns": [
+          12.000000000000036,
+          24.000000000000206,
+          36.00000000000009
+        ],
+        "previews": [
+          9.049999999999994,
+          21.000000000000163,
+          33.00000000000026
+        ],
+        "maxWait": 12.00000000000017
+      }
+    },
+    {
+      "name": "fast stable policy dt=0.016666666666666666",
+      "status": "pass",
+      "result": {
+        "spawns": [
+          12.000000000000176,
+          23.99999999999992,
+          35.99999999999924
+        ],
+        "previews": [
+          9.000000000000027,
+          21.016666666666755,
+          33.016666666666076
+        ],
+        "maxWait": 12.000000000000176
+      }
+    },
+    {
+      "name": "fast stable policy dt=0.1",
+      "status": "pass",
+      "result": {
+        "spawns": [
+          11.999999999999973,
+          24.00000000000007,
+          36.00000000000024
+        ],
+        "previews": [
+          9.099999999999984,
+          21.00000000000003,
+          33.0000000000002
+        ],
+        "maxWait": 12.00000000000017
+      }
+    },
+    {
+      "name": "unresolved 45s, help once, then 7s stable without catch-up",
+      "status": "pass",
+      "result": {
+        "help": 1,
+        "firstSpawn": 51.99999999999918
+      }
+    },
+    {
+      "name": "preview cancellation resets 7 second stable requirement",
+      "status": "pass"
+    }
+  ]
+}

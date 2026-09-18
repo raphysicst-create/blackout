@@ -1,0 +1,33 @@
+{
+  "productModifiedByEvaluator": false,
+  "gameSha256": "a62076f3cb6ac0adec8a01816bd7c6cb98fa56a20959031f3e787c296d93019e",
+  "schemaVersion": 1,
+  "findings": [
+    {
+      "expected": "An active new run announces 일시 정지.",
+      "id": "R5-F01",
+      "reproduction": "Actual pause -> 처음부터 다시: mode playing and paused false, but pause-button aria-label remains 계속하기.",
+      "title": "Restart leaves incorrect pause accessible name",
+      "severity": "P2"
+    }
+  ],
+  "round": "R5",
+  "manifest": "r05/manifest.json",
+  "decision": "REVISE",
+  "checks": {
+    "r1Legacy": "18/18",
+    "director": "5/5",
+    "r4Default": "19/19",
+    "node": "45/45",
+    "cable": "5/5",
+    "syntax": "passed",
+    "seedURL": "4/4",
+    "r3Default": "22/22",
+    "r5Default": "32/32",
+    "legacy": "18/18"
+  },
+  "harnessCorrection": "Initial six layout failures came from incorrect assumed element order; replaced with pairwise rectangle intersection. Product unchanged. Original harness retained.",
+  "revision": 0,
+  "participants": 0,
+  "humanStatus": "not_run"
+}

@@ -1,0 +1,1232 @@
+{
+  "humanStatus": "not_run",
+  "seed": 202,
+  "mode": "playing",
+  "paused": false,
+  "history": [
+    {
+      "schemaVersion": 1,
+      "runId": "1789651301346-r940od",
+      "variant": "r5",
+      "seed": 101,
+      "testMode": true,
+      "legacyMode": false,
+      "events": [
+        {
+          "eventSeq": 1,
+          "wallMs": 16,
+          "activeMs": 0,
+          "event": "run_start",
+          "payload": {}
+        },
+        {
+          "eventSeq": 2,
+          "wallMs": 19,
+          "activeMs": 0,
+          "event": "connect_result",
+          "payload": {
+            "from": "source",
+            "to": "lamp-1",
+            "fromPort": "plus",
+            "toPort": "left",
+            "ok": true
+          }
+        },
+        {
+          "eventSeq": 3,
+          "wallMs": 26,
+          "activeMs": 0,
+          "event": "connect_result",
+          "payload": {
+            "from": "lamp-1",
+            "to": "source",
+            "fromPort": "right",
+            "toPort": "minus",
+            "ok": true
+          }
+        },
+        {
+          "eventSeq": 4,
+          "wallMs": 28,
+          "activeMs": 0,
+          "event": "first_power",
+          "payload": {}
+        },
+        {
+          "eventSeq": 5,
+          "wallMs": 32,
+          "activeMs": 250,
+          "event": "facility_state",
+          "payload": {
+            "id": "lamp-1",
+            "from": "off",
+            "to": "stable",
+            "brightness": 0.9916526251960454,
+            "current": 0.2987452698665605
+          }
+        },
+        {
+          "eventSeq": 6,
+          "wallMs": 32,
+          "activeMs": 250,
+          "event": "first_light",
+          "payload": {
+            "brightness": 0.9916526251960454,
+            "stableSeconds": 0.25
+          }
+        },
+        {
+          "eventSeq": 7,
+          "wallMs": 36,
+          "activeMs": 1000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 8,
+          "wallMs": 46,
+          "activeMs": 2000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 9,
+          "wallMs": 51,
+          "activeMs": 3000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 10,
+          "wallMs": 58,
+          "activeMs": 4000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 11,
+          "wallMs": 63,
+          "activeMs": 5000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 12,
+          "wallMs": 67,
+          "activeMs": 6000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 13,
+          "wallMs": 73,
+          "activeMs": 7000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 14,
+          "wallMs": 81,
+          "activeMs": 8000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 15,
+          "wallMs": 88,
+          "activeMs": 9000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 16,
+          "wallMs": 89,
+          "activeMs": 9050,
+          "event": "demand_preview",
+          "payload": {
+            "id": "lamp-2"
+          }
+        },
+        {
+          "eventSeq": 17,
+          "wallMs": 98,
+          "activeMs": 10000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 18,
+          "wallMs": 108,
+          "activeMs": 11000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 1350,
+              "used": 1124,
+              "remaining": 226
+            }
+          }
+        },
+        {
+          "eventSeq": 19,
+          "wallMs": 116,
+          "activeMs": 12000,
+          "event": "facility_spawn",
+          "payload": {
+            "id": "lamp-2",
+            "type": "lamp"
+          }
+        },
+        {
+          "eventSeq": 20,
+          "wallMs": 116,
+          "activeMs": 12000,
+          "event": "tool_unlock",
+          "payload": {
+            "tool": "amp"
+          }
+        },
+        {
+          "eventSeq": 21,
+          "wallMs": 116,
+          "activeMs": 12000,
+          "event": "tool_unlock",
+          "payload": {
+            "tool": "branch"
+          }
+        },
+        {
+          "eventSeq": 22,
+          "wallMs": 116,
+          "activeMs": 12000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "off"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 1124,
+              "remaining": 2126
+            }
+          }
+        },
+        {
+          "eventSeq": 23,
+          "wallMs": 117,
+          "activeMs": 12000,
+          "event": "connect_result",
+          "payload": {
+            "from": "lamp-1",
+            "to": "lamp-2",
+            "fromPort": "left",
+            "toPort": "left",
+            "ok": true
+          }
+        },
+        {
+          "eventSeq": 24,
+          "wallMs": 121,
+          "activeMs": 12000,
+          "event": "connect_result",
+          "payload": {
+            "from": "lamp-2",
+            "to": "lamp-1",
+            "fromPort": "right",
+            "toPort": "right",
+            "ok": true
+          }
+        },
+        {
+          "eventSeq": 25,
+          "wallMs": 130,
+          "activeMs": 12250,
+          "event": "facility_state",
+          "payload": {
+            "id": "lamp-2",
+            "from": "off",
+            "to": "stable",
+            "brightness": 0.9810631879309524,
+            "current": 0.29714590172806643
+          }
+        },
+        {
+          "eventSeq": 26,
+          "wallMs": 137,
+          "activeMs": 13000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 27,
+          "wallMs": 148,
+          "activeMs": 14000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 28,
+          "wallMs": 156,
+          "activeMs": 15000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 29,
+          "wallMs": 166,
+          "activeMs": 16000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 30,
+          "wallMs": 177,
+          "activeMs": 17000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 31,
+          "wallMs": 183,
+          "activeMs": 18000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 32,
+          "wallMs": 194,
+          "activeMs": 19000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 33,
+          "wallMs": 200,
+          "activeMs": 20000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 34,
+          "wallMs": 212,
+          "activeMs": 21000,
+          "event": "demand_preview",
+          "payload": {
+            "id": "lamp-3"
+          }
+        },
+        {
+          "eventSeq": 35,
+          "wallMs": 212,
+          "activeMs": 21000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 36,
+          "wallMs": 218,
+          "activeMs": 22000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 37,
+          "wallMs": 228,
+          "activeMs": 23000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 3250,
+              "used": 2254,
+              "remaining": 996
+            }
+          }
+        },
+        {
+          "eventSeq": 38,
+          "wallMs": 238,
+          "activeMs": 24000,
+          "event": "facility_spawn",
+          "payload": {
+            "id": "lamp-3",
+            "type": "lamp"
+          }
+        },
+        {
+          "eventSeq": 39,
+          "wallMs": 238,
+          "activeMs": 24000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "off"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 2254,
+              "remaining": 2346
+            }
+          }
+        },
+        {
+          "eventSeq": 40,
+          "wallMs": 241,
+          "activeMs": 24000,
+          "event": "connect_result",
+          "payload": {
+            "from": "source",
+            "to": "lamp-3",
+            "fromPort": "plus",
+            "toPort": "left",
+            "ok": true
+          }
+        },
+        {
+          "eventSeq": 41,
+          "wallMs": 247,
+          "activeMs": 24000,
+          "event": "connect_result",
+          "payload": {
+            "from": "lamp-3",
+            "to": "source",
+            "fromPort": "right",
+            "toPort": "minus",
+            "ok": true
+          }
+        },
+        {
+          "eventSeq": 42,
+          "wallMs": 253,
+          "activeMs": 24250,
+          "event": "facility_state",
+          "payload": {
+            "id": "lamp-3",
+            "from": "off",
+            "to": "stable",
+            "brightness": 0.979928814429821,
+            "current": 0.2969740616597414
+          }
+        },
+        {
+          "eventSeq": 43,
+          "wallMs": 267,
+          "activeMs": 25000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 44,
+          "wallMs": 280,
+          "activeMs": 26000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 45,
+          "wallMs": 291,
+          "activeMs": 27000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 46,
+          "wallMs": 303,
+          "activeMs": 28000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 47,
+          "wallMs": 318,
+          "activeMs": 29000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 48,
+          "wallMs": 331,
+          "activeMs": 30000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 49,
+          "wallMs": 342,
+          "activeMs": 31000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 50,
+          "wallMs": 353,
+          "activeMs": 32000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 51,
+          "wallMs": 365,
+          "activeMs": 33000,
+          "event": "demand_preview",
+          "payload": {
+            "id": "motor-1"
+          }
+        },
+        {
+          "eventSeq": 52,
+          "wallMs": 365,
+          "activeMs": 33000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 53,
+          "wallMs": 381,
+          "activeMs": 34000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 54,
+          "wallMs": 393,
+          "activeMs": 35000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 4600,
+              "used": 4238,
+              "remaining": 362
+            }
+          }
+        },
+        {
+          "eventSeq": 55,
+          "wallMs": 409,
+          "activeMs": 36000,
+          "event": "facility_spawn",
+          "payload": {
+            "id": "motor-1",
+            "type": "motor"
+          }
+        },
+        {
+          "eventSeq": 56,
+          "wallMs": 409,
+          "activeMs": 36000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "off"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 4238,
+              "remaining": 1662
+            }
+          }
+        },
+        {
+          "eventSeq": 57,
+          "wallMs": 411,
+          "activeMs": 36000,
+          "event": "connect_result",
+          "payload": {
+            "from": "lamp-3",
+            "to": "motor-1",
+            "fromPort": "left",
+            "toPort": "left",
+            "ok": true
+          }
+        },
+        {
+          "eventSeq": 58,
+          "wallMs": 415,
+          "activeMs": 36000,
+          "event": "connect_result",
+          "payload": {
+            "from": "motor-1",
+            "to": "lamp-3",
+            "fromPort": "right",
+            "toPort": "right",
+            "ok": true
+          }
+        },
+        {
+          "eventSeq": 59,
+          "wallMs": 424,
+          "activeMs": 36250,
+          "event": "facility_state",
+          "payload": {
+            "id": "motor-1",
+            "from": "off",
+            "to": "stable",
+            "brightness": 0.9643459626530398,
+            "current": 0.44190503214745197
+          }
+        },
+        {
+          "eventSeq": 60,
+          "wallMs": 444,
+          "activeMs": 37000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 5460,
+              "remaining": 440
+            }
+          }
+        },
+        {
+          "eventSeq": 61,
+          "wallMs": 461,
+          "activeMs": 38000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 5460,
+              "remaining": 440
+            }
+          }
+        },
+        {
+          "eventSeq": 62,
+          "wallMs": 481,
+          "activeMs": 39000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 5460,
+              "remaining": 440
+            }
+          }
+        },
+        {
+          "eventSeq": 63,
+          "wallMs": 498,
+          "activeMs": 40000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 5460,
+              "remaining": 440
+            }
+          }
+        },
+        {
+          "eventSeq": 64,
+          "wallMs": 516,
+          "activeMs": 41000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 5460,
+              "remaining": 440
+            }
+          }
+        },
+        {
+          "eventSeq": 65,
+          "wallMs": 533,
+          "activeMs": 42000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 5460,
+              "remaining": 440
+            }
+          }
+        },
+        {
+          "eventSeq": 66,
+          "wallMs": 550,
+          "activeMs": 43000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 5460,
+              "remaining": 440
+            }
+          }
+        },
+        {
+          "eventSeq": 67,
+          "wallMs": 567,
+          "activeMs": 44000,
+          "event": "sample",
+          "payload": {
+            "loads": {
+              "lamp-1": "stable",
+              "lamp-2": "stable",
+              "lamp-3": "stable",
+              "motor-1": "stable"
+            },
+            "maxHeat": 0,
+            "recovering": false,
+            "cable": {
+              "budget": 5900,
+              "used": 5460,
+              "remaining": 440
+            }
+          }
+        },
+        {
+          "eventSeq": 68,
+          "wallMs": 568,
+          "activeMs": 44050,
+          "event": "run_end",
+          "payload": {
+            "reason": "won",
+            "breaks": 0
+          }
+        },
+        {
+          "eventSeq": 69,
+          "wallMs": 694,
+          "activeMs": 44050,
+          "event": "result_shown",
+          "payload": {
+            "seed": 101
+          }
+        },
+        {
+          "eventSeq": 70,
+          "wallMs": 5837,
+          "activeMs": 44050,
+          "event": "replay_start",
+          "payload": {
+            "fromSeed": 101,
+            "toSeed": 202
+          }
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "runId": "1789651307183-j60oea",
+      "variant": "r5",
+      "seed": 202,
+      "testMode": true,
+      "legacyMode": false,
+      "events": [
+        {
+          "eventSeq": 1,
+          "wallMs": 12,
+          "activeMs": 0,
+          "event": "run_start",
+          "payload": {}
+        },
+        {
+          "eventSeq": 2,
+          "wallMs": 6000,
+          "activeMs": 0,
+          "event": "pause",
+          "payload": {}
+        },
+        {
+          "eventSeq": 3,
+          "wallMs": 6384,
+          "activeMs": 0,
+          "event": "run_end",
+          "payload": {
+            "reason": "restart"
+          }
+        },
+        {
+          "eventSeq": 4,
+          "wallMs": 6384,
+          "activeMs": 0,
+          "event": "restart",
+          "payload": {
+            "fromSeed": 202,
+            "toSeed": 202
+          }
+        }
+      ]
+    }
+  ],
+  "current": {
+    "schemaVersion": 1,
+    "runId": "1789651313567-3ks991",
+    "variant": "r5",
+    "seed": 202,
+    "testMode": true,
+    "legacyMode": false,
+    "events": [
+      {
+        "eventSeq": 1,
+        "wallMs": 7,
+        "activeMs": 0,
+        "event": "run_start",
+        "payload": {}
+      },
+      {
+        "eventSeq": 2,
+        "wallMs": 8717,
+        "activeMs": 0,
+        "event": "pause",
+        "payload": {}
+      },
+      {
+        "eventSeq": 3,
+        "wallMs": 9099,
+        "activeMs": 0,
+        "event": "resume",
+        "payload": {}
+      }
+    ]
+  },
+  "pauseLabel": "일시 정지"
+}

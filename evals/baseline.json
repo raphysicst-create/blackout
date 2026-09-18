@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-17T12:07:25.156Z",
+  "sourceHashes": {
+    "engine.js": "249b793542e6dcf66018cb78badec5e06921cd889bce237c7fbe906a918d8645",
+    "game.js": "9d984527926075b89510c66cb6675ebf675261e4d47060c3b07c446c08a87c65",
+    "router.js": "c20e1ab0313a5641f440ba542dbd29dbb76df3275fae0870941d72caff097d1e",
+    "styles.css": "ba82ebe19ca52be457763267dd28ac0d2680d1534f41fa97ca86137ccaeb9416"
+  },
+  "scope": "Fixed engine topology probes only; no browser, pacing, human or candidate evaluation.",
+  "constants": {
+    "wireCapacity": 0.75,
+    "heatSeconds": 6,
+    "coolingSeconds": 3,
+    "stableBrightness": 0.8
+  },
+  "probes": {
+    "oneWireOpen": {
+      "allStable": false,
+      "shortCircuit": false,
+      "totalCurrent": 0,
+      "wireCount": 1,
+      "overloadedEdges": [],
+      "loads": {
+        "l1": {
+          "brightness": 0,
+          "current": 0
+        }
+      }
+    },
+    "twoLampsSeries": {
+      "allStable": false,
+      "shortCircuit": false,
+      "totalCurrent": 0.14964086193136605,
+      "wireCount": 3,
+      "overloadedEdges": [],
+      "loads": {
+        "l1": {
+          "brightness": 0.24880430621737198,
+          "current": 0.14964086193137047
+        },
+        "l2": {
+          "brightness": 0.24880430621733388,
+          "current": 0.149640861931359
+        }
+      }
+    },
+    "fourIndependentLoops": {
+      "allStable": true,
+      "shortCircuit": false,
+      "totalCurrent": 1.3301804180161025,
+      "wireCount": 8,
+      "overloadedEdges": [],
+      "loads": {
+        "l1": {
+          "brightness": 0.9712409527605278,
+          "current": 0.29565467313818583
+        },
+        "l2": {
+          "brightness": 0.971240952760528,
+          "current": 0.29565467313818583
+        },
+        "l3": {
+          "brightness": 0.9712409527605278,
+          "current": 0.29565467313818583
+        },
+        "m1": {
+          "brightness": 0.9700779061196788,
+          "current": 0.44321639860144496
+        }
+      }
+    },
+    "fourSharedLoops": {
+      "allStable": false,
+      "shortCircuit": false,
+      "totalCurrent": 1.3231403564463617,
+      "wireCount": 10,
+      "overloadedEdges": [
+        "trunk-in",
+        "trunk-out"
+      ],
+      "loads": {
+        "l1": {
+          "brightness": 0.9609874535879183,
+          "current": 0.29408990261978163
+        },
+        "l2": {
+          "brightness": 0.960987453587918,
+          "current": 0.2940899026197816
+        },
+        "l3": {
+          "brightness": 0.960987453587918,
+          "current": 0.2940899026197816
+        },
+        "m1": {
+          "brightness": 0.9598366853603049,
+          "current": 0.4408706485869316
+        }
+      }
+    },
+    "sharedTrunkBreak": {
+      "simulatedSeconds": 6,
+      "brokenEdges": [
+        "trunk-in",
+        "trunk-out"
+      ]
+    },
+    "rebuiltIndependentLoops": {
+      "allStable": true,
+      "shortCircuit": false,
+      "totalCurrent": 1.3301804180161025,
+      "wireCount": 8,
+      "overloadedEdges": [],
+      "loads": {
+        "l1": {
+          "brightness": 0.9712409527605278,
+          "current": 0.29565467313818583
+        },
+        "l2": {
+          "brightness": 0.971240952760528,
+          "current": 0.29565467313818583
+        },
+        "l3": {
+          "brightness": 0.9712409527605278,
+          "current": 0.29565467313818583
+        },
+        "m1": {
+          "brightness": 0.9700779061196788,
+          "current": 0.44321639860144496
+        }
+      }
+    }
+  },
+  "humanPlaytest": {
+    "status": "not_run",
+    "participants": 0
+  },
+  "interpretation": "Independent loops are a stable solution in this fixture. Whether players discover or overuse it requires playtests. Rebuild uses fresh wires and does not model repair input or time."
+}

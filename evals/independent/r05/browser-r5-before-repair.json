@@ -1,0 +1,877 @@
+{
+  "humanStatus": "not_run",
+  "passed": 32,
+  "total": 32,
+  "cases": [
+    {
+      "name": "101 real solution ab+cm",
+      "status": "pass"
+    },
+    {
+      "name": "101 real solution ac+bm",
+      "status": "pass"
+    },
+    {
+      "name": "202 real solution ab+cm",
+      "status": "pass"
+    },
+    {
+      "name": "202 real solution am+bc",
+      "status": "pass"
+    },
+    {
+      "name": "303 real solution ac+bm",
+      "status": "pass"
+    },
+    {
+      "name": "303 real solution am+bc",
+      "status": "pass"
+    },
+    {
+      "name": "202 copied strategy ac+bm overloads",
+      "status": "pass"
+    },
+    {
+      "name": "303 copied strategy ab+cm overloads",
+      "status": "pass"
+    },
+    {
+      "name": "result delayed seven seconds and actual values emitted once",
+      "status": "pass"
+    },
+    {
+      "name": "replay guard, 101 -> 202 -> 303 -> 101, history and one replay per run",
+      "status": "pass"
+    },
+    {
+      "name": "paused restart keeps seed and history bounded; reset clears history",
+      "status": "pass"
+    },
+    {
+      "name": "same-seed physical and event timeline determinism",
+      "status": "pass"
+    },
+    {
+      "name": "one real crisis recovery is included in final result",
+      "status": "pass"
+    },
+    {
+      "name": "R2 default unresolved demand, help once, preview and pause",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 101 600x320",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 101 600x380",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 101 760x550",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 101 761x380",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 101 390x844",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 101 1280x720",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 202 600x320",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 202 600x380",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 202 760x550",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 202 761x380",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 202 390x844",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 202 1280x720",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 303 600x320",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 303 600x380",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 303 760x550",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 303 761x380",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 303 390x844",
+      "status": "pass"
+    },
+    {
+      "name": "result layout seed 303 1280x720",
+      "status": "pass"
+    }
+  ],
+  "metrics": {
+    "solutions": [
+      {
+        "seed": 101,
+        "kind": "ab+cm",
+        "time": 44.04999999999953,
+        "used": 5460,
+        "remaining": 440,
+        "current": 0.7370386729510514,
+        "motors": [
+          "motor-1"
+        ]
+      },
+      {
+        "seed": 101,
+        "kind": "ac+bm",
+        "time": 44.04999999999953,
+        "used": 5084,
+        "remaining": 816,
+        "current": 0.7370386729510514,
+        "motors": [
+          "motor-1"
+        ]
+      },
+      {
+        "seed": 202,
+        "kind": "ab+cm",
+        "time": 44.04999999999953,
+        "used": 5460,
+        "remaining": 440,
+        "current": 0.7359584839949918,
+        "motors": [
+          "lamp-2",
+          "motor-1"
+        ]
+      },
+      {
+        "seed": 202,
+        "kind": "am+bc",
+        "time": 44.04999999999953,
+        "used": 5440,
+        "remaining": 460,
+        "current": 0.7363949731514774,
+        "motors": [
+          "lamp-2",
+          "motor-1"
+        ]
+      },
+      {
+        "seed": 303,
+        "kind": "ac+bm",
+        "time": 44.04999999999953,
+        "used": 5084,
+        "remaining": 816,
+        "current": 0.7359584839949918,
+        "motors": [
+          "lamp-3",
+          "motor-1"
+        ]
+      },
+      {
+        "seed": 303,
+        "kind": "am+bc",
+        "time": 44.04999999999953,
+        "used": 5440,
+        "remaining": 460,
+        "current": 0.7359584839949918,
+        "motors": [
+          "lamp-3",
+          "motor-1"
+        ]
+      }
+    ],
+    "counterexamples": [
+      {
+        "seed": 202,
+        "kind": "ac+bm",
+        "current": 0.8827786125892856,
+        "breaks": 1,
+        "wireBreakEvents": 2
+      },
+      {
+        "seed": 303,
+        "kind": "ab+cm",
+        "current": 0.8827786125892856,
+        "breaks": 1,
+        "wireBreakEvents": 2
+      }
+    ],
+    "layouts": [
+      {
+        "seed": 101,
+        "width": 600,
+        "height": 320,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 160,
+            "y": 156.9085693359375,
+            "right": 440,
+            "bottom": 172.9085693359375
+          },
+          {
+            "id": "next-preview",
+            "x": 160,
+            "y": 229.9085693359375,
+            "right": 440,
+            "bottom": 274.9085693359375
+          },
+          {
+            "id": "replay-button",
+            "x": 251.40000915527344,
+            "y": 277.9085693359375,
+            "right": 348.60001373291016,
+            "bottom": 317.9085693359375
+          },
+          {
+            "id": "schematic-button",
+            "x": 216,
+            "y": 181.9085693359375,
+            "right": 384,
+            "bottom": 221.9085693359375
+          }
+        ]
+      },
+      {
+        "seed": 101,
+        "width": 600,
+        "height": 380,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 160,
+            "y": 214,
+            "right": 440,
+            "bottom": 230
+          },
+          {
+            "id": "next-preview",
+            "x": 160,
+            "y": 287,
+            "right": 440,
+            "bottom": 332
+          },
+          {
+            "id": "replay-button",
+            "x": 251.40000915527344,
+            "y": 335,
+            "right": 348.60001373291016,
+            "bottom": 375
+          },
+          {
+            "id": "schematic-button",
+            "x": 216,
+            "y": 239,
+            "right": 384,
+            "bottom": 279
+          }
+        ]
+      },
+      {
+        "seed": 101,
+        "width": 760,
+        "height": 550,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 240,
+            "y": 283.9717102050781,
+            "right": 520,
+            "bottom": 319.1717109680176
+          },
+          {
+            "id": "next-preview",
+            "x": 240,
+            "y": 399.57171630859375,
+            "right": 520,
+            "bottom": 449.07169342041016
+          },
+          {
+            "id": "replay-button",
+            "x": 318.3999938964844,
+            "y": 457.0716857910156,
+            "right": 441.5999984741211,
+            "bottom": 498.2716865539551
+          },
+          {
+            "id": "schematic-button",
+            "x": 293,
+            "y": 337.1717224121094,
+            "right": 467,
+            "bottom": 385.5717239379883
+          }
+        ]
+      },
+      {
+        "seed": 101,
+        "width": 761,
+        "height": 380,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 240.1999969482422,
+            "y": 213.9087677001953,
+            "right": 520.5999908447266,
+            "bottom": 229.9087677001953
+          },
+          {
+            "id": "next-preview",
+            "x": 240.1999969482422,
+            "y": 286.9087829589844,
+            "right": 520.5999908447266,
+            "bottom": 331.9087829589844
+          },
+          {
+            "id": "replay-button",
+            "x": 331.8000183105469,
+            "y": 334.9087829589844,
+            "right": 429.0000228881836,
+            "bottom": 374.9087829589844
+          },
+          {
+            "id": "schematic-button",
+            "x": 296.3999938964844,
+            "y": 238.9087677001953,
+            "right": 464.3999938964844,
+            "bottom": 278.9087677001953
+          }
+        ]
+      },
+      {
+        "seed": 101,
+        "width": 390,
+        "height": 844,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 50,
+            "y": 526.171875,
+            "right": 340.3999938964844,
+            "bottom": 543.7718753814697
+          },
+          {
+            "id": "next-preview",
+            "x": 50,
+            "y": 624.171875,
+            "right": 340.3999938964844,
+            "bottom": 673.671875
+          },
+          {
+            "id": "replay-button",
+            "x": 133.60000610351562,
+            "y": 681.671875,
+            "right": 256.80001068115234,
+            "bottom": 722.8718757629395
+          },
+          {
+            "id": "schematic-button",
+            "x": 108.20000457763672,
+            "y": 561.7719116210938,
+            "right": 282.2000045776367,
+            "bottom": 610.1719131469727
+          }
+        ]
+      },
+      {
+        "seed": 101,
+        "width": 1280,
+        "height": 720,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 488.8000183105469,
+            "y": 474.6000061035156,
+            "right": 791.2000122070312,
+            "bottom": 492.20000648498535
+          },
+          {
+            "id": "next-preview",
+            "x": 488.8000183105469,
+            "y": 572.6000366210938,
+            "right": 791.2000122070312,
+            "bottom": 605.6000366210938
+          },
+          {
+            "id": "replay-button",
+            "x": 578.4000244140625,
+            "y": 613.6000366210938,
+            "right": 701.6000289916992,
+            "bottom": 654.8000373840332
+          },
+          {
+            "id": "schematic-button",
+            "x": 553,
+            "y": 510.20001220703125,
+            "right": 727,
+            "bottom": 558.6000137329102
+          }
+        ]
+      },
+      {
+        "seed": 202,
+        "width": 600,
+        "height": 320,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 160,
+            "y": 172,
+            "right": 440,
+            "bottom": 188
+          },
+          {
+            "id": "next-preview",
+            "x": 160,
+            "y": 245,
+            "right": 440,
+            "bottom": 275
+          },
+          {
+            "id": "replay-button",
+            "x": 251.40000915527344,
+            "y": 278,
+            "right": 348.60001373291016,
+            "bottom": 318
+          },
+          {
+            "id": "schematic-button",
+            "x": 216,
+            "y": 197,
+            "right": 384,
+            "bottom": 237
+          }
+        ]
+      },
+      {
+        "seed": 202,
+        "width": 600,
+        "height": 380,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 160,
+            "y": 228.90872192382812,
+            "right": 440,
+            "bottom": 244.90872192382812
+          },
+          {
+            "id": "next-preview",
+            "x": 160,
+            "y": 301.9087219238281,
+            "right": 440,
+            "bottom": 331.9087219238281
+          },
+          {
+            "id": "replay-button",
+            "x": 251.40000915527344,
+            "y": 334.9087219238281,
+            "right": 348.60001373291016,
+            "bottom": 374.9087219238281
+          },
+          {
+            "id": "schematic-button",
+            "x": 216,
+            "y": 253.90872192382812,
+            "right": 384,
+            "bottom": 293.9087219238281
+          }
+        ]
+      },
+      {
+        "seed": 202,
+        "width": 760,
+        "height": 550,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 240,
+            "y": 283.9718017578125,
+            "right": 520,
+            "bottom": 319.17180252075195
+          },
+          {
+            "id": "next-preview",
+            "x": 240,
+            "y": 399.5718078613281,
+            "right": 520,
+            "bottom": 449.07178497314453
+          },
+          {
+            "id": "replay-button",
+            "x": 318.3999938964844,
+            "y": 457.07177734375,
+            "right": 441.5999984741211,
+            "bottom": 498.27177810668945
+          },
+          {
+            "id": "schematic-button",
+            "x": 293,
+            "y": 337.17181396484375,
+            "right": 467,
+            "bottom": 385.57181549072266
+          }
+        ]
+      },
+      {
+        "seed": 202,
+        "width": 761,
+        "height": 380,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 240.40000915527344,
+            "y": 228.9086456298828,
+            "right": 520.4000091552734,
+            "bottom": 244.9086456298828
+          },
+          {
+            "id": "next-preview",
+            "x": 240.40000915527344,
+            "y": 301.9086608886719,
+            "right": 520.4000091552734,
+            "bottom": 331.9086608886719
+          },
+          {
+            "id": "replay-button",
+            "x": 331.8000183105469,
+            "y": 334.9086608886719,
+            "right": 429.0000228881836,
+            "bottom": 374.9086608886719
+          },
+          {
+            "id": "schematic-button",
+            "x": 296.3999938964844,
+            "y": 253.9086456298828,
+            "right": 464.3999938964844,
+            "bottom": 293.9086456298828
+          }
+        ]
+      },
+      {
+        "seed": 202,
+        "width": 390,
+        "height": 844,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 50,
+            "y": 526.1715087890625,
+            "right": 340.3999938964844,
+            "bottom": 543.7715091705322
+          },
+          {
+            "id": "next-preview",
+            "x": 50,
+            "y": 624.1715087890625,
+            "right": 340.3999938964844,
+            "bottom": 673.6715087890625
+          },
+          {
+            "id": "replay-button",
+            "x": 133.60000610351562,
+            "y": 681.6715087890625,
+            "right": 256.80001068115234,
+            "bottom": 722.871509552002
+          },
+          {
+            "id": "schematic-button",
+            "x": 108.20000457763672,
+            "y": 561.771484375,
+            "right": 282.2000045776367,
+            "bottom": 610.1714859008789
+          }
+        ]
+      },
+      {
+        "seed": 202,
+        "width": 1280,
+        "height": 720,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 490.3999938964844,
+            "y": 474.509765625,
+            "right": 789.6000061035156,
+            "bottom": 492.1097660064697
+          },
+          {
+            "id": "next-preview",
+            "x": 490.3999938964844,
+            "y": 572.509765625,
+            "right": 789.6000061035156,
+            "bottom": 605.509765625
+          },
+          {
+            "id": "replay-button",
+            "x": 578.4000244140625,
+            "y": 613.509765625,
+            "right": 701.6000289916992,
+            "bottom": 654.7097663879395
+          },
+          {
+            "id": "schematic-button",
+            "x": 553,
+            "y": 510.1097717285156,
+            "right": 727,
+            "bottom": 558.5097732543945
+          }
+        ]
+      },
+      {
+        "seed": 303,
+        "width": 600,
+        "height": 320,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 160,
+            "y": 172,
+            "right": 440,
+            "bottom": 188
+          },
+          {
+            "id": "next-preview",
+            "x": 160,
+            "y": 245,
+            "right": 440,
+            "bottom": 275
+          },
+          {
+            "id": "replay-button",
+            "x": 251.40000915527344,
+            "y": 278,
+            "right": 348.60001373291016,
+            "bottom": 318
+          },
+          {
+            "id": "schematic-button",
+            "x": 216,
+            "y": 197,
+            "right": 384,
+            "bottom": 237
+          }
+        ]
+      },
+      {
+        "seed": 303,
+        "width": 600,
+        "height": 380,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 160,
+            "y": 228.9086456298828,
+            "right": 440,
+            "bottom": 244.9086456298828
+          },
+          {
+            "id": "next-preview",
+            "x": 160,
+            "y": 301.9086608886719,
+            "right": 440,
+            "bottom": 331.9086608886719
+          },
+          {
+            "id": "replay-button",
+            "x": 251.40000915527344,
+            "y": 334.9086608886719,
+            "right": 348.60001373291016,
+            "bottom": 374.9086608886719
+          },
+          {
+            "id": "schematic-button",
+            "x": 216,
+            "y": 253.9086456298828,
+            "right": 384,
+            "bottom": 293.9086456298828
+          }
+        ]
+      },
+      {
+        "seed": 303,
+        "width": 760,
+        "height": 550,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 240,
+            "y": 300.4716796875,
+            "right": 520,
+            "bottom": 335.67168045043945
+          },
+          {
+            "id": "next-preview",
+            "x": 240,
+            "y": 416.0716857910156,
+            "right": 520,
+            "bottom": 449.0716857910156
+          },
+          {
+            "id": "replay-button",
+            "x": 318.3999938964844,
+            "y": 457.0716857910156,
+            "right": 441.5999984741211,
+            "bottom": 498.2716865539551
+          },
+          {
+            "id": "schematic-button",
+            "x": 293,
+            "y": 353.67169189453125,
+            "right": 467,
+            "bottom": 402.07169342041016
+          }
+        ]
+      },
+      {
+        "seed": 303,
+        "width": 761,
+        "height": 380,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 240.40000915527344,
+            "y": 228.909423828125,
+            "right": 520.4000091552734,
+            "bottom": 244.909423828125
+          },
+          {
+            "id": "next-preview",
+            "x": 240.40000915527344,
+            "y": 301.909423828125,
+            "right": 520.4000091552734,
+            "bottom": 331.909423828125
+          },
+          {
+            "id": "replay-button",
+            "x": 331.8000183105469,
+            "y": 334.909423828125,
+            "right": 429.0000228881836,
+            "bottom": 374.909423828125
+          },
+          {
+            "id": "schematic-button",
+            "x": 296.3999938964844,
+            "y": 253.909423828125,
+            "right": 464.3999938964844,
+            "bottom": 293.909423828125
+          }
+        ]
+      },
+      {
+        "seed": 303,
+        "width": 390,
+        "height": 844,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 50,
+            "y": 542.67138671875,
+            "right": 340.3999938964844,
+            "bottom": 560.2713871002197
+          },
+          {
+            "id": "next-preview",
+            "x": 50,
+            "y": 640.67138671875,
+            "right": 340.3999938964844,
+            "bottom": 673.67138671875
+          },
+          {
+            "id": "replay-button",
+            "x": 133.60000610351562,
+            "y": 681.67138671875,
+            "right": 256.80001068115234,
+            "bottom": 722.8713874816895
+          },
+          {
+            "id": "schematic-button",
+            "x": 108.20000457763672,
+            "y": 578.2714233398438,
+            "right": 282.2000045776367,
+            "bottom": 626.6714248657227
+          }
+        ]
+      },
+      {
+        "seed": 303,
+        "width": 1280,
+        "height": 720,
+        "rects": [
+          {
+            "id": "result-story",
+            "x": 497.20001220703125,
+            "y": 474.3897399902344,
+            "right": 782.8000183105469,
+            "bottom": 491.9897403717041
+          },
+          {
+            "id": "next-preview",
+            "x": 497.20001220703125,
+            "y": 572.3897705078125,
+            "right": 782.8000183105469,
+            "bottom": 605.3897705078125
+          },
+          {
+            "id": "replay-button",
+            "x": 578.4000244140625,
+            "y": 613.3897705078125,
+            "right": 701.6000289916992,
+            "bottom": 654.589771270752
+          },
+          {
+            "id": "schematic-button",
+            "x": 553,
+            "y": 509.98974609375,
+            "right": 727,
+            "bottom": 558.3897476196289
+          }
+        ]
+      }
+    ],
+    "result": {
+      "story": "사용 케이블 5,460 · 전류가 갈라지는 곳 3 · 되찾은 위기 0회",
+      "next": "다음 구역 · 골목의 물길\n골목과 급수장에 펌프가 필요해요. 두 펌프의 전류를 나눠 주세요.",
+      "event": {
+        "eventSeq": 69,
+        "wallMs": 683,
+        "activeMs": 44050,
+        "event": "result_shown",
+        "payload": {
+          "seed": 101
+        }
+      }
+    },
+    "historySeeds": [
+      101,
+      202,
+      303
+    ],
+    "recoveredResult": "사용 케이블 5,460 · 전류가 갈라지는 곳 3 · 되찾은 위기 1회",
+    "seedDemandHint": "골목 펌프에도 전력이 필요해요. 케이블이 보급됐어요. 기존 길을 함께 쓰고, 전류가 몰리면 갈래를 나눠 주세요."
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "round": "R5",
+  "revision": 1,
+  "decision": "ACCEPT_ENGINEERING",
+  "humanStatus": "not_run",
+  "participants": 0,
+  "productModifiedByEvaluator": false,
+  "previousDecision": "r05-review.json",
+  "repairsUsed": 1,
+  "resolvedFindings": [
+    "R5-F01"
+  ],
+  "blockingFindings": [],
+  "manifest": "r05-revision1/manifest.json",
+  "gameSha256": "500e881c6aca9ac28d03c497e366f56cfb847a5cf576c2f94a25ff9b46c5b4af",
+  "runsSha256": "3db31b6a28fc6a6b621cf67274e93675e2daf46a9c1de629736e1b7068ab15fd",
+  "aggregateProductSha256": "7e6aae4e8ed42ef228ead82aa9016b3ee792a5457bec30e597b3db5816051fab",
+  "checks": {
+    "node": {
+      "passed": 45,
+      "total": 45
+    },
+    "syntax": "passed",
+    "browser-r1": {
+      "passed": 18,
+      "total": 18
+    },
+    "browser-r3": {
+      "passed": 22,
+      "total": 22
+    },
+    "browser-r4": {
+      "passed": 19,
+      "total": 19
+    },
+    "browser-r5": {
+      "passed": 32,
+      "total": 32
+    },
+    "seed-url": {
+      "passed": 4,
+      "total": 4
+    },
+    "director-probes": {
+      "passed": 5,
+      "total": 5
+    },
+    "cable-probes": {
+      "passed": 5,
+      "total": 5
+    },
+    "legacy-browser": {
+      "passed": 18,
+      "total": 18
+    },
+    "nativeNextRestartPauseResume": "passed"
+  },
+  "solutions": [
+    {
+      "seed": 101,
+      "kind": "ab+cm",
+      "time": 44.04999999999953,
+      "used": 5460,
+      "remaining": 440,
+      "current": 0.7370386729510514,
+      "motors": [
+        "motor-1"
+      ]
+    },
+    {
+      "seed": 101,
+      "kind": "ac+bm",
+      "time": 44.04999999999953,
+      "used": 5084,
+      "remaining": 816,
+      "current": 0.7370386729510514,
+      "motors": [
+        "motor-1"
+      ]
+    },
+    {
+      "seed": 202,
+      "kind": "ab+cm",
+      "time": 44.04999999999953,
+      "used": 5460,
+      "remaining": 440,
+      "current": 0.7359584839949918,
+      "motors": [
+        "lamp-2",
+        "motor-1"
+      ]
+    },
+    {
+      "seed": 202,
+      "kind": "am+bc",
+      "time": 44.04999999999953,
+      "used": 5440,
+      "remaining": 460,
+      "current": 0.7363949731514774,
+      "motors": [
+        "lamp-2",
+        "motor-1"
+      ]
+    },
+    {
+      "seed": 303,
+      "kind": "ac+bm",
+      "time": 44.04999999999953,
+      "used": 5084,
+      "remaining": 816,
+      "current": 0.7359584839949918,
+      "motors": [
+        "lamp-3",
+        "motor-1"
+      ]
+    },
+    {
+      "seed": 303,
+      "kind": "am+bc",
+      "time": 44.04999999999953,
+      "used": 5440,
+      "remaining": 460,
+      "current": 0.7359584839949918,
+      "motors": [
+        "lamp-3",
+        "motor-1"
+      ]
+    }
+  ],
+  "counterexamples": [
+    {
+      "seed": 202,
+      "kind": "ac+bm",
+      "current": 0.8827786125892856,
+      "breaks": 1,
+      "wireBreakEvents": 2
+    },
+    {
+      "seed": 303,
+      "kind": "ab+cm",
+      "current": 0.8827786125892856,
+      "breaks": 1,
+      "wireBreakEvents": 2
+    }
+  ],
+  "finalAudit": "r05-revision1/final-audit.json",
+  "exactCompletedRounds": 5,
+  "repairCounts": [
+    1,
+    0,
+    2,
+    1,
+    1
+  ],
+  "previewURL": "http://127.0.0.1:4200/index.html",
+  "scopeNotes": [
+    "R1 legacy timing is deliberate to retain old series fixture; default onboarding and stable timing also exercised by R3/R4/R5.",
+    "R2 has standalone director tests plus default R5 unresolved/preview/pause and R4 heat/recovery gating. Old four-independent-loop R2 policy is incompatible with R3 cable budget and is not claimed as final default regression.",
+    "Seed scenarios still permit universal safe am+bc. Only two specified copied policies are disproven.",
+    "Automated completion at 44.05 active seconds is not human completion time.",
+    "Initial R5 geometry harness mistake fixed and preserved, not counted as product defect.",
+    "Only repair changes game.js reset pause aria-label; regression assertion added to evaluator harness."
+  ],
+  "notRun": [
+    "human fun",
+    "human learning or causal understanding",
+    "spontaneous replay propensity",
+    "physical touch on hardware"
+  ],
+  "documentationReview": {
+    "productREADME": "Matches tested adaptive demand, cable budgets, 6-second overheat, 8-second win, 7-second result, three seeds, five prior journals, legacy scope. Physical touch support is not independently verified.",
+    "evalsREADME": "Explicitly marked original design contract; historical pre-loop statements are distinguished from actual execution in LOOP.md."
+  },
+  "evidence": [
+    "r05-revision1/browser-r5.json",
+    "r05-revision1/browser-r1.json",
+    "r05-revision1/browser-r3.json",
+    "r05-revision1/browser-r4.json",
+    "r05-revision1/seed-url.json",
+    "r05-revision1/director-probes.json",
+    "r05-revision1/cable-probes.json",
+    "r05-revision1/legacy-browser.json",
+    "r05-revision1/native-observations.json",
+    "r05-revision1/native-latest.json",
+    "r05-revision1/node-tests.txt",
+    "r05-revision1/syntax-check.txt",
+    "r05-revision1/final-audit.json",
+    "r05-revision1/server-cleanup.json"
+  ]
+}

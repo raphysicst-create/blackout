@@ -1,0 +1,9 @@
+{
+ "schemaVersion":1,"round":"R4","revision":1,"decision":"ACCEPT_ENGINEERING","humanStatus":"not_run","participants":0,"productModifiedByEvaluator":false,
+ "previousDecision":"r04-review.json","resolvedFindings":["R4-F01"],"manifest":"r04-revision1/manifest.json","gameSha256":"32e37d18ea6159a17847713e4ab0d4c4ae17c27ff5a75fbbdba81ab5b70a3097",
+ "checks":{"node":{"passed":45,"total":45},"syntax":"passed","defaultR4":{"passed":19,"total":19},"defaultR3Regression":{"passed":22,"total":22},"legacyBrowser":{"passed":18,"total":18,"seconds":6.2},"lateReconnect":"passed","noSuccessForOffDimOrOneWire":"passed"},
+ "observedCooling":{"top":"전류는 안전해요 · 전선이 식고 있어요","remainingSeconds":0.9,"lower":"모든 시설에 전류가 돌아왔어요.","detail":"공급선과 귀환선이 이어졌고, 전류도 안전해요."},
+ "retainedMetrics":{"episodeIds":[1,2],"warningCurrent":0.8880997474620678,"heatPercent":40,"breakRemainingSeconds":3.6,"sampleActiveMs":[1000,2000,3000],"recoveryCompleteCount":1},
+ "evidence":["r04-revision1/node-tests.txt","r04-revision1/syntax-check.txt","r04-revision1/integrity-after.json","r04-revision1/site/evals/independent-r4.js","r04-revision1/site/evals/independent-r3.js"],
+ "notRun":["physical touch","human cause-understanding and recovery-success metrics"]
+}
